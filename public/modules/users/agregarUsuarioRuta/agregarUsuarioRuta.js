@@ -1,3 +1,4 @@
+const wrapperContainer = document.querySelector('.wrapperContainer');
 const btnPicture = document.querySelector('.btnPicture');
 const inputFieldPic = document.querySelector('#profilePicture');
 const imageElement = document.querySelector('.picWrapper__picture');
@@ -5,6 +6,7 @@ const titlePictureName = document.querySelector('.pictureName');
 const userRoutesFormValues = document.querySelectorAll('.form input');
 const selectGender = document.querySelector('#genero');
 const btnSubmitForm = document.querySelector('#btnSubmitForm');
+const modal = createModal;
 
 
 const userForm = {
@@ -234,6 +236,47 @@ const clearForm = () => {
         }
     });
 }
+
+wrapperContainer.querySelector('main').insertBefore(
+    createTopNavbar(
+        'Agregar Usuario',
+        {
+            profilePic: '#',
+            name: localStorage.getItem('session').nombre,
+            rol: localStorage.getItem('session').type,
+            href: '#'
+        },
+        [
+            {
+                icon: 'account_circle',
+                name: 'Mi Perfil',
+                href: '#'
+            },
+            {
+                icon: 'settings',
+                name: 'Configuración',
+                href: '#'
+            },
+            {
+                icon: 'exit_to_app',
+                name: 'Cerrar Sesión',
+                href: '#'
+            }
+        ]
+    ),
+    document.querySelector('.breadCrumb')
+);
+
+wrapperContainer.querySelector('header').appendChild(
+    createSidebar([
+        {
+            name: 'Usuarios',
+            icon: 'account_circle',
+            href: '#',
+            active: true
+        }
+    ])
+);
 
 userRoutesFormValues.forEach(input => {
     input.addEventListener('change', (e) => {
