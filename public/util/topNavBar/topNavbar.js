@@ -113,3 +113,30 @@ const createUserDropdownOptions = (dropDownList) => {
 
 const changeUserOptionsState = (ele) => ele.classList.toggle('dropDownUserWrapper--show');
 
+// createTopNavbar(
+//     'Agregar Usuario',
+//     {
+//         profilePic: 'http://localhost:8082/image',
+//         name: 'Juan',
+//         rol: 'Ruta',
+//         href: '#'
+//     },
+//     [
+//         {
+//             icon: 'account_circle',
+//             name: 'Mi Perfil',
+//             href: '#'
+//         },
+//         {
+//             icon: 'settings',
+//             name: 'Configuración',
+//             href: '#'
+//         },
+//         {
+//             icon: 'exit_to_app',
+//             name: 'Cerrar Sesión',
+//             href: '#'
+//         }
+//     ]
+// )
+
