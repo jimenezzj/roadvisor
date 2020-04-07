@@ -1,0 +1,135 @@
+@media (min-width: 768px) {
+  .navbarWrapper--short {
+    width: 4.5rem;
+  }
+  .navbarWrapper--long {
+    width: 4.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbarWrapper--short {
+    width: 4.5rem;
+  }
+  .navbarWrapper--long {
+    width: 15.5rem;
+  }
+}
+
+.navbarWrapper {
+  position: sticky;
+  top: 0px;
+  background-color: #20ab8c;
+  box-shadow: #00000031 0px 3px 6px 3px;
+  flex-grow: 1;
+  height: 100vh;
+  z-index: 2;
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #72eacf;
+  width: 100%;
+  height: 4.1rem;
+  padding: 1.2rem;
+}
+.logoWrapper--show {
+  padding: 0;
+  text-align: center;
+}
+.logoWrapper--show::after {
+  content: "R";
+  color: white;
+  font-weight: 700;
+  font-size: 2.7rem;
+  text-shadow: -2px 2px 5px #17745f;
+}
+
+.hamburger {
+}
+
+.logoImage {
+  width: 100%;
+  display: none;
+}
+.logoImage--show {
+  display: block;
+}
+
+.sectionsWrapper {
+  padding: 2rem 0;
+}
+
+.sectionsWrapper--expanded {
+  text-align: start;
+}
+
+.sectionsWrapper--squeezed {
+  text-align: center;
+}
+
+.iconWrapper {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+.link--active {
+  background-color: #95eedbaf;
+  border-left: 5px solid #614634;
+}
+
+.iconWrapper--expanded {
+  padding: 0.7rem 1.2rem;
+}
+
+.iconWrapper--squeezed {
+  padding: 0.5rem 0;
+}
+
+.iconWrapper:hover {
+  background-color: #11131234;
+}
+/*This on hover should be after iconWrapper on hover
+to override the common style*/
+.link--active:hover {
+  background-color: #95eedbaf;
+}
+
+.iconTag {
+}
+
+.iconTag--active {
+  color: #614634;
+}
+
+.sideBarIcon {
+  font-size: 2rem !important;
+  vertical-align: middle;
+}
+
+.link {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.linkText {
+  padding-left: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.linkText--active {
+  color: #614634;
+}
+
+.linkText--show {
+  display: inline-block;
+}
+
+.linkText--hide {
+  display: none;
+}

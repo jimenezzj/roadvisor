@@ -1,0 +1,149 @@
+.topNavbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* background-color: #fff7de; */
+  background-color: #ffffff;
+  padding: 0.5rem 1.5rem;
+  box-shadow: #00000021 0px 3px 4px 3px;
+  height: 4.1rem;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: #463326;
+  font-size: 1.7rem;
+  font-weight: 600;
+  align-self: flex-start;
+  padding: 0.2rem 0;
+  vertical-align: sup;
+}
+
+.hamburgerTopNav {
+  margin-right: 1.5rem;
+  width: 50px;
+  padding: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.hamburgerTopNav:hover {
+  width: 50px;
+  background-color: #00000017;
+  padding: 10px;
+  border-radius: 60px;
+}
+
+.hamburgerTopNav div {
+  margin-bottom: 5px;
+  height: 3.5px;
+  background-color: #614634;
+}
+
+.profileWrapper {
+  display: flex;
+  /* border: 2px solid red; */
+  height: 100%;
+  align-items: center;
+  width: 16.5rem;
+  position: relative;
+}
+
+.dropDownIcon {
+  color: #463326;
+  font-family: "material icons";
+}
+
+.profileLine {
+  height: 80%;
+  background-color: #463326;
+  margin: 0 1rem;
+  padding-left: 1px;
+}
+
+.profilePic {
+  width: 2.8rem;
+  height: 100%;
+  border-radius: 80px;
+}
+
+.userInfoWrapper {
+  padding: 0.2rem 1rem;
+}
+
+.userInfoWrapper:hover > a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.userName {
+  display: block;
+  color: #20ab8c;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.userRol {
+  display: block;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: #463326;
+}
+
+.dropDownIcon {
+  position: absolute;
+  right: 2%;
+  font-size: 2rem !important;
+  cursor: pointer;
+}
+
+.dropDownUserWrapper {
+  display: none;
+  position: absolute;
+  top: 150%;
+  right: 0%;
+  width: 98%;
+  padding: 0.6rem 0;
+  background-color: #ffffff;
+  box-shadow: 0 0 7px 2px #0000001f;
+  z-index: 10;
+}
+
+.dropDownUserWrapper--show {
+  display: block;
+}
+
+.dropDownUserList {
+  list-style: none;
+  margin: 0;
+  padding: 0 0;
+}
+
+.dropDownUserItem {
+  padding: 0.4rem 1.6rem;
+  font-size: 1.2rem;
+  color: #463326;
+  cursor: pointer;
+}
+
+.dropDownUserItem:hover {
+  background-color: #20ab8d2d;
+}
+
+.dropDownUserName {
+  display: inline-block;
+  padding: 1rem 0 1rem 1rem;
+  margin: 0;
+  text-decoration: none;
+  color: #463326;
+}
+
+.dropDownListIcon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.8rem !important;
+}
