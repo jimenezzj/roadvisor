@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/auth', auth);
-app.use('/users', user);
+app.use('/users', tokenVerification.validateToken, user);
 
 app.use((err, req, res, next) => {
     const status = err.statusCode || 500;
