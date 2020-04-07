@@ -6,7 +6,7 @@ const router = express.Router();
 const User = require('../models/usuario');
 const config = require('../util/config');
 
-router.post('/signup', (req, res, next) => {
+router.post('/login', (req, res) => {
     const { email, password } = req.body;
     User.findOne({ email: email })
         .then(user => {

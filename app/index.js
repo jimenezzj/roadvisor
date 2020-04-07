@@ -5,7 +5,9 @@ const app = express();
 
 const getRoadviserDbConnection = require('./util/database');
 const util = require('./util/util');
+const tokenVerification = require('./middleware/validateToken');
 const user = require('./controllers/usuario');
+const auth = require('./controllers/auth');
 
 const port = 8082;
 
@@ -13,6 +15,7 @@ app.use(express.static(path.join(util.getMainDirectory, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/auth', auth);
 app.use('/users', user);
 
 app.use((err, req, res, next) => {
