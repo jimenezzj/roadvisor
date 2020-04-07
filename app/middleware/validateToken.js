@@ -12,7 +12,7 @@ const validateToken = (req, res, next) => {
                 throw invalidToken;
             }
             req.email = decoded.email;
-            req.tipe = decoded.type;
+            req.type = decoded.type;
             next();
         });
     } else {
