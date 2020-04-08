@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Vehicle = require('../models/vehicle');
+const util = require('../util/util');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -18,7 +19,10 @@ const upload = multer({ storage: storage });
 
 router.post('/add', upload.array('vehiclePictures'), (req, res) => {
     const { numeroPlaca, model, anio, color, type } = req.body;
-    const vehiclePictures = [req.files[0].path];
+    const vehiclePictures = [];
+    req.files.forEach(file => vehiclePictures.push(
+        util.cutFilePath(file.path)
+    ));
     const newVehicle = new Vehicle({
         _id: mongoose.Types.ObjectId(),
         numeroPlaca: numeroPlaca,
