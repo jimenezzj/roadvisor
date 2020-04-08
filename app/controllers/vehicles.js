@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/add', upload.array('vehiclePictures'), (req, res) => {
-    const { numeroPlaca, model, anio, color, type } = req.body;
+    const { numeroPlaca, marca, model, anio, color, type } = req.body;
     const vehiclePictures = [];
     req.files.forEach(file => vehiclePictures.push(
         util.cutFilePath(file.path)
@@ -26,6 +26,7 @@ router.post('/add', upload.array('vehiclePictures'), (req, res) => {
     const newVehicle = new Vehicle({
         _id: mongoose.Types.ObjectId(),
         numeroPlaca: numeroPlaca,
+        marca: marca,
         model: model,
         anio: anio,
         color: color,
@@ -58,6 +59,38 @@ router.post('/add', upload.array('vehiclePictures'), (req, res) => {
                 message: err.message
             });
         });
+});
+
+router.get('/search/:sValue', (req, res, next) => {
+    const { sValue } = req.params;
+    const orArray = [];
+    Vehicle.schema.eachPath(path => {
+        let field;
+        if (path !== '__v' && path !== '_id' && path !== 'anio') {
+            field = { [path]: { '$regex': sValue } }
+            orArray.push(field)
+        };
+    });
+    Vehicle.find({ $or: orArray })
+        .then(docs => {
+            if (docs.length === 0) {
+                const error = new Error('No se encontraron vehiculos');
+                error.statusCode = '404';
+                throw error;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se encontraron vehiculos!',
+                data: docs
+            });
+
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
+
 });
 
 module.exports = router;
