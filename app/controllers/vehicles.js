@@ -61,6 +61,27 @@ router.post('/add', upload.array('vehiclePictures'), (req, res) => {
         });
 });
 
+router.get('/', (req, res, next) => {
+    Vehicle.find({})
+        .then(list => {
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se obtuvo la lista de vehiculos con exito!',
+                data: list
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            return res.status(err.statusCode).json({
+                statusCode: err.statusCode,
+                message: err.message
+            });
+        });
+});
+
 router.get('/search/:sValue', (req, res, next) => {
     const { sValue } = req.params;
     const orArray = [];
