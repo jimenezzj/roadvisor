@@ -11,4 +11,4 @@ const vehiclesSchema = new mongoose.Schema({
     fotos: [String]
 });
 
-module.exports = mongoose.model('Vehiculo', vehiclesSchema);
+module.exports = mongoose.model('Vehiculo', vehiclesSchema, 'Vehiculos');
