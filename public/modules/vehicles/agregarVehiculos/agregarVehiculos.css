@@ -21,16 +21,70 @@ main {
   flex-grow: 1;
 }
 
+.btnOutline {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  border: 3px solid #1fa084;
+  padding: 0.5rem 0;
+  background-color: #ffffff;
+  border-radius: 4rem;
+  color: #20ab8c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+.btn {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  border: none;
+  padding: 0.5rem 0;
+  background-color: #20ab8c;
+  border-radius: 4rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.line {
+  width: 80%;
+  border-top: 4px dashed #6b6b6b;
+  margin: 1rem auto;
+}
+
+.btnOutline:hover {
+  color: #ffffff;
+  background-color: #20ab8c;
+}
+.subTitleSection {
+  letter-spacing: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 0.8rem;
+  border-bottom: 1px solid gray;
+  padding: 1.5rem 0 1rem 0;
+  margin: 0;
+}
+/*******************/
+.titleActionWrapper {
+  padding: 0 4.5rem;
+}
 .formWrapper {
   display: flex;
+  padding: 1rem 10%;
+  flex-flow: column;
 }
 
 .fieldsWrapper {
   display: flex;
   flex-wrap: wrap;
-  padding: 1rem 0 1rem 1.5rem;
-  width: 40%;
-  flex-grow: 2;
+  padding: 1rem;
+  /* width: 40%; */
+  /* flex-grow: 2; */
 }
 
 .fieldsWrapper > div {
@@ -110,31 +164,112 @@ main {
 
 .imageFieldWrapper {
   display: flex;
-  border: 2px solid #d40606;
-  flex-grow: 1;
+  border: 6px dashed #b1b1b1;
+  padding: 1rem;
+  align-items: center;
+  /* flex-grow: 1; */
+}
+.imageFieldWrapper--full {
+  height: 55vh;
 }
 .uploadPicWrapper {
-  width: 25%;
+  /* width: 25%; normar Version*/
+  width: 15%;
+  margin: auto;
   padding: 1.5rem 0.5rem;
   align-self: center;
   text-align: center;
 }
+.uploadPicWrapper--hide {
+  display: none;
+}
+.uploadPicWrapper * {
+  color: #463326;
+}
 .uploadPicWrapper i {
-  font-size: 3rem;
-  color: #383838;
+  font-size: 3.8rem;
 }
 .uploadPicWrapper span {
+  font-size: 1.3rem;
   font-weight: 700;
   display: block;
 }
-.uploadPicWrapper .btnUploadPic {
+#vehiImagesField {
+  display: none;
+}
+.picsList--show {
+  display: block !important;
+}
+.btnUploadPic {
+  width: 100%;
+  margin: 1.5rem 0;
+  border: none;
+  padding: 0.5rem 0;
+  background-color: #20ab8c;
+  border-radius: 4rem;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+.btnUploadPic:hover {
+  /* color: #ffffff; */
+  background-color: #198870;
+}
+.picsWrapper {
+  flex-grow: 1;
+  padding: 0.5rem 1.5rem;
+  height: 100%;
+  text-align: center;
+  display: none;
 }
 .picsList {
-    flex-grow: 1;
-    padding: 1rem 1.5rem;
+  max-height: 80%;
+  overflow-y: scroll;
 }
-.picsList .picsList__item {
+.picsWrapper .picsList__item {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  color: #36271d;
+  cursor: pointer;
+  padding: 0 0.6rem;
+}
+.picsList__item:hover {
+  background-color: #20ab8d23;
+  border-radius: 55px;
+}
+.picsList__item--active {
+  background-color: #17836c42;
+  border: 2px solid #0e5747;
+  border-radius: 55px;
+}
+.picsList__item--active > * {
+  font-weight: 500;
+  color: #0e5747;
+}
+.imagesPreview {
+  display: none;
+  width: 55%;
+  text-align: center;
+  height: 100%;
+  overflow: hidden;
+}
+.imagesPreview img {
+  height: 100%;
+}
+
+.btnAddPic {
+  width: 80%;
+}
+.btnAddPic > * {
+  vertical-align: middle;
+}
+.btnAddPic > span {
+  font-size: 1.3rem;
+}
+.btnAddPic > i {
+  font-size: 1.9rem;
 }
