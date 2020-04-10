@@ -119,6 +119,6 @@ createModal(
         height: '', // altura custom del modal, SOLO USAR PORCENTAJES (MAX=88%)
         width: '' // ancho custom del modal, SOLO USAR PORCENTAJES (MAX=91%)
     }
-
+)
 
 */
