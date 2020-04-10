@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+.wrapperContainer {
+  display: flex;
+  /* align-items: stretch; */
+}
+
+header {
+}
+
+main {
+  /* display: flex; */
+  /* flex-flow: column; */
+  flex-grow: 1;
+}
+
+.formWrapper {
+  display: flex;
+}
+
+.fieldsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem 0 1rem 1.5rem;
+  width: 40%;
+  flex-grow: 2;
+}
+
+.fieldsWrapper > div {
+  display: flex;
+  position: relative;
+  flex-flow: column;
+  width: 33%;
+  padding: 1rem 1.5rem;
+}
+
+.fieldWrapper input[type="text"],
+.fieldWrapper input[type="email"],
+.fieldWrapper input[type="number"],
+.fieldWrapper input[type="tel"],
+.fieldWrapper input[type="date"] {
+  border: 2px solid #1fa084;
+  padding: 1rem 1.2rem;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  color: #444444fd;
+  outline: none;
+}
+
+.fieldWrapper input[type="text"]:focus,
+.fieldWrapper input[type="email"]:focus,
+.fieldWrapper input[type="tel"]:focus,
+.fieldWrapper input[type="date"] {
+  /* border: 2px solid #2b3186; */
+  outline: none;
+}
+
+.fieldWrapper label {
+  font-weight: 500;
+  position: absolute;
+  top: 7%;
+  left: 13%;
+  font-size: 0.9rem;
+  background-color: #ffffff;
+  padding: 0 0.4rem;
+  color: #1fa084;
+}
+
+.fieldWrapper select {
+  border: 2px solid #1fa084;
+  padding: 1rem 1.2rem;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  color: #444444fd;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.selectWrapper * {
+  cursor: pointer;
+}
+
+.fieldWrapper select::-ms-expand {
+  display: none;
+}
+
+.error {
+  color: #d40606;
+  margin: 0;
+  padding: 0.5rem 0.2rem;
+  font-size: 1rem;
+  visibility: hidden;
+}
+
+.inputField--error {
+  border: 2px solid #d40606;
+}
+
+.error--show {
+  visibility: visible;
+}
+
+.imageFieldWrapper {
+  display: flex;
+  border: 2px solid #d40606;
+  flex-grow: 1;
+}
+.uploadPicWrapper {
+  width: 25%;
+  padding: 1.5rem 0.5rem;
+  align-self: center;
+  text-align: center;
+}
+.uploadPicWrapper i {
+  font-size: 3rem;
+  color: #383838;
+}
+.uploadPicWrapper span {
+  font-weight: 700;
+  display: block;
+}
+.uploadPicWrapper .btnUploadPic {
+}
+.picsList {
+    flex-grow: 1;
+    padding: 1rem 1.5rem;
+}
+.picsList .picsList__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
