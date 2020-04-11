@@ -92,7 +92,7 @@ main {
   position: relative;
   flex-flow: column;
   width: 33%;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
 }
 
 .fieldWrapper input[type="text"],
@@ -167,6 +167,7 @@ main {
   border: 6px dashed #b1b1b1;
   padding: 1rem;
   align-items: center;
+  margin: 0 2rem;
   /* flex-grow: 1; */
 }
 .imageFieldWrapper--full {
@@ -233,9 +234,10 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 0.6rem;
+  margin: 0.6rem 0;
   color: #36271d;
   cursor: pointer;
-  padding: 0 0.6rem;
 }
 .picsList__item:hover {
   background-color: #20ab8d23;
@@ -275,4 +277,6 @@ main {
 }
 .btnAddPic > i {
   font-size: 1.9rem;
+  padding: 0 0.5rem;
+  /* color: #f5f5f5; */
 }

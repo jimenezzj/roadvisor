@@ -7,6 +7,7 @@ const btnUploadPicture = document.querySelector('.btnUploadPic');
 const btnAddPic = document.querySelector('.btnAddPic');
 const vehiImagesField = document.querySelector('#vehiImagesField');
 const picsList = document.querySelector('.picsList');
+const imagePreview = document.querySelector('#imagePreview');
 
 let currentFiles = [];
 let uploadFileInfo = {
@@ -16,6 +17,15 @@ let uploadFileInfo = {
 
 const updateCurrentFiles = (filesUpload) => {
     let newPicItem;
+    if (currentFiles.length === 0) {
+        toBase64(filesUpload[0])
+            .then(data => {
+                imagePreview.src = data;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
     picsList.innerHTML = null;
     currentFiles = [...currentFiles, ...filesUpload];
     currentFiles.forEach((file, i) => {
@@ -33,6 +43,8 @@ const updateCurrentFiles = (filesUpload) => {
             removeImageItem.bind(this, nomarlIndex);
         picsList.appendChild(newPicItem);
     })
+    console.dir(imagePreview);
+
 };
 
 const setActiveState = (index, e) => {
@@ -41,7 +53,14 @@ const setActiveState = (index, e) => {
         document.querySelector('#picsList__item' + uploadFileInfo.active)
             .classList.remove('picsList__item--active');
         uploadFileInfo.active = index;
-        document.querySelector('#picsList__item' + index).classList.add('picsList__item--active')
+        document.querySelector('#picsList__item' + index).classList.add('picsList__item--active');
+        toBase64(currentFiles[index - 1])
+            .then(result => {
+                imagePreview.src = result;
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 }
 
@@ -52,7 +71,14 @@ const removeImageItem = (index) => {
     if (currentFiles.length > 0) {
         if (document.querySelector('#picsList__item' + index).classList.contains('picsList__item--active')
             || index < uploadFileInfo.active) {
+            let imgPositionToLoad;
             uploadFileInfo.active = uploadFileInfo.active - 1;
+            imgPositionToLoad = uploadFileInfo.active === 0 ? 0 : uploadFileInfo.active - 1;
+            toBase64(currentFiles[imgPositionToLoad])
+                .then(result => {
+                    imagePreview.src = result;
+                })
+                .catch(err => console.error(err))
         }
         updateCurrentFiles([]);
     } else {
