@@ -250,6 +250,9 @@ main {
   font-weight: 500;
   color: #0e5747;
 }
+.close-icon:hover {
+  color: #b80000;
+}
 .imagesPreview {
   display: none;
   width: 55%;

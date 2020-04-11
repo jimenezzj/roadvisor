@@ -9,16 +9,59 @@ const vehiImagesField = document.querySelector('#vehiImagesField');
 const picsList = document.querySelector('.picsList');
 
 let currentFiles = [];
+let uploadFileInfo = {
+    currentFiles: [],
+    active: ''
+}
 
 const updateCurrentFiles = (filesUpload) => {
+    let newPicItem;
+    picsList.innerHTML = null;
     currentFiles = [...currentFiles, ...filesUpload];
-    currentFiles.forEach(file => {
-        picsList.appendChild(
-            createListItem(file.name)
-        );
+    currentFiles.forEach((file, i) => {
+        const nomarlIndex = i + 1;
+        newPicItem = createListItem(file.name, nomarlIndex);
+        if (!uploadFileInfo.active) {
+            newPicItem.classList.add('picsList__item--active');
+            uploadFileInfo.active = nomarlIndex;
+        } else {
+            if ((nomarlIndex) === uploadFileInfo.active) {
+                newPicItem.classList.add('picsList__item--active');
+            }
+        }
+        newPicItem.querySelector('.close-icon').onclick =
+            removeImageItem.bind(this, nomarlIndex);
+        picsList.appendChild(newPicItem);
     })
-    console.log(filesListElements);
 };
+
+const setActiveState = (index, e) => {
+    // console.dir(e.target);
+    if (e.target.innerHTML !== 'close') {
+        document.querySelector('#picsList__item' + uploadFileInfo.active)
+            .classList.remove('picsList__item--active');
+        uploadFileInfo.active = index;
+        document.querySelector('#picsList__item' + index).classList.add('picsList__item--active')
+    }
+}
+
+const removeImageItem = (index) => {
+    currentFiles = currentFiles.filter((_, i) => (i + 1) !== index); // updates currentFiles uploaded array
+    // si el que se elimina es el active o es menor a la posicion actual del active
+    // le resta 1 para mantener el mismo elmento seleccionado
+    if (currentFiles.length > 0) {
+        if (document.querySelector('#picsList__item' + index).classList.contains('picsList__item--active')
+            || index < uploadFileInfo.active) {
+            uploadFileInfo.active = uploadFileInfo.active - 1;
+        }
+        updateCurrentFiles([]);
+    } else {
+        uploadPicWrapper.classList.toggle('uploadPicWrapper--hide');
+        picsWrapper.classList.remove('picsList--show');
+        imagesPreview.classList.remove('picsList--show');
+        imageFieldWrapper.classList.remove('imageFieldWrapper--full');
+    }
+}
 
 btnUploadPicture.addEventListener('click', () => {
     vehiImagesField.click();
@@ -36,11 +79,10 @@ vehiImagesField.addEventListener('change', (e) => {
         picsWrapper.classList.add('picsList--show');
         imagesPreview.classList.add('picsList--show');
         imageFieldWrapper.classList.add('imageFieldWrapper--full');
-    } else {
-        uploadPicWrapper.classList.remove('uploadPicWrapper--hide');
-        picsWrapper.classList.remove('picsList--show');
-        imagesPreview.classList.remove('picsList--show');
     }
+    // uploadPicWrapper.classList.remove('uploadPicWrapper--hide');
+    // picsWrapper.classList.remove('picsList--show');
+    // imagesPreview.classList.remove('picsList--show');
     updateCurrentFiles(filesLenght);
 });
 
@@ -85,22 +127,28 @@ mainWrapper.querySelector('main').insertBefore(
     document.querySelector('.breadCrumb')
 );
 
-const createListItem = (picName) => {
+const createListItem = (picName, indexPos) => {
+    let imageItem;
     const picItemElement = document.createElement('div');
     const iconElement = document.createElement('i');
     iconElement.classList.add('material-icons');
     const picNameElement = document.createElement('p');
     const xIcon = iconElement.cloneNode(true);
     const imageIcon = iconElement.cloneNode(true);
+    xIcon.classList.add('close-icon');
     picItemElement.classList.add('picsList__item');
     picNameElement.innerHTML = picName;
-    xIcon.innerHTML = 'insert_photo';
-    imageIcon.innerHTML = 'close';
-    picItemElement.appendChild(xIcon);
-    picItemElement.appendChild(picNameElement);
+    xIcon.innerHTML = 'close';
+    imageIcon.innerHTML = 'insert_photo';
     picItemElement.appendChild(imageIcon);
-    return picItemElement.cloneNode(true);
+    picItemElement.appendChild(picNameElement);
+    picItemElement.appendChild(xIcon);
+    imageItem = picItemElement.cloneNode(true);
+    imageItem.id = 'picsList__item' + indexPos;
+    imageItem.onclick = setActiveState.bind(this, indexPos);
+    return imageItem;
 }
+
 /*
                             <div class="picsList__item">
                                 <i class="material-icons">insert_photo</i>
