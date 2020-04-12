@@ -21,6 +21,7 @@ main {
   flex-grow: 1;
 }
 
+/********************************/
 .actionsWrapper {
   display: flex;
   align-items: center;
@@ -131,6 +132,7 @@ main {
   display: flex;
   justify-content: space-between;
   padding: 26px 3%;
+  flex-wrap: wrap;
 }
 
 .listWrapper p,

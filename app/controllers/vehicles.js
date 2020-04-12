@@ -20,6 +20,8 @@ const upload = multer({ storage: storage });
 router.post('/add', upload.array('vehiclePictures'), (req, res) => {
     const { numeroPlaca, marca, model, anio, color, type } = req.body;
     const vehiclePictures = [];
+    console.log(req.files);
+    
     req.files.forEach(file => vehiclePictures.push(
         util.cutFilePath(file.path)
     ));
@@ -27,7 +29,7 @@ router.post('/add', upload.array('vehiclePictures'), (req, res) => {
         _id: mongoose.Types.ObjectId(),
         numeroPlaca: numeroPlaca,
         marca: marca,
-        model: model,
+        modelo: model,
         anio: anio,
         color: color,
         type: type,

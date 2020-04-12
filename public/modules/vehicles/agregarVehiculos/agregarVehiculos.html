@@ -29,10 +29,27 @@
                         <input type="number" name="numeroPlaca" id="numeroPlaca">
                         <p class="error">Some error message</p>
                     </div>
-                    <div class="fieldWrapper fieldWrapper--textFiedl">
+                    <div class="fieldWrapper fieldWrapper--customSelect">
                         <label for="brand">Marca</label>
-                        <input type="text" name="brand" id="brand">
+                        <select name="brandOriginalSelect" id="brandOriginalSelect">
+                            <option value="" selected>Seleccione una marca</option>
+                        </select>
+                        <input type="text" name="brand" id="brand" readonly>
                         <p class="error">Some error message</p>
+                        <div class="customSelectWrapper">
+                            <ul class="customSelectList">
+                                <li class="customList--item">BMW</li>
+                                <li class="customList--item">Dodge</li>
+                                <li class="customList--item">Mercedes-benz</li>
+                                <li class="customList--item">Chevrolette</li>
+                                <li class="customList--item">Honda</li>
+                                <li class="customList--item">Nissan</li>
+                                <li class="customList--item">Toyota</li>
+                                <li class="customList--item">Ford</li>
+                                <li class="customList--item">Hyundai</li>
+                                <li class="customList--item">Subaru</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="fieldWrapper fieldWrapper--textFiedl">
                         <label for="model">Modelo</label>
@@ -41,7 +58,7 @@
                     </div>
                     <div class="fieldWrapper">
                         <label for="year">Año</label>
-                        <input type="date" name="year" id="year">
+                        <input type="date" name="year" id="anio">
                         <p class="error">Some error message</p>
                     </div>
                     <div class="fieldWrapper selectWrapper">
@@ -112,9 +129,21 @@
 
                 </div>
             </div>
+            <div class="actionsWrapper">
+                <a class="btn btnBack">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                    <span>Regresar</span>
+                </a>
+                <button class="btn btnAdd" id="btnSubmitForm">
+                    <span>Agregar</span>
+                </button>
+                <div class="actionHelperEle"></div>
+            </div>
         </main>
     </div>
+    <script src='../../../util/vechicleBrands.js'></script>
     <script src='../../../util/convertions.js'></script>
+    <script src='../../../util/modal/modal.js'></script>
     <script src='../../../util/sideBar/sideBar.js'></script>
     <script src='../../../util/topNavBar/topNavbar.js'></script>
     <script src='./agregarVehiculos.js'></script>

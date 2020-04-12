@@ -8,6 +8,10 @@ const btnAddPic = document.querySelector('.btnAddPic');
 const vehiImagesField = document.querySelector('#vehiImagesField');
 const picsList = document.querySelector('.picsList');
 const imagePreview = document.querySelector('#imagePreview');
+const btnSubmitForm = document.querySelector('#btnSubmitForm');
+
+const fieldWrapperCustomSelect = document.querySelector('.fieldWrapper--customSelect');
+const brandOriginalSelect = document.querySelector('#brandOriginalSelect');
 
 let currentFiles = [];
 let uploadFileInfo = {
@@ -89,6 +93,51 @@ const removeImageItem = (index) => {
     }
 }
 
+const generateSelectOptions = () => {
+    const option = document.createElement('option');
+    vehiclesBrandList.forEach(objtName => {
+        const newOptionEle = option.cloneNode(true);
+        newOptionEle.innerHTML = objtName.name.toLocaleLowerCase().replace(/^\w/, c => c.toUpperCase());
+        newOptionEle.value = objtName.name.split(' ').join('_');
+        brandOriginalSelect.appendChild(newOptionEle);
+    });
+};
+
+const sendVehicleInfo = () => {
+    const form = new FormData();
+    const inputElemts = document.querySelectorAll('.formWrapper input');
+    const selectElemts = document.querySelectorAll('.formWrapper select');
+    inputElemts.forEach(({ id, value }) => {
+        if (id !== 'driver' && id !== 'brand' && id !== 'vehiImagesField') {
+            form.append(id, value);
+        }
+    });
+    selectElemts.forEach(({ id, value }) => {
+        if (id === 'brandOriginalSelect') form.append('marca', value);
+        form.append(id, value);
+    });
+    currentFiles.forEach(file => {
+        form.append('vehiclePictures', file);
+    })
+    form.append('type', 'carro');
+    // for (let e of form.keys()) {
+    //     console.log(e, ':', form.get(e));
+    // }
+    fetch('http://localhost:8082/vehicles/add', {
+        method: 'POST',
+        body: form
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (res.statusCode !== 201) {
+                throw new Error(res.message);
+            }
+
+
+        })
+        .catch(er => console.log(err));
+}
+
 btnUploadPicture.addEventListener('click', () => {
     vehiImagesField.click();
 });
@@ -96,6 +145,8 @@ btnUploadPicture.addEventListener('click', () => {
 btnAddPic.addEventListener('click', () => {
     vehiImagesField.click();
 });
+
+btnSubmitForm.onclick = sendVehicleInfo;
 
 vehiImagesField.addEventListener('change', (e) => {
     // console.dir(e.target);
@@ -175,6 +226,15 @@ const createListItem = (picName, indexPos) => {
     return imageItem;
 }
 
+
+fieldWrapperCustomSelect.addEventListener('click', (e) => {
+    console.log(e.target);
+});
+
+document.querySelector('.actionHelperEle').style.width =
+    document.querySelector('.btnBack').offsetWidth + 'px';
+
+generateSelectOptions();
 /*
                             <div class="picsList__item">
                                 <i class="material-icons">insert_photo</i>
