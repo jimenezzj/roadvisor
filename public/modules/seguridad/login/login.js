@@ -35,7 +35,7 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
                 correo: correo,
                 nombre: nombre,
                 pApellido: pApellido,
-                token: token,
+                token: 'Bearer: ' + token,
                 type: tipo,
                 isAuth: true,
                 expireTime: expiresTime
