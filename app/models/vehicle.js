@@ -8,7 +8,12 @@ const vehiclesSchema = new mongoose.Schema({
     anio: Date,
     color: String,
     type: String,
-    fotos: [String]
+    fotos: [String],
+    usuario: {
+        required: true,
+        type: String,
+        ref: 'Usuario'
+    }
 });
 
 module.exports = mongoose.model('Vehiculo', vehiclesSchema, 'Vehiculos');

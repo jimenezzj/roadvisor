@@ -132,10 +132,12 @@ const sendVehicleInfo = () => {
             if (res.statusCode !== 201) {
                 throw new Error(res.message);
             }
-
-
+            createModalMessage(res.message + ', con el # de placa: ' + res.data.numeroPlaca)
         })
-        .catch(er => console.log(err));
+        .catch(err => {
+            console.log(err);
+            createModalMessage(err.message);
+        });
 }
 
 btnUploadPicture.addEventListener('click', () => {
@@ -157,9 +159,6 @@ vehiImagesField.addEventListener('change', (e) => {
         imagesPreview.classList.add('picsList--show');
         imageFieldWrapper.classList.add('imageFieldWrapper--full');
     }
-    // uploadPicWrapper.classList.remove('uploadPicWrapper--hide');
-    // picsWrapper.classList.remove('picsList--show');
-    // imagesPreview.classList.remove('picsList--show');
     updateCurrentFiles(filesLenght);
 });
 
@@ -234,11 +233,34 @@ fieldWrapperCustomSelect.addEventListener('click', (e) => {
 document.querySelector('.actionHelperEle').style.width =
     document.querySelector('.btnBack').offsetWidth + 'px';
 
+const createModalMessage = (mes) => {
+    const pEle = document.createElement('p');
+    pEle.innerHTML = mes;
+
+    document.body.appendChild(
+        createModal(
+            'Exito!', // El titulo del modal
+            pEle,    // Pegan el contenido perzonalizado que necesitan meter en  el modal
+            // un  arreglo de botones, que ajusta sus propiedades
+            [
+                {
+                    name: 'Ok', // nombre del boton
+                    event: 'click', // evento al que va a reaccionar
+                    action: closeModal, // metodo qeu va a ejecutar, echo por ustedes
+                    style: buttons.PRIMARY // OPCIONAL
+                }
+            ],
+            { // objeto con ajustes del modal
+                position: { // posicion de los elementos de modal
+                    header: '', // titulo acepta: 'start', 'center' & 'end'
+                    body: '',  // body del modal acepta: 'start', 'center' & 'end'
+                    action: '' // contenedor de botones acepta: 'start', 'center' & 'end'
+                },
+            }
+        )
+    );
+    openModal();
+};
+
 generateSelectOptions();
-/*
-                            <div class="picsList__item">
-                                <i class="material-icons">insert_photo</i>
-                                <p>Nombre de foto.jpg</p>
-                                <i class="material-icons">close</i>
-                            </div>
-*/
+

@@ -18,13 +18,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/add', upload.array('vehiclePictures'), (req, res) => {
-    const { numeroPlaca, marca, model, anio, color, type } = req.body;
+    const { numeroPlaca, marca, model, anio, color, type, correo } = req.body;
     const vehiclePictures = [];
-    console.log(req.files);
-    
+
     req.files.forEach(file => vehiclePictures.push(
         util.cutFilePath(file.path)
     ));
+
     const newVehicle = new Vehicle({
         _id: mongoose.Types.ObjectId(),
         numeroPlaca: numeroPlaca,
@@ -33,7 +33,8 @@ router.post('/add', upload.array('vehiclePictures'), (req, res) => {
         anio: anio,
         color: color,
         type: type,
-        fotos: vehiclePictures
+        fotos: vehiclePictures,
+        usuario: correo
     });
     Vehicle.findOne({ numeroPlaca: numeroPlaca })
         .then(sResult => {
@@ -63,9 +64,17 @@ router.post('/add', upload.array('vehiclePictures'), (req, res) => {
         });
 });
 
-router.get('/', (req, res, next) => {
-    Vehicle.find({})
+router.get('/:userEmail', (req, res, next) => {
+    const userEmail = req.params.userEmail;
+    console.log(userEmail);
+
+    Vehicle.find({ usuario: userEmail })
         .then(list => {
+            if (list.length < 1) {
+                const errNotFound = new Error('Este usuario no tiene ningun vehiculo, propio o asociado');
+                errNotFound.statusCode = 404;
+                throw errNotFound;
+            }
             return res.status(201).json({
                 statusCode: 201,
                 message: 'Se obtuvo la lista de vehiculos con exito!',

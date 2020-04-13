@@ -5,7 +5,7 @@ const getMainDirectory = path.join(process.mainModule.filename, '..', '..').toSt
 const cutFilePath = (multerFilePath) => multerFilePath
     .split('\\')
     .filter(s => { if (s !== '..' && s !== 'public') return s })
-    .join("\\");
+    .join("/");
 
 exports.getMainDirectory = getMainDirectory;
 exports.cutFilePath = cutFilePath;
