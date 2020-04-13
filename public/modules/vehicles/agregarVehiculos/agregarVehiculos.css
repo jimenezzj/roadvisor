@@ -1,0 +1,348 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+.wrapperContainer {
+  display: flex;
+  /* align-items: stretch; */
+}
+
+header {
+}
+
+main {
+  /* display: flex; */
+  /* flex-flow: column; */
+  flex-grow: 1;
+}
+
+.btnOutline {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  border: 3px solid #1fa084;
+  padding: 0.5rem 0;
+  background-color: #ffffff;
+  border-radius: 4rem;
+  color: #20ab8c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+.btn {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  display: block;
+  border: none;
+  padding: 0.5rem 0;
+  background-color: #20ab8c;
+  border-radius: 4rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.line {
+  width: 80%;
+  border-top: 4px dashed #6b6b6b;
+  margin: 1rem auto;
+}
+
+.btnOutline:hover {
+  color: #ffffff;
+  background-color: #20ab8c;
+}
+.subTitleSection {
+  letter-spacing: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 0.8rem;
+  border-bottom: 1px solid gray;
+  padding: 1.5rem 0 1rem 0;
+  margin: 0;
+}
+
+.actionsWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.6rem 4.5rem;
+}
+
+.fieldWrapper--customSelect {
+  position: relative;
+}
+.customSelectWrapper {
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 2%;
+  width: 95%;
+  max-height: 40vh;
+  background-color: #ffffff;
+  box-shadow: 0 0 4px 2px #00000017;
+  z-index: 5;
+  overflow-y: auto;
+}
+.customSelectWrapper--show {
+  display: block;
+}
+.customSelectList {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+.customList--item {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+.customList--item:hover {
+  background-color: #1ab9962d;
+}
+.fieldWrapper--customSelect select option {
+  /* display: none; */
+}
+.fieldWrapper--customSelect select {
+  /* display: none; */
+}
+.fieldWrapper--customSelect input {
+  display: none;
+  cursor: context-menu;
+}
+/*******************/
+/*******************/
+.titleActionWrapper {
+  padding: 0 4.5rem;
+}
+.formWrapper {
+  display: flex;
+  padding: 1rem 10%;
+  flex-flow: column;
+}
+
+.fieldsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  /* width: 40%; */
+  /* flex-grow: 2; */
+}
+
+.fieldsWrapper > div {
+  display: flex;
+  position: relative;
+  flex-flow: column;
+  width: 33%;
+  padding: 1rem;
+}
+
+.fieldWrapper input[type="text"],
+.fieldWrapper input[type="email"],
+.fieldWrapper input[type="number"],
+.fieldWrapper input[type="tel"],
+.fieldWrapper input[type="date"] {
+  border: 2px solid #1fa084;
+  padding: 1rem 1.2rem;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  color: #444444fd;
+  outline: none;
+}
+
+.fieldWrapper input[type="text"]:focus,
+.fieldWrapper input[type="email"]:focus,
+.fieldWrapper input[type="tel"]:focus,
+.fieldWrapper input[type="date"] {
+  /* border: 2px solid #2b3186; */
+  outline: none;
+}
+
+.fieldWrapper label {
+  font-weight: 500;
+  position: absolute;
+  top: 7%;
+  left: 13%;
+  font-size: 0.9rem;
+  background-color: #ffffff;
+  padding: 0 0.4rem;
+  color: #1fa084;
+}
+
+.fieldWrapper select {
+  border: 2px solid #1fa084;
+  padding: 1rem 1.2rem;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  color: #444444fd;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.selectWrapper * {
+  cursor: pointer;
+}
+
+.fieldWrapper select::-ms-expand {
+  display: none;
+}
+
+.error {
+  color: #d40606;
+  margin: 0;
+  padding: 0.5rem 0.2rem;
+  font-size: 1rem;
+  visibility: hidden;
+}
+
+.inputField--error {
+  border: 2px solid #d40606;
+}
+
+.error--show {
+  visibility: visible;
+}
+
+.imageFieldWrapper {
+  display: flex;
+  border: 6px dashed #b1b1b1;
+  padding: 1rem;
+  align-items: center;
+  margin: 0 2rem;
+  /* flex-grow: 1; */
+}
+.imageFieldWrapper--full {
+  height: 55vh;
+}
+.uploadPicWrapper {
+  /* width: 25%; normar Version*/
+  width: 15%;
+  margin: auto;
+  padding: 1.5rem 0.5rem;
+  align-self: center;
+  text-align: center;
+}
+.uploadPicWrapper--hide {
+  display: none;
+}
+.uploadPicWrapper * {
+  color: #463326;
+}
+.uploadPicWrapper i {
+  font-size: 3.8rem;
+}
+.uploadPicWrapper span {
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: block;
+}
+#vehiImagesField {
+  display: none;
+}
+.picsList--show {
+  display: block !important;
+}
+.btnUploadPic {
+  width: 100%;
+  margin: 1.5rem 0;
+  border: none;
+  padding: 0.5rem 0;
+  background-color: #20ab8c;
+  border-radius: 4rem;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+.btnUploadPic:hover {
+  /* color: #ffffff; */
+  background-color: #198870;
+}
+.picsWrapper {
+  flex-grow: 1;
+  padding: 0.5rem 1.5rem;
+  height: 100%;
+  text-align: center;
+  display: none;
+}
+.picsList {
+  max-height: 80%;
+  overflow-y: scroll;
+}
+.picsWrapper .picsList__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.6rem;
+  margin: 0.6rem 0;
+  color: #36271d;
+  cursor: pointer;
+}
+.picsList__item:hover {
+  background-color: #20ab8d23;
+  border-radius: 55px;
+}
+.picsList__item--active {
+  background-color: #17836c42;
+  border: 2px solid #0e5747;
+  border-radius: 55px;
+}
+.picsList__item--active > * {
+  font-weight: 500;
+  color: #0e5747;
+}
+.close-icon:hover {
+  color: #b80000;
+}
+.imagesPreview {
+  display: none;
+  width: 55%;
+  text-align: center;
+  height: 100%;
+  overflow: hidden;
+}
+.imagesPreview img {
+  height: 100%;
+}
+
+.btnAddPic {
+  width: 80%;
+  margin: 0 auto;
+}
+.btnAddPic > * {
+  vertical-align: middle;
+}
+.btnAddPic > span {
+  font-size: 1.3rem;
+}
+.btnAddPic > i {
+  font-size: 1.9rem;
+  padding: 0 0.5rem;
+  /* color: #f5f5f5; */
+}
+
+.actionsWrapper span {
+  font-size: 1.2rem;
+}
+.btnBack {
+  padding: 0.7rem 1rem;
+}
+.btnBack > i {
+  vertical-align: middle;
+  font-size: 1.8rem;
+}
+.btnAdd {
+  padding: 0.7rem 1rem;
+  width: 30%;
+}

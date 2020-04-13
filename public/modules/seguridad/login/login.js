@@ -12,7 +12,7 @@ const logoutHandler = () => {
 document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
     const userValue = userNameField.value;
     const passwrodValue = passwordField.value;
-    fetch('http://localhost:8082/signup', {
+    fetch('http://localhost:8082/auth/login', {
         headers: {
             'content-type': 'application/json'
         },
