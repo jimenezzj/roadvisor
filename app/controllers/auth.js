@@ -13,6 +13,7 @@ router.post('/login', (req, res) => {
             if (!user) {
                 const error = new Error('Este correo no tiene un a cuenta registrada');
                 error.statusCode = 401;
+                error.data = { email: email };
                 throw error;
             }
             return user;
@@ -21,6 +22,7 @@ router.post('/login', (req, res) => {
             if (user.contrasena !== password) {
                 const error = new Error('Contraseña ingresada es incorrecta');
                 error.statusCode = 401;
+                error.data = { password: password };
                 throw error;
             }
             const token = jwt.sign(
@@ -35,6 +37,7 @@ router.post('/login', (req, res) => {
             );
             const expiresTime = new Date().getTime() + (2 * 60 * 60 * 1000);
             res.status(200).json({
+                statusCode: 200,
                 message: 'Inicio de sesion exitoso',
                 data: {
                     nombre: user.nombre,
@@ -51,7 +54,8 @@ router.post('/login', (req, res) => {
             if (!err.statusCode) err.statusCode = 500;
             res.json({
                 statusCode: err.statusCode,
-                message: err.message
+                message: err.message,
+                data: err.data
             });
         });
 });

@@ -25,6 +25,11 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
         .then(res => res.json())
         .then(res => {
             console.log(res);
+            if (res.statusCode === 401) {
+                const error = new Error(res.message);
+                error.data = res.data;
+                throw error;
+            }
             const { nombre, pApellido, correo, tipo, token, expiresTime } = res.data;
             const session = {
                 correo: correo,
@@ -52,6 +57,43 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
         })
         .catch(err => {
             console.error(err);
+            if (err.data) {
+                Object.keys(err.data).forEach(key => {
+                    showErrorMessages(key, err.message);
+                });
+            }
         });
 
+});
+
+
+const showErrorMessages = (field, message) => {
+    let errorEle;
+    switch (field) {
+        case 'password':
+            errorEle = document.querySelector('.password-error');
+            errorEle.innerHTML = message;
+            errorEle.classList.add('errorMessage--show');
+            break;
+        case 'email':
+            errorEle = document.querySelector('.correo-error');
+            errorEle.innerHTML = message;
+            errorEle.classList.add('errorMessage--show');
+
+            break;
+        default:
+            break;
+    }
+}
+
+const clearErrors = (e) => {
+    // console.dir(e.target);
+    const targetError = e.target.parentElement.parentElement.querySelector('.errorMessage');
+    if (targetError.classList.contains('errorMessage--show')) {
+        targetError.innerHTML = '';
+    }
+
+}
+document.querySelectorAll('.fieldWrapper input').forEach(i => {
+    i.addEventListener('keyup', clearErrors)
 });
