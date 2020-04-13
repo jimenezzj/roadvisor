@@ -9,6 +9,7 @@ const vehiImagesField = document.querySelector('#vehiImagesField');
 const picsList = document.querySelector('.picsList');
 const imagePreview = document.querySelector('#imagePreview');
 const btnSubmitForm = document.querySelector('#btnSubmitForm');
+const btnBack = document.querySelector('.btnBack');
 
 const fieldWrapperCustomSelect = document.querySelector('.fieldWrapper--customSelect');
 const brandOriginalSelect = document.querySelector('#brandOriginalSelect');
@@ -18,6 +19,8 @@ let uploadFileInfo = {
     currentFiles: [],
     active: ''
 }
+
+btnBack.href = getCurrentURL + 'modules/vehicles/vehiculos.html';
 
 const updateCurrentFiles = (filesUpload) => {
     let newPicItem;
@@ -119,6 +122,7 @@ const sendVehicleInfo = () => {
     currentFiles.forEach(file => {
         form.append('vehiclePictures', file);
     })
+    form.append('correo', getSession.correo);
     form.append('type', 'carro');
     // for (let e of form.keys()) {
     //     console.log(e, ':', form.get(e));

@@ -1,4 +1,7 @@
 const mainWrapper = document.querySelector('.wrapperContainer');
+const btnAdd = document.querySelector('.btnAdd');
+
+btnAdd.href = getCurrentURL + 'modules/vehicles/agregarVehiculos/agregarVehiculos.html';
 
 const getUserVehicles = () => {
     const loggedUser = getSession.correo;
