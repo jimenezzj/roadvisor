@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
     res.json({ message: 'successful request' });
 });
 
-router.post('/agregar', upload.single('profilePicture'), (req, res) => {
+router.post('/add', upload.single('profilePicture'), (req, res) => {
     // console.log(req.file);
     const user = {};
     Object.keys(req.body).forEach(userKey => {
@@ -48,6 +48,7 @@ router.post('/agregar', upload.single('profilePicture'), (req, res) => {
             }).save()
         }).then(result => {
             return res.status(201).json({
+                statusCode: 201,
                 message: 'Usuario de rutas fue creado exitosamente',
                 user: result
             });

@@ -46,8 +46,8 @@ const isOverAge = (dateString) => {
 
 const isAnImage = (name, errorMessage = 'El archivo debe ser una imagen (png o jpg)') => {
     const errorCode = 'isai01';
-    return /^[^.]+.jpg$|^[^.]+.png$/.test(name) || isEmpty(name)
-        ? formError(true, errorMessage, errorCode, name)
+    return /\.jpg$|\.png$/.test(name.toLowerCase()) || isEmpty(name)
+        ? formError(true, null, errorCode, name)
         : formError(false, errorMessage, errorCode, name);
 }
 

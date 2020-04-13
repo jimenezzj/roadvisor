@@ -92,12 +92,14 @@ const validateField = (input) => {
             if (validationResult.status) {
                 // check the error code
                 inputData.errors = inputData.errors.filter(error => {
-                    if (error.code !== validationResult.error.code) {
+                    if (error !== validationResult.error.message) {
                         return error;
                     }
+                    
                 });
 
             } else {
+                // add error if its not already in
                 if (!(userForm[input.id].errors.find(err => err.code === validationResult.error.code))) {
                     inputData.errors.push(validationResult.error.message);
                 }
@@ -145,7 +147,10 @@ const sendForm = () => {
         formTest.append(key, userForm[key].value);
     });
     // console.log(userJSON);
-    fetch('http://localhost:8082/usuario/agregar', {
+    fetch(getCurrentURL + 'users/add', {
+        headers: {
+            'Authorization': getSession.token
+        },
         method: 'POST',
         body: formTest
     })
@@ -157,11 +162,11 @@ const sendForm = () => {
                 error.statusCode = res.statusCode;
                 throw error;
             }
+            createModalMessage('Exito!', res.message)
             console.log(res);
         })
         .catch(err => {
-            console.error(err);
-            console.log({ ...err });
+            console.log(err);
             checkDbData(err);
         });
 }
@@ -170,11 +175,14 @@ const changeFileInfo = (src, fileName, input) => {
     // let currentInputValue = userForm[input.id].value;
     imageElement.src = src;
     titlePictureName.innerHTML = fileName;
-    userForm[input.id].value = !isEmpty(src) ? fileName : src;
+    userForm[input.id].value = !isEmpty(src) ? fileName : '';
     userForm[input.id].file = input.files[0];
     validateField(input);
     showErrors(input.id);
-    if (!(userForm[input.id].errors.length) && userForm[input.id].value) {
+    console.log(!userForm[input.id].errors.length && !!(userForm[input.id].value));
+    console.log(userForm[input.id].errors.length);
+    
+    if (userForm[input.id].valid && userForm[input.id].value) {
         imageElement.classList.add('picWrapper__picture--show');
     } else {
         imageElement.classList.remove('picWrapper__picture--show');
@@ -211,6 +219,7 @@ const checkDbData = (err) => {
                 break;
 
             default:
+                createModalMessage('Error!', err.message);
                 break;
         }
     });
@@ -309,3 +318,32 @@ btnSubmitForm.addEventListener('click', () => {
         showAllErrors();
     }
 });
+
+const createModalMessage = (title, mes) => {
+    const pEle = document.createElement('p');
+    pEle.innerHTML = mes;
+
+    document.body.appendChild(
+        createModal(
+            title, // El titulo del modal
+            pEle,    // Pegan el contenido perzonalizado que necesitan meter en  el modal
+            // un  arreglo de botones, que ajusta sus propiedades
+            [
+                {
+                    name: 'Ok', // nombre del boton
+                    event: 'click', // evento al que va a reaccionar
+                    action: () => window.location.reload(), // metodo qeu va a ejecutar, echo por ustedes
+                    style: buttons.PRIMARY // OPCIONAL
+                }
+            ],
+            { // objeto con ajustes del modal
+                position: { // posicion de los elementos de modal
+                    header: '', // titulo acepta: 'start', 'center' & 'end'
+                    body: '',  // body del modal acepta: 'start', 'center' & 'end'
+                    action: '' // contenedor de botones acepta: 'start', 'center' & 'end'
+                },
+            }
+        )
+    );
+    openModal();
+};

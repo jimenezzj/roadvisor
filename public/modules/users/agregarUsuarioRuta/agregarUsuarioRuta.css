@@ -28,8 +28,23 @@ main {
   /* flex-flow: column; */
   /* flex-grow: 1; */
 }
-
-
+.btn {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  display: block;
+  border: none;
+  padding: 0.5rem 0;
+  background-color: #20ab8c;
+  border-radius: 4rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+/***************/
 .sectionName {
   margin: 0;
   color: #463326;
@@ -47,9 +62,11 @@ main {
 }
 
 .formWrapper {
-  padding: 1rem 2.5rem;
+  /* padding: 1rem 2.5rem; */
 }
-
+.addUserHeader {
+  padding: 0 4.5rem;
+}
 .addUserHeader * {
   margin: 0;
   color: #3a3a3afd;
@@ -70,16 +87,16 @@ main {
 }
 
 .form {
-  padding: 1rem 0;
+  padding: 1rem 8%;
   display: flex;
+  justify-content: space-between;
 }
 
 .picField {
   display: flex;
   flex-flow: column;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   text-align: center;
-  max-width: 22%;
   justify-content: center;
 }
 
@@ -154,6 +171,7 @@ main {
 }
 
 .fields {
+  width: 78%;
   display: flex;
   flex-wrap: wrap;
   padding: 1rem 0 1rem 1.5rem;
@@ -217,7 +235,7 @@ main {
   content: "\e313";
   font-family: "Material Icons";
   position: absolute;
-  top: 17%;
+  top: 20%;
   right: 11%;
   color: #1fa084;
   font-size: 1.9rem;
@@ -250,7 +268,7 @@ main {
 .actionsWrapper {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 1rem 4.5rem;
 }
 
 .btnWrapper {
@@ -263,24 +281,13 @@ main {
   vertical-align: initial;
 }
 
-.btnWrapper:hover {
-  box-shadow: #00000038 0px 0px 5px 4px;
+.btnBack:hover,
+.btnSubmit:hover {
+  background-color: #4bdabb;
 }
-
-.btn {
-  text-decoration: none;
-  color: #ffffff;
-  vertical-align: middle;
-}
-
-.btnSubmit,
-.btnBack {
-  padding: 1rem 1.2rem;
-}
-
-.btnBack {
-  /* width: 15%; */
-  justify-self: flex-start;
+.btnBack,
+.btnSubmit {
+  padding: 0.7rem 1rem;
 }
 
 .btnBack::before {
@@ -289,6 +296,7 @@ main {
   color: white;
   font-size: 2rem;
   vertical-align: middle;
+  font-size: 1.8rem;
 }
 
 .btnSubmit {
@@ -296,8 +304,7 @@ main {
   align-self: center;
 }
 
-.btnSubmit a,
-.btnBack a {
+.btnSubmit a {
   font-size: 1.2rem;
   font-weight: 600;
 }
