@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+
+/**ESTILOS DE LA PÁGINA DE INICIO DE SESIÓN**/
+/**BODY**/
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  background: linear-gradient(to bottom, #00f0bc -1%, #00465f 100%) center /
+    cover no-repeat;
+  height: 100vh;
+}
+
+.btn {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  display: block;
+  border: none;
+  padding: 0.5rem 0;
+  background-color: #20ab8c;
+  border-radius: 4rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-outline {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  display: block;
+  border: none;
+  border: 2px solid #20ab8c;
+  padding: 0.5rem 0;
+  background-color: transparent;
+  border-radius: 4rem;
+  color: #20ab8c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/************************/
+.logoWrapper {
+  width: 28%;
+  margin: auto;
+  padding: 3.5rem 0 4.5rem 0;
+  text-align: center;
+}
+.logoWrapper img {
+  width: 99%;
+}
+
+.fieldWrapper {
+  margin: auto;
+  width: 32%;
+}
+.field {
+  background-color: #ffffff79;
+  display: flex;
+  /* margin: 1rem 0; */
+  width: 100%;
+  align-items: center;
+  border-radius: 12px;
+}
+.field i {
+  vertical-align: middle;
+  color: #008c81;
+  font-size: 2rem;
+  flex-grow: 1;
+  text-align: center;
+}
+#username,
+#password {
+  padding: 1.4rem 1.5rem;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: 85%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #008c81;
+}
+.fieldWrapper p {
+  margin: 0;
+  padding: 0.8rem 11%;
+  flex-grow: 1;
+  color: #d31515;
+}
+
+.errorMessage {
+  visibility: hidden;
+}
+.errorMessage--show {
+  visibility: visible;
+}
+.btnSignin {
+  width: 32%;
+  margin: 3rem auto 1.1rem auto;
+  padding: 1.1rem 0;
+  color: #ffffff;
+  background-color: #00daad;
+  /* background-color: #00EBA5; */
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.forgetPassword {
+  display: block;
+  margin: auto;
+  padding: 1rem 0;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 1.1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.divition {
+  width: 40%;
+  border-top: 2px solid #ffffff;
+  margin: 4.5rem auto 2rem auto;
+}
+
+.btnSignup {
+  width: 25%;
+  border: 3px solid #ffffff;
+  margin: 1.2rem auto;
+  padding: 1rem 0;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}

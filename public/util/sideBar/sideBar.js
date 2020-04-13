@@ -130,4 +130,12 @@ const squeezeSidebar = () => {
     sideBarStatus = 'short';
 };
 
-// export function createSBar(sections) { return createSidebar(sections) };
+// createSidebar([
+//     {
+//         name: 'Usuarios',
+//         icon: 'account_circle',
+//         href: '#',
+//         active: true
+//     }
+// ]);
+

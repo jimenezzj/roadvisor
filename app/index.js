@@ -6,8 +6,9 @@ const app = express();
 const getRoadviserDbConnection = require('./util/database');
 const util = require('./util/util');
 const tokenVerification = require('./middleware/validateToken');
-const user = require('./controllers/usuario');
 const auth = require('./controllers/auth');
+const user = require('./controllers/usuario');
+const vehicles = require('./controllers/vehicles');
 
 const port = 8082;
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/auth', auth);
 app.use('/users', tokenVerification.validateToken, user);
+app.use('/vehicles', vehicles);
 
 app.use((err, req, res, next) => {
     const status = err.statusCode || 500;

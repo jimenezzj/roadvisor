@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel='stylesheet' type='text/css' media='screen' href='login.css'>
 </head>
 
 <body>
-    <h1>Iniciar sesion</h1>
-    <input type="text" name="username" id="username">
-    <input type="password" name="pasword" id="password">
-    <button id="btnIniciarSesion">Iniciar Sesion</button>
+    <div class="logoWrapper">
+        <img src="../../../assets/images/logo/Roadvisor_white.png" alt="Roadvisor logo">
+    </div>
+    <div class="fieldWrapper">
+        <div class="field">
+            <i class="material-icons">account_circle</i>
+            <input type="text" name="username" id="username" label="Usuario">
+        </div>
+        <!-- <label for="username">Usuario</label> -->
+        <p class="errorMessage correo-error"></p>
+    </div>
+    <div class="fieldWrapper">
+        <div class="field">
+            <i class="material-icons">lock</i>
+            <input type="password" name="pasword" id="password">
+        </div>
+        <p class="errorMessage password-error"></p>
+    </div>
+    <button class="btn btnSignin" id="btnIniciarSesion">Iniciar Sesion</button>
+    <a href="#" class="forgetPassword">¿Se te ha olvidado la contraseña?</a>
+    <div class="divition"></div>
+    <button class="btn-outline btnSignup">Registrar</button>
     <script src='login.js'></script>
 </body>
 
