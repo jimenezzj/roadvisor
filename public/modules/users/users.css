@@ -15,10 +15,6 @@ body {
 }
 
 header {
-  display: flex;
-  flex-flow: column;
-  height: 100vh;
-  width: 5%;
 }
 
 .sideDrawer {
@@ -31,8 +27,37 @@ main {
   flex-grow: 1;
 }
 
-.navbar {
-  background-color: #fff7de;
-  padding: 2rem;
-  box-shadow: #00000013 0px 3px 6px 3px;
+.filtersWrapper {
+  display: none;
 }
+.btnOutline {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  border: 3px solid #1fa084;
+  padding: 0.5rem 0;
+  background-color: #ffffff;
+  border-radius: 4rem;
+  color: #20ab8c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+.btn {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  display: block;
+  border: none;
+  padding: 0.5rem 0;
+  background-color: #20ab8c;
+  border-radius: 4rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+/********************/

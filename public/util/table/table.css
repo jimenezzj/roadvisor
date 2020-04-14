@@ -1,0 +1,96 @@
+.tableWrapper {
+  display: flex;
+  flex-flow: column;
+  width: 80%;
+  margin: auto;
+}
+.row__text span {
+  color: #424242;
+}
+
+.row__item span {
+  font-size: 0.82rem;
+  text-transform: capitalize;
+}
+.tableHeader {
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+}
+.tableHeader > * {
+  width: 5%;
+  flex-grow: 1;
+  padding: 0.5rem;
+}
+.tableHeader span {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #4d4d4d;
+}
+.tableDivition {
+  border-top: 2.2px solid #919191;
+}
+.tableBody {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  padding: 1rem;
+}
+/* .tableBody > * {
+    flex-grow: 1;
+  } */
+.tableBody img {
+  width: 50%;
+}
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #d8d8d8;
+}
+.row:hover {
+  background-color: #1a8a7213;
+}
+.row > * {
+  width: 5%;
+  flex-grow: 1;
+  padding: 0.3rem;
+}
+.row > span {
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+.rowStatus {
+  border: 1.5px solid #1a8a72;
+  padding: 0.35rem;
+  background-color: #49e0bf98;
+  color: #1a8a72;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 55px;
+}
+.rowStatus--active {
+  border: 1.5px solid #1c9b38;
+  background-color: #7cf095ee;
+  color: #1c9b38;
+}
+.rowStatus--disable {
+  border: 1.5px solid #9b201c;
+  background-color: #f07c7cee;
+  color: #9b1c1c;
+}
+
+.tableActions {
+  /* text-align: center; */
+}
+.tableActions > i {
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #424242;
+}
+.tableActions > i:hover {
+  background-color: #1a9b7f49;
+  border-radius: 55px;
+}
