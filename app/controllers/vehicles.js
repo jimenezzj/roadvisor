@@ -93,13 +93,13 @@ router.get('/:userEmail', (req, res, next) => {
         });
 });
 
-router.get('/search/:sValue', (req, res, next) => {
-    const { sValue } = req.params;
+router.get('/search/:userEmail/:sValue', (req, res, next) => {
+    const { sValue, userEmail } = req.params;
     const orArray = [];
     Vehicle.schema.eachPath(path => {
         let field;
         if (path !== '__v' && path !== '_id' && path !== 'anio') {
-            field = { [path]: { '$regex': sValue } }
+            field = { [path]: { '$regex': `${sValue}`, '$options': 'i' }, 'usuario': userEmail }
             orArray.push(field)
         };
     });
