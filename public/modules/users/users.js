@@ -1,4 +1,13 @@
 const mainWrapper = document.querySelector('.wrapperContainer');
+const btnFilter = document.querySelector('.btnFilter');
+
+const showFilters = () => {
+    document.querySelector('.filtersWrapper').classList.toggle('filtersWrapper--show');
+}
+
+btnFilter.addEventListener('click', () => {
+    showFilters();
+});
 
 mainWrapper.querySelector('header').appendChild(
     createSidebar([
@@ -43,7 +52,7 @@ mainWrapper.querySelector('main').insertBefore(
             }
         ]
     ),
-    document.querySelector('.topActionsWrapper')
+    document.querySelector('.actionsWrapper')
 );
 
 setStatus('status', [
@@ -108,9 +117,9 @@ document.querySelector('.tableContainer').appendChild(
         ],
         [
             {
-                icon: 'edit',                                                           
+                icon: 'edit',
                 action: (mes) => console.log(mes)
-                
+
             },
             {
                 icon: 'delete',
