@@ -1,5 +1,8 @@
 const mainWrapper = document.querySelector('.wrapperContainer');
 const btnAdd = document.querySelector('.btnAdd');
+const btnSearch = document.querySelector('#btnSearch');
+const search = document.querySelector('#search');
+let listWrapper = document.querySelector('.listWrapper');
 
 btnAdd.href = getCurrentURL + 'modules/vehicles/agregarVehiculos/agregarVehiculos.html';
 
@@ -10,7 +13,7 @@ const getUserVehicles = () => {
         .then(result => {
             console.log(result);
             result.data.forEach(v => {
-                document.querySelector('.listWrapper').appendChild(
+                listWrapper.appendChild(
                     createCard(v)
                 );
             });
@@ -20,6 +23,29 @@ const getUserVehicles = () => {
         })
 }
 
+btnSearch.addEventListener('click', () => {
+    const valueToSearch = search.value;
+    const loggedUser = getSession.correo;
+    fetch(getCurrentURL + 'vehicles/search/' + loggedUser + '/' + valueToSearch)
+        .then(res => res.json())
+        .then(result => {
+            console.log(result.data);
+            listWrapper.innerHTML = null;
+            if (!result.data) {
+                getUserVehicles();
+            } else {
+                result.data.forEach(v => {
+                    listWrapper.appendChild(
+                        createCard(v)
+                    );
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+
+        })
+});
 
 const createCard = (data) => {
     const cardWrapper = document.createElement('div');
