@@ -6,12 +6,13 @@ const CAP_STYLES = {
  * TABLE
  **********************************************/
 let tableHeaders;
+let selectedFields = [];
 const statesToCheck = [];
 
 const createActions = (actions, rowInfo) => {
     const tableActions = document.createElement('div');
     const icon = document.createElement('i');
-    
+
     tableActions.classList.add('tableActions', 'row__text');
     icon.classList.add('material-icons');
 
@@ -21,7 +22,7 @@ const createActions = (actions, rowInfo) => {
         newIcon.onclick = () => actionObj.action(rowInfo);
         tableActions.appendChild(newIcon);
     });
-    console.dir(tableActions);
+    // console.dir(tableActions);
     return tableActions;
 }
 
@@ -46,10 +47,19 @@ const generateAndCheckCapStyles = (key, val) => {
     return capsuleEle;
 }
 
-const addCheckbox = () => {
+const addCheckbox = (rowInfo) => {
     const checkboxField = document.createElement('input');
     checkboxField.classList.add('checkboxField');
     checkboxField.type = 'checkbox';
+    checkboxField.onclick = () => {
+        const isSelected = selectedFields.find(info => info.id === rowInfo.id);
+        if (isSelected) {
+            selectedFields = selectedFields.filter(info => info.id !== rowInfo.id);
+        } else {
+            selectedFields.push(rowInfo);
+        }
+        console.log(selectedFields);
+    };
     return checkboxField;
 }
 
@@ -64,6 +74,7 @@ const createHeaders = (headers) => {
     spanHeader.classList.add('column');
     checkboxField.type = 'checkbox';
     checkboxField.id = 'checkCol';
+    checkboxField.onclick = markAllBoxes;
     tableHeader.appendChild(checkboxField);
 
     headers.map(({ key, as, type }) => {
@@ -91,7 +102,7 @@ const createTableBody = (list, actions) => {
 
     list.map((obj, listIndex) => {
         let rowWrapper = rowGenrator.cloneNode('true');
-        rowWrapper.appendChild(addCheckbox());
+        rowWrapper.appendChild(addCheckbox(obj));
         tableHeaders.forEach(tHeader => {
             const currentValue = obj[tHeader.key];
             if (currentValue) {
@@ -126,7 +137,7 @@ const createTableBody = (list, actions) => {
             }
         });
         rowWrapper.appendChild(createActions(actions, obj));
-        console.dir(rowWrapper);
+        // console.dir(rowWrapper);
         return rowWrapper;
     }).forEach(rowEle => {
         tableBody.appendChild(rowEle);
@@ -155,6 +166,18 @@ const createTable = (keys, list, actions) => {
     return tableWrapper;
 }
 
+const markAllBoxes = () => {
+    const checkColEleVerif = document.querySelector('#checkCol').checked;
+    [...document.querySelectorAll('.checkboxField')]
+        .filter(ele => ele.id !== 'checkCol')
+        .forEach(ele => {
+            if (checkColEleVerif) {
+                if (!ele.checked) ele.click();
+            } else {
+                if (ele.checked) ele.click();
+            }
+        });
+}
 
 /**********************************************
 * TABLE

@@ -67,6 +67,7 @@ document.querySelector('.tableContainer').appendChild(
         ,
         [
             {
+                id: '8465468dgdgr8',
                 _id: '8465468dgdgr8',
                 tipo: 'ruta',
                 genero: 'femenino',
@@ -79,7 +80,8 @@ document.querySelector('.tableContainer').appendChild(
                 status: 'Habilitado'
             },
             {
-                _id: '8465468dgdgr8',
+                id: '8465468dgdgr83',
+                _id: '8465468dgdgr83',
                 tipo: 'ruta',
                 genero: 'femenino',
                 numeroCedula: 112346598,
@@ -91,7 +93,8 @@ document.querySelector('.tableContainer').appendChild(
                 status: 'Habilitado'
             },
             {
-                _id: '8465468dgdgr8',
+                id: '8465468dgdgre8',
+                _id: '8465468dgdger8',
                 tipo: 'Tradicional',
                 genero: 'femenino',
                 numeroCedula: 112346598,
