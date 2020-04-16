@@ -17,9 +17,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get('/', (req, res) => {
-    res.json({ message: 'successful request' });
-});
 
 router.post('/add', upload.single('profilePicture'), (req, res) => {
     // console.log(req.file);
@@ -66,5 +63,91 @@ router.post('/add', upload.single('profilePicture'), (req, res) => {
         });
 });
 
+router.get('/search/:searchVal', (req, res, next) => {
+    const { searchVal } = req.params;
+    const orArray = [];
+    const fieldsProjection = { _id: 0, contrasena: 0 }
+    const newFieldsToString = {};
+    const projectionToLower = {};
+    User.schema.eachPath((docKey, schema) => {
+        const regexToSearch = new RegExp(`${searchVal}`, 'i')
+        if (docKey !== '__v' && docKey !== '_id') {
+            let field;
+            if (schema.instance !== 'String') {
+                const newField = docKey + 'Str';
+                if (schema.instance === 'Array') {
+                    projectionToLower[newField] = {
+                        '$reduce': {
+                            input: '$' + docKey,
+                            initialValue: '',
+                            in: { '$concat': ['$$value', '$$this'] }
+                        }
+                    };
+                } else {
+                    newFieldsToString[newField] = { '$toString': '$' + docKey };
+                    projectionToLower[newField] = 1;
+                }
+                fieldsProjection[docKey] = 0;
+                field = { [newField]: { '$regex': regexToSearch } }
+            } else {
+                projectionToLower[docKey] = 1;
+                field = { [docKey]: { '$regex': regexToSearch } }
+            }
+            orArray.push(field);
+        };
+    });
+    console.log(newFieldsToString);
+    console.log(fieldsProjection);
+    console.log(projectionToLower);
+    console.log(orArray);
+    User.aggregate([
+        { '$addFields': newFieldsToString },
+        { '$project': projectionToLower },
+        { '$project': fieldsProjection },
+        { '$match': { '$or': orArray } }
+    ])
+        .then(docs => {
+            if (docs.length === 0) {
+                const error = new Error('No se encontaron usuarios con esa descripción');
+                error.statusCode = '404';
+                throw error;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se encontraron usuarios, con la desccripción: ' + searchVal,
+                data: docs
+            });
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        })
+});
+
+router.get('/', (req, res, next) => {
+    User.find({})
+        .select('tipo genero +_id numeroCedula nombre pApellido sApellido fechaNacimiento email profilePicture')
+        .then(data => {
+            if (data.length < 1) {
+                const emptyErr = new Error('No se obtuvieron resultados');
+                res.statusCode = 404;
+                throw emptyErr;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Usuarios obtenidos con exito!',
+                data: data
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        })
+});
 
 module.exports = router;

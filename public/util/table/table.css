@@ -88,7 +88,7 @@
 .tableActions > i {
   padding: 0.5rem;
   cursor: pointer;
-  color: #424242;
+  color: #555555;
 }
 .tableActions > i:hover {
   background-color: #1a9b7f49;
