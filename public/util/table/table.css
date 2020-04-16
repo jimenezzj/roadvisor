@@ -94,3 +94,26 @@
   background-color: #1a9b7f49;
   border-radius: 55px;
 }
+
+.tableImage {
+  height: 70px;
+  margin: 0.7rem 0;
+}
+.tableImagaDelimitter {
+  position: relative;
+  width: 50%;
+  border-radius: 7.5px;
+  border: 2px solid #013870;
+  z-index: 3;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tableImage img {
+  position: absolute;
+  bottom: 50%;
+  left: 0%;
+  transform: translate(0%, 50%);
+  z-index: -1;
+  width: 100%;
+}

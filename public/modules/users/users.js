@@ -1,5 +1,13 @@
 const mainWrapper = document.querySelector('.wrapperContainer');
 const btnFilter = document.querySelector('.btnFilter');
+const searchField = document.querySelector('#search');
+const btnSearch = document.querySelector('#btnSearch');
+const userHeaders = {
+    headers: {
+        'Authorization': getSession.token
+    }
+}
+
 
 const showFilters = () => {
     document.querySelector('.filtersWrapper').classList.toggle('filtersWrapper--show');
@@ -7,6 +15,29 @@ const showFilters = () => {
 
 btnFilter.addEventListener('click', () => {
     showFilters();
+});
+
+btnSearch.addEventListener('click', () => {
+    const value = searchField.value ? searchField.value : null;
+    const listWrapper = document.querySelector('.tableContainer');
+    fetch(`${getCurrentURL}users/search/${value}`, {
+        ...userHeaders
+    })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result);
+            if (result.statusCode !== 201) {
+                const error = new Error(result.message);
+                throw error;
+            }
+            listWrapper.innerHTML = null;
+            const tableUI = generateTable(result.data)
+            listWrapper.appendChild(tableUI);
+        })
+        .catch(err => {
+            console.log(err);
+
+        });
 });
 
 mainWrapper.querySelector('header').appendChild(
@@ -27,7 +58,7 @@ mainWrapper.querySelector('header').appendChild(
 
 mainWrapper.querySelector('main').insertBefore(
     createTopNavbar(
-        'Vehiculos',
+        'Usuarios',
         {
             profilePic: 'http://localhost:8082/assets/images/userProfile/2020-03-30T055248.441Z_infinitystones@marvel.com_58af605285bfde99b935a47d590ca774.jpg',
             name: 'Pepe',
@@ -61,6 +92,59 @@ setStatus('status', [
 ]);
 setStatus('tipo');
 
+const createTbleAndFetchList = () => {
+    fetch(getCurrentURL + 'users', {
+        headers: {
+            'Authorization': getSession.token
+        }
+    })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result);
+            const tableUI = generateTable(result.data)
+            document.querySelector('.tableContainer').appendChild(tableUI);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+const generateTable = (list, type) => {
+    const prepareListToShow = list.map(user => {
+        user.profilePicture = getCurrentURL + user.profilePicture;
+        
+        if (user.pApellido && user.sApellido) user.nombre = `${user.nombre} ${user.pApellido} ${user.sApellido}`;
+        return user
+    });
+    console.log(prepareListToShow);
+    return createTable(
+        [
+            { key: 'profilePicture', as: 'Foto', type: 'pic' },
+            { key: 'nombre', as: 'Nombre', type: 'text' },
+            { key: 'email', as: 'correo', type: 'text' },
+            { key: 'numeroCedula', as: '# cédula', type: 'text' },
+            { key: 'tipo', as: 'Tipo', type: 'capsule' },
+            { key: 'status', as: 'Estatus', type: 'capsule' },
+            // { key: 'phoneNumber', as: 'Télefono', type: 'text' }
+            // { key: 'nombre', as: 'Nombre', type: 'text' }
+        ]
+        ,
+        prepareListToShow
+        ,
+        [
+            {
+                icon: 'edit',
+                action: (mes) => console.log(mes)
+
+            },
+            {
+                icon: 'delete',
+                action: (mes) => console.log(mes)
+            }
+        ]
+    );
+};
+/*
 document.querySelector('.tableContainer').appendChild(
     createTable(
         [
@@ -127,4 +211,6 @@ document.querySelector('.tableContainer').appendChild(
             }
         ]
     )
-);
+);*/
+
+createTbleAndFetchList();

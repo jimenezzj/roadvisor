@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const multer = require('multer');
 const User = require('../models/usuario');
+const util = require('../util/util');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -27,7 +28,7 @@ router.post('/add', upload.single('profilePicture'), (req, res) => {
     });
     user.tipo = 'ruta';
     user.contrasena = '50m3*R4ND0M-p4s5wOr9';
-    if (req.file) user.profilePicture = req.file.path;
+    if (req.file) user.profilePicture = util.cutFilePath(req.file.path);
     // console.log(user);
     User.findOne({ email: user.email })
         .then(data => {
@@ -65,6 +66,9 @@ router.post('/add', upload.single('profilePicture'), (req, res) => {
 
 router.get('/search/:searchVal', (req, res, next) => {
     const { searchVal } = req.params;
+    if (searchVal === 'null') {
+        return res.redirect('/users')
+    };
     const orArray = [];
     const fieldsProjection = { _id: 0, contrasena: 0 }
     const newFieldsToString = {};
@@ -74,7 +78,7 @@ router.get('/search/:searchVal', (req, res, next) => {
         if (docKey !== '__v' && docKey !== '_id') {
             let field;
             if (schema.instance !== 'String') {
-                const newField = docKey + 'Str';
+                const newField = docKey + '';
                 if (schema.instance === 'Array') {
                     projectionToLower[newField] = {
                         '$reduce': {
@@ -87,7 +91,7 @@ router.get('/search/:searchVal', (req, res, next) => {
                     newFieldsToString[newField] = { '$toString': '$' + docKey };
                     projectionToLower[newField] = 1;
                 }
-                fieldsProjection[docKey] = 0;
+                // fieldsProjection[docKey] = 0;
                 field = { [newField]: { '$regex': regexToSearch } }
             } else {
                 projectionToLower[docKey] = 1;
@@ -96,10 +100,10 @@ router.get('/search/:searchVal', (req, res, next) => {
             orArray.push(field);
         };
     });
-    console.log(newFieldsToString);
-    console.log(fieldsProjection);
-    console.log(projectionToLower);
-    console.log(orArray);
+    // console.log(newFieldsToString);
+    // console.log(fieldsProjection);
+    // console.log(projectionToLower);
+    // console.log(orArray);
     User.aggregate([
         { '$addFields': newFieldsToString },
         { '$project': projectionToLower },
@@ -127,8 +131,25 @@ router.get('/search/:searchVal', (req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-    User.find({})
-        .select('tipo genero +_id numeroCedula nombre pApellido sApellido fechaNacimiento email profilePicture')
+    const projecToReduceArray = {};
+    User.schema.eachPath((docKey, schem) => {
+        if (schem.instance === 'Array') {
+            projecToReduceArray[docKey] = {
+                '$reduce': {
+                    input: '$' + docKey,
+                    initialValue: '',
+                    in: { '$concat': ['$$value', '$$this'] }
+                }
+            }
+        } else {
+            projecToReduceArray[docKey] = 1;
+        }
+    });
+    console.log(projecToReduceArray);
+
+    User.aggregate()
+        .project({ _id: 0, __v: 0, 'contrasena': 0 })
+        .project(projecToReduceArray)
         .then(data => {
             if (data.length < 1) {
                 const emptyErr = new Error('No se obtuvieron resultados');

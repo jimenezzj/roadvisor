@@ -11,7 +11,8 @@ const usuarioSchema = mongoose.Schema({
     genero: ['femenino', 'masculino', 'otro'],
     fechaNacimiento: Date,
     contrasena: String,
-    profilePicture: String
+    profilePicture: String,
+    status: String
 });
 
 

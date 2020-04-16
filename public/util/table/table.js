@@ -116,11 +116,14 @@ const createTableBody = (list, actions) => {
 
                     case 'pic':
                         const tableImageWrapper = document.createElement('div');
+                        const tableImagaDelimitter = document.createElement('div');
                         const tableImage = document.createElement('img');
                         tableImageWrapper.classList.add('tableImage');
+                        tableImagaDelimitter.classList.add('tableImagaDelimitter');
                         tableImage.src = currentValue;
                         tableImage.alt = tHeader.key + '_' + listIndex;
-                        tableImageWrapper.appendChild(tableImage);
+                        tableImagaDelimitter.appendChild(tableImage);
+                        tableImageWrapper.appendChild(tableImagaDelimitter);
                         rowWrapper.appendChild(tableImageWrapper);
                         break;
 
@@ -134,6 +137,10 @@ const createTableBody = (list, actions) => {
                         break;
                 }
 
+            } else {
+                rowWrapper.appendChild(
+                    document.createElement('div')
+                );
             }
         });
         rowWrapper.appendChild(createActions(actions, obj));
