@@ -90,7 +90,7 @@ setStatus('status', [
     { sName: 'habilitado', cssClass: CAP_STYLES.active },
     { sName: 'deshabilitado', cssClass: CAP_STYLES.disable }
 ]);
-setStatus('tipo');
+setStatus('tipo'); 
 
 const createTbleAndFetchList = () => {
     fetch(getCurrentURL + 'users', {

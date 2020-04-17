@@ -65,6 +65,11 @@ input[type="search"]::-webkit-search-results-decoration {
   align-items: center;
   padding: 35px 2% 13px 2%;
 }
+.actionsWrapper {
+  display: flex;
+  align-items: center;
+  padding: 35px 2% 13px 2%;
+}
 .searchWrpper {
   display: flex;
   width: 45%;
@@ -90,6 +95,7 @@ input[type="search"]::-webkit-search-results-decoration {
   flex-grow: 1;
   outline: none;
 }
+
 
 .btnAdd {
   padding: 0.5rem 1.1rem;
@@ -273,9 +279,9 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .btnSearch {
-  border-radius: 0 59px 59px 0;
+  border-radius: 59px 59px 59px 59px;
   align-self: stretch;
   padding: 0 2.5rem;
   box-shadow: 0 0 4px 2px #0000002f;
-  font-size: 1.15rem;
+  font-size: 1.21rem;
 }

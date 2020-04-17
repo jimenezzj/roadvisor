@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Vehicle = require('../models/vehicle');
 const util = require('../util/util');
+const genericQuery = require('../util/genericQueriesHelper');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -95,18 +96,21 @@ router.get('/:userEmail', (req, res, next) => {
 
 router.get('/search/:userEmail/:sValue', (req, res, next) => {
     const { sValue, userEmail } = req.params;
-    const orArray = [];
-    Vehicle.schema.eachPath(path => {
-        let field;
-        if (path !== '__v' && path !== '_id' && path !== 'anio') {
-            field = { [path]: { '$regex': `${sValue}`, '$options': 'i' }, 'usuario': userEmail }
-            orArray.push(field)
-        };
+    if (sValue === 'null') {
+        return res.redirect('/user')
+    };
+    const searchHelper = genericQuery.searchAgregtHelper(Vehicle, sValue, {
+        _id: 0
     });
-    Vehicle.find({ $or: orArray })
+    Vehicle.aggregate()
+        .addFields({ ...searchHelper.addFields })
+        .project({ ...searchHelper.projectReduce })
+        .project({ ...searchHelper.projectShowFields })
+        .match({ ...searchHelper.match })
+        .match({ usuario: userEmail})
         .then(docs => {
             if (docs.length === 0) {
-                const error = new Error('No se encontraron vehiculos');
+                const error = new Error('No se encontraron vehiculos con esa descripción');
                 error.statusCode = '404';
                 throw error;
             }
