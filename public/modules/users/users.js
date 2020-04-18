@@ -1,3 +1,4 @@
+verifyRoute({redirecTo: '/modules/seguridad/login/login.html'});
 const mainWrapper = document.querySelector('.wrapperContainer');
 const btnFilter = document.querySelector('.btnFilter');
 const searchField = document.querySelector('#search');

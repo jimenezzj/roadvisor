@@ -1,0 +1,263 @@
+.navegacionDeArriba {
+    background-color: #ffffff;
+    margin: 0;
+    flex-direction: row;
+    display: flex;
+    box-shadow: #00000031 0px 3px 6px 3px;
+  }
+  .navegacionLateral__logosDeIconitos {
+    width: 50px;
+    margin: 0;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+  }
+  .navegacionDeArriba__titulo {
+    font-family: "Sen", sans-serif;
+    font-size: 20px;
+    padding-left: 15px;
+    margin: 0;
+    padding-top: 10px;
+  }
+  .navegacionLateral__logosDeIconitosPrimero {
+    width: 50px;
+    margin: 0;
+    padding-top: 80px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+  }
+  .cuadroDeLogo {
+    width: 5%;
+    background-color: #00cea1;
+    margin: 0;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+  }
+  body {
+    margin: 0;
+    background-color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+  }
+  .navegacionLateral {
+    background-color: #049374;
+    width: 5%;
+    height: 1200px;
+    margin: 0em;
+    display: flex;
+    flex-direction: column;
+    box-shadow: #00000031 0px 3px 6px 3px;
+  }
+  
+  .contenedorDeLaPantalla {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .cuerpoDeLaPantalla {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-left: 200px;
+    padding-top: 20px;
+  }
+
+  .cuerpoDeLaPantalla__textoDatosDelSiniestro {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    color: black;
+    padding-top: 20px;
+    padding-left: 50px;
+    letter-spacing: 5px;
+  }
+  .cuerpoDeLaPantalla__textoDatosDelSiniestroDos {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    color: black;
+    padding-top: 20px;
+    padding-left: 50px;
+    letter-spacing: 5px;
+    padding-top: 30px;
+  }
+  
+  .contenedorDeLaPantalla {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .cuerpoDeLaPantalla__TextoLinea {
+    color: black;
+    padding-left: 50px;
+  }
+  .cuerpoDeLaPantalla__TextoLineaDos {
+    color: black;
+    padding-left: 50px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+  .cuerpoDeLaPantalla__seleccionDeTiempo {
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .cuerpoDeLaPantalla__seleccionDeTiempoMover {
+    padding-left: 20px;
+  }
+  .cuerpoDeLaPantalla__textoDuracion {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+  }
+  .cuerpoDeLaPantalla__textoLista {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+  }
+  .capaDeListasDeIncidentes__boton {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #00cea1;
+    color: #ffffff;
+    border: solid;
+  }
+  .capaDeListasDeIncidentes {
+    border-radius: 10px;
+    border: solid;
+    border-color: black;
+    width: 800px;
+    height: 300px;
+    overflow: auto;
+  }
+  .capaDeIncidentesTodos__mover {
+    padding-left: 20px;
+  }
+  .capaDeIncidentesUno {
+    padding-left: 30px;
+    border-radius: 30px;
+    border-color: black;
+    border: solid;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    text-transform: capitalize;
+    align-items: center;
+    padding: 5px 15px;
+  }
+  .capaDeIncidentesUno__imagen {
+    width: 30px;
+    height: 30px;
+  }
+  .capaDeIncidentesUno__texto {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    margin: 0;
+    padding-left: 10px;
+  }
+  .capaDeIncidentesUno__delete {
+    padding-left: 300px;
+  }
+  
+  .capaDeIncidentesTodos {
+    display: flex;
+    padding-right: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    overflow: auto;
+  }
+  .capaDeListasDeIncidentes__boton:hover {
+    background-color: #1fa084;
+    color: #ffffff;
+    box-shadow: #00000038 0px 0px 4px 3px;
+  }
+  .botones {
+    display: flex;
+    flex-direction: row;
+  }
+  .actualizarMover {
+    padding-left: 900px;
+    padding-top: 30px;
+  }
+  .boton {
+    background-color: #00cea1;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    border: solid;
+  }
+  .boton:hover {
+    background-color: #1fa084;
+    color: #ffffff;
+    box-shadow: #00000038 0px 0px 4px 3px;
+  }
+  .buttonDos {
+    border-radius: 20px;
+    border: solid;
+    border-color: black;
+    padding: 10px 60px;
+  }
+  .capaDeIncidentesTodosDos {
+    align-items: center;
+    padding-bottom: 30px;
+    display: flex;
+    padding-right: 20px;
+    flex-wrap: wrap;
+    border-bottom: solid;
+    border-color: black;
+  }
+  
+  .capaDeListasDeIncidentes__moverDos {
+    padding-left: 50px;
+  }
+  .escondido {
+    display: none;
+  }
+  /*flex grab*/
+  .mensaje {
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    padding-left: 100px;
+  }
+  .botonBuscar {
+    background-color: #00cea1;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    border: solid;
+  }
+  .botonBuscar:hover {
+    background-color: #1fa084;
+    color: #ffffff;
+    box-shadow: #00000038 0px 0px 4px 3px;
+  }
+  .botonBuscarM {
+    padding-left: 20px;
+  }
+  .botonBuscarMV2 {
+    padding-left: 120px;
+  }
+  .wrapperContainer {
+    display: flex;
+  }
+  
+  main {
+    flex-grow: 1;
+  }
+  
+  .lupa {
+    position: relative;
+    right: -30px;
+    bottom: -8px;
+  }
+  
+  .check {
+    display: none;
+  }
+  .checkDos {
+    display: block;
+  }
+  
+  .delete {
+    padding-left: 20px;
+  }
+  

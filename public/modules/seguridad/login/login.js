@@ -40,19 +40,13 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
                 isAuth: true,
                 expireTime: expiresTime
             };
-            const urlToRedirect = '/index.html';
             localStorage.setItem('session', JSON.stringify(session));
             // redirect To HTML HOME
-            window.location.assign(
-                window.location.protocol + '//'
-                + window.location.hostname + ':'
-                + window.location.port + urlToRedirect
-            );
-            // window.location.replace(
+            // const urlToRedirect = '/index.html';
+            // window.location.assign(
             //     window.location.protocol + '//'
             //     + window.location.hostname + ':'
-            //     + window.location.port + '/'
-            //     + 'index.html'
+            //     + window.location.port + urlToRedirect
             // );
         })
         .catch(err => {

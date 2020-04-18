@@ -6,29 +6,64 @@ const createMessageEle = (text) => {
     pEle.innerHTML = text;
     return pEle;
 }
+
+const createAndShowModal = (mess, action) => {
+    getMainWrapper.appendChild(
+        createModal(
+            'Un Error a ocurrido!', // El titulo del modal
+            createMessageEle(mess),    // Pegan el contenido perzonalizado que necesitan meter en  el modal
+            [
+                {
+                    name: 'Regresar', // nombre del boton
+                    event: 'click', // evento al que va a reaccionar
+                    action: action, // metodo que va a ejecutar, echo por ustedes
+                    style: buttons.PRIMARY // OPCIONAL
+                }
+            ]
+        )
+    )
+    openModal()
+};
 /********************************* Logic for routes verification *********************************/
+
+/******** Useful methods *********/
 const getCurrentRoute = () => {
     return window.location.href.toString();
 }
 
 const getCurrentSection = () => {
     const splittedURL = getCurrentRoute().split('/');
+    // get Main section from URL
     const getSection = splittedURL[(splittedURL.findIndex(rVal => rVal === 'modules') + 1)];
     return getSection;
 }
 
-const setAutoLogoutTimer = () => {
+const redirectToRoute = (route) => window.location.replace(
+    window.location.protocol + '//'
+    + window.location.hostname + ':'
+    + window.location.port + route);
+/******** Useful methods *********/
+
+/**
+ * 
+ */
+const setAutoLogoutTimer = (...args) => {
     if (isAuthenticated().status) {
         // if (localStorage.getItem(logoutStartTime)) localStorage.setItem('logoutStartTime', currentDateMs);
         const session = JSON.parse(localStorage.getItem('session'));
         const currentDateMs = new Date().getTime();
         const remainingTime = new Date(session.expireTime).getTime() - currentDateMs;
+        // console.log(remainingTime);
+        // console.log(remainingTime / 1000 / 60);
+        // console.log((remainingTime - (0.93 * 1000 * 60 * 60)) / 1000 / 60);
+        console.log(args);
+
         setTimeout(() => {
-            console.log('Logout the user')
-        }, remainingTime);
-        console.log(remainingTime / 1000 / 60);
-        console.log(remainingTime);
-        console.log((remainingTime - (1.65 * 1000 * 60 * 60)) / 1000 / 60);
+            console.log('Logout the user');
+            createAndShowModal('Ha expirado el tiempo valido de tu session', () => {
+                redirectToRoute(args[0]);
+            });
+        }, (remainingTime - (0.93 * 1000 * 60 * 60)));
     } else {
         console.error('No se esta autenticado o token invalido');
     }
@@ -38,15 +73,16 @@ const isRoleAuthorized = () => {
     const routesPermissions = usersPermisions.find(route => route.path === getCurrentSection());
     const session = JSON.parse(localStorage.getItem('session'));
     if (session) {
-        return !!(routesPermissions.roles.find(rol => rol === type))
+        return !!(routesPermissions.roles.find(rol => rol.toLowerCase() === session.type.toLowerCase()))
             ? { status: true }
             : { status: false, message: 'No esta autorizado para accceder a esta sección' };
     } else {
-        console.error('No se esta autenticado o token invalido');
-        return result = {
-            status: false,
-            message: 'No esta autenticado'
-        };
+        // console.error('No se esta autenticado o token invalido');
+        // return result = {
+        //     status: false,
+        //     message: 'No esta autenticado'
+        // };
+        isAuthenticated();
     }
 }
 
@@ -56,7 +92,7 @@ const isAuthenticated = () => {
     if (!session) {
         result = {
             status: false,
-            message: 'No esta autenticado'
+            message: 'No estas autenticado'
         };
     } else {
         if (new Date(session.expiresTime).getTime() < new Date().getTime()) {
@@ -71,54 +107,46 @@ const isAuthenticated = () => {
     return result;
 }
 
-const redirectToRoute = (route) => window.location.replace(
-    window.location.protocol + '//'
-    + window.location.hostname + ':'
-    + window.location.port + route);
+
 
 const verifyRoute = (options) => {
-    const { showModal, redirecTo } = options;
+    const { redirecTo } = options;
     const validatorsResult = usersPermisions.find(routeOpts => routeOpts.path === getCurrentSection());
-    if (validatorsResult.canAccess) {
-        validatorsResult.canAccess
+
+    if (validatorsResult.canAccess.length > 0) {
+        const accessResult = validatorsResult.canAccess
             .every(routeValidator => {
                 const protectionResult = routeValidator();
                 if (!protectionResult.status) {
-                    console.log(protectionResult);
-                    if (showModal) {
-                        getMainWrapper.appendChild(
-                            createModal(
-                                'Un Error a ocurrido!', // El titulo del modal
-                                createMessageEle(protectionResult.message),    // Pegan el contenido perzonalizado que necesitan meter en  el modal
-                                [
-                                    {
-                                        name: 'Ok', // nombre del boton
-                                        event: 'click', // evento al que va a reaccionar
-                                        action: () => redirectToRoute(redirecTo), // metodo qeu va a ejecutar, echo por ustedes
-                                        style: buttons.PRIMARY // OPCIONAL
-                                    }
-                                ]
-                            )
-                        )
-                        openModal()
-                        return false;
-                    }
+                    // if (showModal) {
+                    createAndShowModal(protectionResult.message, () => {
+                        redirectToRoute(redirecTo);
+                    });
+                    // }
                     console.log('Estas siendo redireccionado a', redirecTo);
-                    redirectToRoute(redirecTo);
+                    return false;
                 }
+                return true;
             });
+        if (accessResult) setAutoLogoutTimer(redirecTo);
     }
 }
 
+// permitions 
 const usersPermisions = [
     {
         path: 'rutas',
         canAccess: [isAuthenticated, isRoleAuthorized],
         roles: ['admin', 'ruta'],
     },
-    { path: 'usuarios' },
+    {
+        path: 'users',
+        canAccess: [isAuthenticated, isRoleAuthorized],
+        roles: ['admin', 'ruta'],
+    },
     { path: 'siniestros' },
     { path: 'configuracion' },
     { path: 'reportes' },
 ];
+//permitions
 
