@@ -151,5 +151,52 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 /*******************/
 .tableContainer {
-  padding: 1.5rem 0;
+  padding: 1.5rem 3%;
+}
+.secondActionsWrapper {
+  display: none;
+  /* justify-content: space-between; */
+  padding: 15px 2%;
+}
+.secondActionsWrapper--show {
+  display: flex;
+}
+.infoElemtsSelected {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.btnCloseSelected {
+  padding: 0.5rem;
+}
+.btnCloseSelected:hover {
+  background-color: #1fa08423;
+  border-radius: 60px;
+  cursor: pointer;
+}
+.infoElemtsSelected p {
+  margin: 0;
+  padding: 0 1.2rem;
+  font-size: 1.2rem;
+}
+.infoElemtsSelected > * {
+  color: #013870;
+}
+.selectedActionsWrapper {
+}
+
+.btnDisable {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  color: #013870;
+  background-color: transparent;
+}
+
+.btnDisable:hover {
+  background-color: #01387025;
+}
+
+.btnDisable > i {
+  padding: 0 0.5rem;
 }

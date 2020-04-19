@@ -6,7 +6,6 @@ const CAP_STYLES = {
  * TABLE
  **********************************************/
 let tableHeaders;
-let selectedFields = [];
 const statesToCheck = [];
 
 const createActions = (actions, rowInfo) => {
@@ -47,18 +46,22 @@ const generateAndCheckCapStyles = (key, val) => {
     return capsuleEle;
 }
 
-const addCheckbox = (rowInfo) => {
+const tableLength = () => document.querySelectorAll('.tableBody .checkboxField').length;
+
+const addCheckbox = (rowInfo, keyToMap) => {
     const checkboxField = document.createElement('input');
     checkboxField.classList.add('checkboxField');
     checkboxField.type = 'checkbox';
-    checkboxField.onclick = () => {
-        const isSelected = selectedFields.find(info => info.id === rowInfo.id);
-        if (isSelected) {
-            selectedFields = selectedFields.filter(info => info.id !== rowInfo.id);
-        } else {
-            selectedFields.push(rowInfo);
-        }
-        console.log(selectedFields);
+    checkboxField.value = rowInfo[keyToMap];
+    checkboxField.onclick = (e) => {
+        // console.log(e.target);
+        // const isSelected = selectedFields.find(info => info.id === rowInfo.id);
+        // if (isSelected) {
+        //     selectedFields = selectedFields.filter(info => info.id !== rowInfo.id);
+        // } else {
+        //     selectedFields.push(rowInfo);
+        // }
+        // console.log(selectedFields);
     };
     return checkboxField;
 }
@@ -94,7 +97,7 @@ const createHeaders = (headers) => {
     // console.log(tableHeader);
     return tableHeader;
 };
-const createTableBody = (list, actions) => {
+const createTableBody = (list, actions, checkBoxKey) => {
     const tableBody = document.createElement('div');
     const rowGenrator = document.createElement('div');
     tableBody.classList.add('tableBody');
@@ -102,7 +105,7 @@ const createTableBody = (list, actions) => {
 
     list.map((obj, listIndex) => {
         let rowWrapper = rowGenrator.cloneNode('true');
-        rowWrapper.appendChild(addCheckbox(obj));
+        rowWrapper.appendChild(addCheckbox(obj, checkBoxKey));
         tableHeaders.forEach(tHeader => {
             const currentValue = obj[tHeader.key];
             if (currentValue) {
@@ -153,7 +156,7 @@ const createTableBody = (list, actions) => {
     return tableBody;
 }
 
-const createTable = (keys, list, actions) => {
+const createTable = (keys, list, actions, checkBoxKey) => {
     const tableWrapper = document.createElement('div');
     const tableDivition = document.createElement('div');
     tableWrapper.classList.add('tableWrapper');
@@ -166,7 +169,7 @@ const createTable = (keys, list, actions) => {
         tableDivition
     );
     tableWrapper.appendChild(
-        createTableBody(list, actions)
+        createTableBody(list, actions, checkBoxKey)
     );
     console.dir(tableWrapper.childNodes);
 
@@ -183,6 +186,14 @@ const markAllBoxes = () => {
             } else {
                 if (ele.checked) ele.click();
             }
+        });
+}
+
+const getCheckedEles = () => {
+    return [...document.querySelectorAll('.tableBody .checkboxField')]
+        .filter(ele => ele.checked)
+        .map(ele => {
+            return ele.value
         });
 }
 

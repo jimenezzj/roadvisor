@@ -1,8 +1,9 @@
-verifyRoute({redirecTo: '/modules/seguridad/login/login.html'});
+verifyRoute({ redirecTo: '/modules/seguridad/login/login.html' });
 const mainWrapper = document.querySelector('.wrapperContainer');
 const btnFilter = document.querySelector('.btnFilter');
 const searchField = document.querySelector('#search');
 const btnSearch = document.querySelector('#btnSearch');
+const selectOpts = document.querySelector('.secondActionsWrapper');
 const userHeaders = {
     headers: {
         'Authorization': getSession.token
@@ -34,6 +35,7 @@ btnSearch.addEventListener('click', () => {
             listWrapper.innerHTML = null;
             const tableUI = generateTable(result.data)
             listWrapper.appendChild(tableUI);
+
         })
         .catch(err => {
             console.log(err);
@@ -91,7 +93,7 @@ setStatus('status', [
     { sName: 'habilitado', cssClass: CAP_STYLES.active },
     { sName: 'deshabilitado', cssClass: CAP_STYLES.disable }
 ]);
-setStatus('tipo'); 
+setStatus('tipo');
 
 const createTbleAndFetchList = () => {
     fetch(getCurrentURL + 'users', {
@@ -104,6 +106,17 @@ const createTbleAndFetchList = () => {
             console.log(result);
             const tableUI = generateTable(result.data)
             document.querySelector('.tableContainer').appendChild(tableUI);
+
+            document.querySelectorAll('.checkboxField').forEach(ele => {
+                ele.addEventListener('click', () => {
+                    if (getCheckedEles().length > 0) {
+                        setChexkboxSelected();
+                        selectOpts.classList.add('secondActionsWrapper--show');
+                    } else {
+                        selectOpts.classList.remove('secondActionsWrapper--show');
+                    }
+                });
+            });
         })
         .catch(err => {
             console.log(err);
@@ -113,7 +126,7 @@ const createTbleAndFetchList = () => {
 const generateTable = (list, type) => {
     const prepareListToShow = list.map(user => {
         user.profilePicture = getCurrentURL + user.profilePicture;
-        
+
         if (user.pApellido && user.sApellido) user.nombre = `${user.nombre} ${user.pApellido} ${user.sApellido}`;
         return user
     });
@@ -142,9 +155,15 @@ const generateTable = (list, type) => {
                 icon: 'delete',
                 action: (mes) => console.log(mes)
             }
-        ]
+        ],
+        'email'
     );
 };
+
+const setChexkboxSelected = () => {
+    const checksSelectedEle = document.querySelector('.infoElemtsSelected p');
+    checksSelectedEle.innerHTML = `${getCheckedEles().length} elementos seleccionados`;
+}
 /*
 document.querySelector('.tableContainer').appendChild(
     createTable(

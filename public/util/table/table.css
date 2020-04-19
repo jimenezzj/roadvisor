@@ -1,7 +1,6 @@
 .tableWrapper {
   display: flex;
   flex-flow: column;
-  width: 80%;
   margin: auto;
 }
 .row__text span {
