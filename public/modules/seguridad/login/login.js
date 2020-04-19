@@ -24,13 +24,12 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
     })
         .then(res => res.json())
         .then(res => {
-            console.log(res);
             if (res.statusCode === 401) {
                 const error = new Error(res.message);
                 error.data = res.data;
                 throw error;
             }
-            const { nombre, pApellido, correo, tipo, token, expiresTime } = res.data;
+            const { nombre, pApellido, correo, tipo, token, expiresTime, profilePicture } = res.data;
             const session = {
                 correo: correo,
                 nombre: nombre,
@@ -40,20 +39,18 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
                 isAuth: true,
                 expireTime: expiresTime
             };
-            const urlToRedirect = '/index.html';
             localStorage.setItem('session', JSON.stringify(session));
+            console.log(res);
+            //store navBar options
+            localStorage.setItem('navbar', JSON.stringify(generataSideNavbarLinks(tipo)));
+            localStorage.setItem('topNav', JSON.stringify({
+                profilePicture: profilePicture,
+                name: `${nombre} ${pApellido}`,
+                type: tipo.replace(/^[a-z]/, tipo.slice(0, 1).toUpperCase()),
+                href: '#'
+            }))
             // redirect To HTML HOME
-            window.location.assign(
-                window.location.protocol + '//'
-                + window.location.hostname + ':'
-                + window.location.port + urlToRedirect
-            );
-            // window.location.replace(
-            //     window.location.protocol + '//'
-            //     + window.location.hostname + ':'
-            //     + window.location.port + '/'
-            //     + 'index.html'
-            // );
+            redirect(session.type);
         })
         .catch(err => {
             console.error(err);
@@ -84,6 +81,22 @@ const showErrorMessages = (field, message) => {
         default:
             break;
     }
+}
+
+const redirect = (role) => {
+    let urlToRedirect = 'modules/';
+    const userRole = role.toLowerCase();
+    if (userRole === 'tradicional' || userRole === 'servicios') {
+        urlToRedirect = urlToRedirect + 'siniestros/siniestros.html';
+    } else if (userRole === 'ruta') {
+        urlToRedirect = urlToRedirect + 'rutas/rutas.html';
+    } else if (userRole === 'admin') {
+        urlToRedirect = urlToRedirect + 'users/users.html';
+
+    }
+    window.location.assign(
+        getCurrentURL + urlToRedirect
+    );
 }
 
 const clearErrors = (e) => {

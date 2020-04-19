@@ -121,25 +121,13 @@ const createCard = (data) => {
 }
 
 mainWrapper.querySelector('header').appendChild(
-    createSidebar([
-        {
-            name: 'Vehículos',
-            icon: 'directions_car',
-            href: '#',
-            active: true
-        }
-    ])
+    createSidebar(getNavbarOpts)
 );
 
 mainWrapper.querySelector('main').insertBefore(
     createTopNavbar(
         'Vehiculos',
-        {
-            profilePic: 'http://localhost:8082/assets/images/userProfile/2020-03-30T055248.441Z_infinitystones@marvel.com_58af605285bfde99b935a47d590ca774.jpg',
-            name: 'Pepe',
-            rol: 'Tradicional',
-            href: '#'
-        },
+        getTopNavOpts(),
         [
             {
                 icon: 'account_circle',

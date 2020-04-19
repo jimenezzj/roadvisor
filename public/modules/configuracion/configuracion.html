@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style.css" type="text/css">
+    <link rel="stylesheet" href="configuracion.css" type="text/css">
+    <link rel="stylesheet" href="../../util/sideBar/sideBar.css" type="text/css">
+    <link rel="stylesheet" href="../../util/topNavBar/topNavbar.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../util/modal/modal.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Configuración</title>
+</head>
+
+<body>
+    <div class="wrapperContainer">
+        <header></header>
+        <main>
+            <div class="cuerpoDeLaPantalla">
+                <h1 class="cuerpoDeLaPantalla__textoDatosDelSiniestro">INFORMACIÓN DE LOS TIPOS DE SINIESTROS</h1>
+                <p class="cuerpoDeLaPantalla__TextoLinea">
+                    ________________________________________________________________________________
+                </p>
+                <h1 class="cuerpoDeLaPantalla__textoDuracion">Tiempo de siniestro </h1>
+                <p class="cuerpoDeLaPantalla__seleccionDeTiempoMover">
+                    <select name="duracion" class="cuerpoDeLaPantalla__seleccionDeTiempo" id="">
+                        <option value="1">12 horas</option>
+                        <option value="2">24 horas</option>
+                    </select>
+                </p>
+
+                <h1 class="cuerpoDeLaPantalla__textoLista">Tipos de incidentes agregados</h1>
+                <div class="capaDeListasDeIncidentes">
+                    <div class="capaDeIncidentesTodosDos">
+                        <p class="capaDeIncidentesTodos__mover"><button type="button" onclick="agregarIncidente()"
+                                class="capaDeListasDeIncidentes__boton">Agregar</button></p>
+                        <p class="capaDeListasDeIncidentes__moverDos"><i
+                                class="material-icons     lupa">search</i><input type="search"
+                                placeholder="Buscar incidente" id="busqueda" name="buscador" id="" class="buttonDos">
+                        </p>
+                        <p class="botonBuscarM"><button class="botonBuscar" onclick="buscarIncidente()">Buscar</button>
+
+                        </p>
+                    </div>
+                    <p class="mensaje" id="mensajeId"> </p>
+                    <div id="agregadoActu" class="capaDeIncidentesTodos">
+
+                    </div>
+
+                </div>
+                <div>
+                    <h1 class="cuerpoDeLaPantalla__textoDatosDelSiniestroDos">INFORMACIÓN DE LOS TIPOS DE ASISTENCIAS
+                    </h1>
+                    <p class="cuerpoDeLaPantalla__TextoLineaDos">
+                        ________________________________________________________________________________
+                    </p>
+                    <h1 class="cuerpoDeLaPantalla__textoLista">Tipos de asistencias agregados</h1>
+                    <div class="capaDeListasDeIncidentes">
+                        <div class="capaDeIncidentesTodosDos">
+                            <p class="capaDeIncidentesTodos__mover"><button type="button" onclick="agregarAsistencia()"
+                                    class="capaDeListasDeIncidentes__boton">Agregar</button></p>
+                            <p class="capaDeListasDeIncidentes__moverDos"><i
+                                    class="material-icons    lupa">search</i><input type="search"
+                                    placeholder="Buscar asistencias" id="busquedaDos" name="buscador" id=""
+                                    class="buttonDos"></p>
+                            <p class="botonBuscarM"><button class="botonBuscar"
+                                    onclick="buscarAsistencia()">Buscar</button></p>
+
+                        </div>
+                        <p class="mensaje" id="mensajeIdDos"> </p>
+                        <div id="agregadoActuDos" class="capaDeIncidentesTodos">
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+    </main>
+    </div>
+
+    <script src="../../util/modal/modal.js"></script>
+    <script src="../../util/sideBar/sideBar.js"></script>
+    <script src="../../util/topNavBar/topNavbar.js"></script>
+    <script src="configuracion.js"></script>
+
+</body>
+
+
+</html>

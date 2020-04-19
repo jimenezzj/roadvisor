@@ -12,7 +12,11 @@ const usuarioSchema = mongoose.Schema({
     fechaNacimiento: Date,
     contrasena: String,
     profilePicture: String,
-    status: String
+    status: String,
+    conductor: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Usuario'
+    }
 });
 
 

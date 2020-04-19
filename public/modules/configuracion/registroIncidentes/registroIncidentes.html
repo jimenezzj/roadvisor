@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="registroIncidentes.css" type="text/css">
+    <link rel="stylesheet" href="../../../util/modal/modal.css" type="text/css">
+    <link rel="stylesheet" href="../../../util/sideBar/sideBar.css" type="text/css">
+    <link rel="stylesheet" href="../../../util/topNavBar/topNavbar.css" type="text/css">
+    <title>RoadVisor</title>
+</head>
+
+<body>
+    <div class="wrapperContainer">
+        <header></header>
+        <main>
+            <div class="cuerpoDeLaPantalla">
+                <h1 class="cuerpoDeLaPantalla__ubicacionDePantalla">Configuracion > Tipos de siniestros > Agregar tipo
+                    de incidente</h1>
+                <h1 class="cuerpoDeLaPantalla__textoDatosDelSiniestro">DATOS DE TIPO DE INCIDENTE</h1>
+                <p class="cuerpoDeLaPantalla__TextoLinea">
+                    ______________________________________________________________________________________________________________________________________________
+                </p>
+                <div class="contenedorDelInput">
+                    <p class="contenedorDelInput__textoNombre">Nombre</p>
+                    <input class="contenedorDelInput__inputText" id="inputNombreIncidente" type="text">
+                    <p class="contenedorDelInput__textoNombreVal" id="validacion">Debes agregar un nombre</p>
+                    <div class="contenedorDelFondoBlanco">
+                        <div class="divFondoBlanco">
+                            <p class="divFondoBlanco__textoIcono" id="validarImagen">Icono del tipo de incidente</p>
+                            <div class="moverIcono">
+                                <img id="iconoAgregado" class="divFondoBlanco__iconoSubir">
+                            </div>
+                            <div class="divFondoBlanco__boton">
+                                <p class="divFondoBlanco__movimientoBoton">Buscar</p>
+                                <p class="mover"><input onchange="subirIcono()" class="boton" type="file"
+                                        id="botonAgregarIcono"></p>
+                                </p>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <p class="capaBotonesAgregarRegresar__estadoDeAgregado" id="parrafoUno"></p>
+                </div>
+                <div class="capaBotonesAgregarRegresar">
+                    <p class="capaBotonesAgregarRegresar__moverBotonAgregar"><button type="button"
+                            class="capaBotonesAgregarRegresar__botonRegresar" onclick="regresar()">Regresar</button></p>
+                    <p class="capaBotonesAgregarRegresar__moverBotonRegresar"><button
+                            class="capaBotonesAgregarRegresar__botonAgregar" onclick="agregarIncidente()">
+                            Agregar</button></p>
+
+                </div>
+
+            </div>
+    </div>
+    </div>
+
+    </main>
+    <script src="../../../util/modal/modal.js"></script>
+    <script src="../../../util/sideBar/sideBar.js"></script>
+    <script src="../../../util/topNavBar/topNavbar.js"></script>
+    <script src="registroIncidentes.js"></script>
+
+</body>
+
+</html>

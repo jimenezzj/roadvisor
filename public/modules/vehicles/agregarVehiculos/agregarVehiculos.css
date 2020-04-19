@@ -347,3 +347,49 @@ main {
   padding: 0.7rem 1rem;
   width: 30%;
 }
+
+/************ KEVIN ***********/
+.capaPrincipal {
+  overflow: auto;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.capaUsuario {
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+  border: solid;
+  border-color: black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.informacionConductor {
+  display: fle;
+}
+.fotoUsuario {
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.nombreUsuarios {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.check {
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.select {
+  border-radius: 20px;
+  border: solid;
+  border-color: black;
+  width: 500px;
+  margin-left: 200px;
+  text-align: center;
+}
+
+/************ KEVIN ***********/
