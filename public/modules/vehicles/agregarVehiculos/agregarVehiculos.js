@@ -144,6 +144,23 @@ const sendVehicleInfo = () => {
         });
 }
 
+function agregarConductor() {
+    const capaPrincipal = document.querySelectorAll('.capaPrincipal input[type=radio]');
+    let fieldChecked;
+    capaPrincipal.forEach(field => {
+        if (field.checked) {
+            fieldChecked = field.value;
+        }
+    });
+    if (fieldChecked) {
+        document.querySelector('#driver').value = fieldChecked;
+        console.dir(fieldChecked);
+        console.dir(document.querySelector('#driver'));
+        closeModal();
+    }
+
+}
+
 btnUploadPicture.addEventListener('click', () => {
     vehiImagesField.click();
 });
@@ -164,6 +181,41 @@ vehiImagesField.addEventListener('change', (e) => {
         imageFieldWrapper.classList.add('imageFieldWrapper--full');
     }
     updateCurrentFiles(filesLenght);
+});
+
+document.querySelector('#driver').addEventListener('click', () => {
+    document.querySelector('main').appendChild(
+        createModal(
+            'Agregar',
+            asignarConductor(),
+            [
+
+                {
+                    name: 'Cancelar', // nombre del boton
+                    event: 'click', // evento al que va a reaccionar
+                    action: cancelar, // metodo qeu va a ejecutar, echo por ustedes   nunca sin parentesis
+                    style: buttons.SECONDARY // OPCIONAL
+                },
+                {
+                    name: 'Agregar', // nombre del boton
+                    event: 'click', // evento al que va a reaccionar
+                    action: agregarConductor, // metodo qeu va a ejecutar, echo por ustedes   nunca con parentesis
+                    style: buttons.PRIMARY // OPCIONAL
+                }
+
+
+            ],
+            { // objeto con ajustes del modal
+                position: { // posicion de los elementos de modal
+                    header: 'center', // titulo acepta: 'start', 'center' & 'end'
+                    body: '',  // body del modal acepta: 'start', 'center' & 'end'
+                    actions: 'center' // contenedor de botones acepta: 'start', 'center' & 'end'
+                },
+                height: '85%', // altura custom del modal, SOLO USAR PORCENTAJES (MAX=88%)
+                width: '70%' // ancho custom del modal, SOLO USAR PORCENTAJES (MAX=91%)
+            })
+    );
+    openModal()
 });
 
 mainWrapper.querySelector('header').appendChild(
@@ -265,6 +317,63 @@ const createModalMessage = (mes) => {
     );
     openModal();
 };
+
+function asignarConductor() {
+    const capaPrincipal = document.createElement('div');
+    fetch("/users/", {
+        headers: {
+            'Authorization': getSession.token
+        }
+    }).then(res => {
+        return res.json();
+    }).then(result => {
+        const data = result.data;
+        capaPrincipal.classList.add('capaPrincipal')
+        capaPrincipal.id = 'principal';
+        const listaUsuarios = document.createElement('p');
+        listaUsuarios.innerHTML = "Lista de usuarios disponibles";
+        capaPrincipal.appendChild(listaUsuarios);
+        if (capaPrincipal) {
+            console.log(data);
+
+            for (var i = 0; i < data.length; i++) {
+                const capaUsuario = document.createElement('div');
+                capaUsuario.classList.add('capaUsuario');
+                const nombreUsuario = document.createElement('p');
+                nombreUsuario.classList.add('nombreUsuarios');
+                nombreUsuario.innerHTML = data[i].nombre;
+                const check = document.createElement("input");
+                check.type = 'radio'
+                check.name = 'seleccion'
+                check.id = data[i].email;
+                check.value = data[i].email;
+                check.classList.add('check');
+                const correoUsuario = document.createElement('p');
+                correoUsuario.innerHTML = data[i].email;
+                const fotoUsuario = document.createElement('img');
+                fotoUsuario.src = getCurrentURL + data[i].profilePicture;
+                fotoUsuario.classList.add('fotoUsuario');
+                capaUsuario.appendChild(check);
+                capaUsuario.appendChild(fotoUsuario);
+                capaUsuario.appendChild(nombreUsuario);
+                capaUsuario.appendChild(correoUsuario);
+                capaPrincipal.appendChild(capaUsuario);
+            }
+        }
+
+    })
+        .catch(err => {
+            console.log(err);
+        });
+    console.log(capaPrincipal);
+
+    return capaPrincipal;
+}
+
+
+function cancelar() {
+    closeModal()
+}
 
 generateSelectOptions();
 

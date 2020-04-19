@@ -42,7 +42,7 @@ router.post('/login', (req, res) => {
                 data: {
                     nombre: user.nombre,
                     pApellido: user.pApellido,
-                    numeroCedula: user.numeroCedula,
+                    profilePicture: user.profilePicture,
                     correo: user.email,
                     tipo: user.tipo[0],
                     token: token,
