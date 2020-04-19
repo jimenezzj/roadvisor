@@ -150,3 +150,85 @@ const usersPermisions = [
 ];
 //permitions
 
+// [
+//     {
+//         name: 'Vehículos',
+//         icon: 'directions_car',
+//         href: '#'
+//     },
+//     {
+//         name: 'Usuarios',
+//         icon: 'directions_car',
+//         href: '#',
+//         active: true
+//     }
+// ]
+const generataSideNavbarLinks = (role) => {
+    const activeSection = (name) =>
+        generalOptions.find(link => link.name.toLocaleLowerCase() === name)
+            .active = true;
+    let generalOptions = [
+        {
+            name: 'Siniestros',
+            icon: 'report_problem',
+            href: getCurrentURL + 'siniestros/siniestros.html'
+        },
+        {
+            name: 'Usuarios',
+            icon: 'account_circle',
+            href: getCurrentURL + 'users/users.html'
+        },
+        {
+            name: 'Rutas',
+            icon: 'directions_car',
+            href: getCurrentURL + 'siniestros/siniestros.html'
+        },
+        {
+            name: 'Vehiculos',
+            icon: 'swap_horiz',
+            href: getCurrentURL + 'vechiles/vehicles.html'
+        },
+        {
+            name: 'Reportes',
+            icon: 'description',
+            href: getCurrentURL + 'reports/reports.html'
+        },
+    ]
+    switch (role.toLowerCase()) {
+        case 'admin':
+            activeSection('usuarios');
+            break;
+        case 'servicios':
+            activeSection('siniestros');
+            generalOptions = generalOptions.filter(link => {
+                const linkName = link.name.toLocaleLowerCase();
+                if (linkName !== 'rutas' && linkName !== 'usuarios') return link;
+            });
+            break;
+        case 'tradicional':
+            activeSection('siniestros');
+            generalOptions = generalOptions.filter(link => {
+                const linkName = link.name.toLocaleLowerCase();
+                if (linkName !== 'reportes'
+                    && linkName !== 'rutas'
+                    && linkName !== 'usuarios') return link;
+            });
+            break;
+        case 'ruta':
+            activeSection('rutas');
+            generalOptions = generalOptions.filter(link => {
+                const linkName = link.name.toLowerCase();
+                console.log(linkName);
+                if (linkName !== 'siniestros'
+                    && linkName !== 'vehiculos'
+                    && linkName !== 'usuarios') return linkName;
+            })
+            break;
+
+        default:
+            generalOptions = null;
+            break;
+    }
+    return generalOptions;
+};
+

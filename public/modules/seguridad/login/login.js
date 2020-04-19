@@ -24,7 +24,6 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
     })
         .then(res => res.json())
         .then(res => {
-            console.log(res);
             if (res.statusCode === 401) {
                 const error = new Error(res.message);
                 error.data = res.data;
@@ -41,13 +40,11 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
                 expireTime: expiresTime
             };
             localStorage.setItem('session', JSON.stringify(session));
+            console.log(res);
+            //store navBar options
+            localStorage.setItem('navbar', JSON.stringify(generataSideNavbarLinks(tipo)));
             // redirect To HTML HOME
-            // const urlToRedirect = '/index.html';
-            // window.location.assign(
-            //     window.location.protocol + '//'
-            //     + window.location.hostname + ':'
-            //     + window.location.port + urlToRedirect
-            // );
+            redirect(session.type);
         })
         .catch(err => {
             console.error(err);
@@ -78,6 +75,22 @@ const showErrorMessages = (field, message) => {
         default:
             break;
     }
+}
+
+const redirect = (role) => {
+    let urlToRedirect = 'modules/';
+    const userRole = role.toLowerCase();
+    if (userRole === 'tradicional' || userRole === 'servicios') {
+        urlToRedirect = urlToRedirect + 'siniestros/siniestros.html';
+    } else if (userRole === 'ruta') {
+        urlToRedirect = urlToRedirect + 'rutas/rutas.html';
+    } else if (userRole === 'admin') {
+        urlToRedirect = urlToRedirect + 'users/users.html';
+
+    }
+    window.location.assign(
+        getCurrentURL + urlToRedirect
+    );
 }
 
 const clearErrors = (e) => {

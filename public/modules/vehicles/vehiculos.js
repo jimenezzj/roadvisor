@@ -121,14 +121,7 @@ const createCard = (data) => {
 }
 
 mainWrapper.querySelector('header').appendChild(
-    createSidebar([
-        {
-            name: 'Vehículos',
-            icon: 'directions_car',
-            href: '#',
-            active: true
-        }
-    ])
+    createSidebar(getNavbarOpts)
 );
 
 mainWrapper.querySelector('main').insertBefore(

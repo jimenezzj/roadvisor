@@ -6,7 +6,11 @@ const toBase64 = file => new Promise((resolve, reject) => {
 });
 
 const getSession = JSON.parse(localStorage.getItem('session'));
-
+/**
+ * Return currert URL(protocal, domain, port)
+ */
 const getCurrentURL = window.location.protocol + '//'
     + window.location.hostname + ':'
     + window.location.port + '/';
+
+const getNavbarOpts = JSON.parse(localStorage.getItem('navbar')) || null;
