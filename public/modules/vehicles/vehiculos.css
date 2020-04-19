@@ -96,7 +96,6 @@ input[type="search"]::-webkit-search-results-decoration {
   outline: none;
 }
 
-
 .btnAdd {
   padding: 0.5rem 1.1rem;
   margin-left: auto;
@@ -135,11 +134,15 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .secondActionsWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 3%;
+}
+.sortWrapper {
   position: relative;
-  padding: 10px 3%;
   width: 15%;
 }
-.secondActionsWrapper select {
+.sortWrapper select {
   display: block;
   padding: 0.5rem 0 0 0;
   border: none;
@@ -150,7 +153,7 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-.secondActionsWrapper::after {
+.sortWrapper::after {
   content: "\e313";
   font-family: "Material Icons";
   position: absolute;
@@ -158,12 +161,31 @@ input[type="search"]::-webkit-search-results-decoration {
   right: 11%;
   font-size: 1.5rem;
 }
-.secondActionsWrapper label {
+.sortWrapper label {
   font-weight: 500;
   font-size: 1rem;
   color: #3d3d3d;
 }
-
+.infoElemtsSelected {
+  display: flex;
+  align-items: center;
+}
+.btnCloseSelected {
+  padding: 0.5rem;
+}
+.btnCloseSelected:hover {
+  background-color: #1fa08423;
+  border-radius: 60px;
+  cursor: pointer;
+}
+.infoElemtsSelected p {
+  margin: 0;
+  padding: 0 1.2rem;
+  font-size: 1.2rem;
+}
+.infoElemtsSelected > * {
+  color: #013870;
+}
 /* CARD STYLES - START HERE!!! */
 .listWrapper {
   display: flex;
