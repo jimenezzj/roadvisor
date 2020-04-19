@@ -200,7 +200,7 @@ const generataSideNavbarLinks = (role) => {
             break;
         case 'servicios':
             activeSection('siniestros');
-            generalOptions = generalOptions.filter(link => {
+            generalOptions = generalOptions.filt, storer(link => {
                 const linkName = link.name.toLocaleLowerCase();
                 if (linkName !== 'rutas' && linkName !== 'usuarios') return link;
             });
@@ -218,7 +218,6 @@ const generataSideNavbarLinks = (role) => {
             activeSection('rutas');
             generalOptions = generalOptions.filter(link => {
                 const linkName = link.name.toLowerCase();
-                console.log(linkName);
                 if (linkName !== 'siniestros'
                     && linkName !== 'vehiculos'
                     && linkName !== 'usuarios') return linkName;
@@ -231,4 +230,6 @@ const generataSideNavbarLinks = (role) => {
     }
     return generalOptions;
 };
+
+
 

@@ -72,6 +72,9 @@
 .userInfoWrapper {
   padding: 0.2rem 1rem;
 }
+.userInfoWrapper .userRol {
+  text-transform: capitalize;
+}
 
 .userInfoWrapper:hover > a {
   text-decoration: underline;

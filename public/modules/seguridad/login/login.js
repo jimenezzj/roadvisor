@@ -29,7 +29,7 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
                 error.data = res.data;
                 throw error;
             }
-            const { nombre, pApellido, correo, tipo, token, expiresTime } = res.data;
+            const { nombre, pApellido, correo, tipo, token, expiresTime, profilePicture } = res.data;
             const session = {
                 correo: correo,
                 nombre: nombre,
@@ -43,6 +43,12 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
             console.log(res);
             //store navBar options
             localStorage.setItem('navbar', JSON.stringify(generataSideNavbarLinks(tipo)));
+            localStorage.setItem('topNav', JSON.stringify({
+                profilePicture: profilePicture,
+                name: `${nombre} ${pApellido}`,
+                type: tipo.replace(/^[a-z]/, tipo.slice(0, 1).toUpperCase()),
+                href: '#'
+            }))
             // redirect To HTML HOME
             redirect(session.type);
         })
