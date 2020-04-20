@@ -91,7 +91,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 1rem 4.5rem 0 4.5rem;
+  padding: 1rem 10% 0 10%;
 }
 
 .cuerpoDeLaPantalla__textoDatosDelSiniestro {
@@ -292,7 +292,7 @@ main {
 
 /***********  JONATHAN  **********/
 .accoutSetsWrapper {
-  padding: 2.5rem 0;
+  padding: 2.5rem 10%;
 }
 
 .subTitleSection {
@@ -301,7 +301,7 @@ main {
   font-weight: 400;
   font-size: 0.8rem;
   border-bottom: 1px solid gray;
-  padding: 1rem 0 0.8rem 0;
+  padding: 1rem 0 0.6rem 0;
   margin: 0;
 }
 
@@ -348,11 +348,139 @@ main {
 
 .btnDisAccount {
   background-color: transparent;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #d31414;
-  padding: 0.6rem 1rem;
+  padding: 0.85rem 1rem;
 }
 .btnDisAccount:hover {
   background-color: #c20e0e1a;
 }
 /***********  JONATHAN  **********/
+
+/***********  keRvin  **********/
+.contenedorUsuariosOpciones {
+  padding: 0 10% 2rem 10%;
+}
+.contenedorTipoVehiculo {
+  position: relative;
+  padding: 1rem 1.6rem 2rem 1.6rem;
+  margin: 3.5rem 0 1rem 0;
+  border: 2.5px solid #049374;
+  border-radius: 8px;
+}
+.titleTipoVehiculo {
+  position: absolute;
+  top: -10%;
+  left: 2%;
+  margin: 0;
+  padding: 0.7rem 1rem;
+  background-color: #ffffff;
+  font-weight: 700;
+  color: #049374;
+}
+.barraBusquedaContenedor {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  outline: none;
+  box-shadow: 0 0 2px 2px #0000001f;
+  border-radius: 55px;
+}
+#searchTypeVehi {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 60px 60px 60px 60px;
+  font-size: 1.2rem;
+  margin: 0;
+  color: #292929;
+  flex-grow: 1;
+  outline: none;
+}
+.btnSearchi {
+  color: #ffffff;
+  background-color: #0eaa88;
+  border-radius: 65px;
+  padding: 0.75rem 0.90rem;
+  box-shadow: 0 0 2px 2px #0000001f;
+  cursor: pointer;
+}
+.btnSearchi:hover {
+  background-color: #3fddbb;
+}
+.actionesContenedor {
+  display: flex;
+  padding: 1rem 0 1.5rem 0;
+}
+.tipoVehiContenedor {
+  padding: 1.2rem 0;
+}
+
+.tipoVehiList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.tipoVehiList__itme {
+  display: flex;
+  margin: 0 1rem 0 0;
+  padding: 0.5rem 1.2rem;
+  align-items: center;
+  text-decoration: none;
+  border: 1.5px solid #00465f;
+  background-color: #3ea6cc4b;
+  border-radius: 70px;
+}
+.tipoVehiList__itme > * {
+  color: #00465f;
+  font-weight: 600;
+}
+
+.tipoVehiImg {
+  width: 4.2rem;
+  padding: 0 1rem;
+}
+
+.tipoVehiList__itme img {
+  width: 96%;
+  border-radius: 70px;
+  /* border: 1px solid red; */
+}
+.tipoVehiList__itme i {
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.tipoVehiList__itme i:hover {
+  background-color: #0e0e0e2c;
+  border-radius: 70px;
+}
+.tipoVehiList__itme span {
+  padding: 0 0.5rem;
+}
+.btnEditVehiType {
+  margin-left: auto;
+}
+.btnDeleteVehiType {
+  margin-left: 0.5rem;
+}
+.btnEditVehiType,
+.btnDeleteVehiType {
+  padding: 0 1rem;
+  font-size: 1rem;
+  background-color: #ffffff;
+  color: #0eaa88;
+}
+.btnEditVehiType:hover,
+.btnDeleteVehiType:hover {
+  background-color: #09745d1c;
+}
+.btnEditVehiType > *,
+.btnDeleteVehiType > * {
+  vertical-align: middle;
+}
+.btnEditVehiType > *,
+.btnDeleteVehiType > i {
+  padding-right: 0.5rem;
+}
+/***********  keRvin  **********/
