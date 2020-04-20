@@ -1,4 +1,4 @@
-verifyRoute({redirecTo: '/modules/seguridad/login/login.html'});
+verifyRoute({ redirecTo: '/modules/seguridad/login/login.html' });
 const mainWrapper = document.querySelector('.wrapperContainer');
 const btnFilter = document.querySelector('.btnFilter');
 const searchField = document.querySelector('#search');
@@ -42,45 +42,31 @@ btnSearch.addEventListener('click', () => {
 });
 
 mainWrapper.querySelector('header').appendChild(
-    createSidebar([
-        {
-            name: 'Vehículos',
-            icon: 'directions_car',
-            href: '#'
-        },
-        {
-            name: 'Usuarios',
-            icon: 'directions_car',
-            href: '#',
-            active: true
-        }
-    ])
+    createSidebar(
+        getNavbarOpts
+    )
 );
 
 mainWrapper.querySelector('main').insertBefore(
     createTopNavbar(
         'Usuarios',
-        {
-            profilePic: 'http://localhost:8082/assets/images/userProfile/2020-03-30T055248.441Z_infinitystones@marvel.com_58af605285bfde99b935a47d590ca774.jpg',
-            name: 'Pepe',
-            rol: 'Tradicional',
-            href: '#'
-        },
+        getTopNavOpts(),
         [
             {
                 icon: 'account_circle',
                 name: 'Mi Perfil',
-                href: '#'
+                href: getCurrentURL + 'modules/perfil/perfil.html'
             },
             {
                 icon: 'settings',
                 name: 'Configuración',
-                href: '#'
+                href: getCurrentURL + 'modules/configuracion/configuracion.html'
             },
             {
                 icon: 'exit_to_app',
                 name: 'Cerrar Sesión',
-                href: '#'
+                href: '#',
+                action: logOutUser
             }
         ]
     ),
@@ -91,7 +77,7 @@ setStatus('status', [
     { sName: 'habilitado', cssClass: CAP_STYLES.active },
     { sName: 'deshabilitado', cssClass: CAP_STYLES.disable }
 ]);
-setStatus('tipo'); 
+setStatus('tipo');
 
 const createTbleAndFetchList = () => {
     fetch(getCurrentURL + 'users', {
@@ -113,7 +99,6 @@ const createTbleAndFetchList = () => {
 const generateTable = (list, type) => {
     const prepareListToShow = list.map(user => {
         user.profilePicture = getCurrentURL + user.profilePicture;
-        
         if (user.pApellido && user.sApellido) user.nombre = `${user.nombre} ${user.pApellido} ${user.sApellido}`;
         return user
     });

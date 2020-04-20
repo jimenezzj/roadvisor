@@ -98,13 +98,16 @@ const createUserDropdownOptions = (dropDownList) => {
     dropDownUserIcon.classList.add('material-icons', 'dropDownListIcon');
 
     dropDownList.forEach(item => {
+        const newDropDownUserItem = dropDownUserItem.cloneNode(true);
         dropDownUserIcon.innerHTML = item.icon;
         dropDownUserName.innerHTML = item.name;
         dropDownUserName.href = item.href;
-
-        dropDownUserItem.appendChild(dropDownUserIcon);
-        dropDownUserItem.appendChild(dropDownUserName);
-        dropDownUserList.appendChild(dropDownUserItem.cloneNode(true));
+        if (item.action) {
+            newDropDownUserItem.onclick = item.action;
+        }
+        newDropDownUserItem.appendChild(dropDownUserIcon.cloneNode(true));
+        newDropDownUserItem.appendChild(dropDownUserName.cloneNode(true));
+        dropDownUserList.appendChild(newDropDownUserItem);
 
     });
     dropDownUserWrapper.appendChild(dropDownUserList);

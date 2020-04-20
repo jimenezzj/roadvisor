@@ -73,42 +73,7 @@ router.get('/search/:searchVal', (req, res, next) => {
     const searchHelper = genericQuery.searchAgregtHelper(User, searchVal, {
         _id: 0,
         contrasena: 0
-    })
-    // const orArray = [];
-    // const fieldsProjection = { _id: 0, contrasena: 0 }
-    // const newFieldsToString = {};
-    // const projectionToLower = {};
-    // User.schema.eachPath((docKey, schema) => {
-    //     const regexToSearch = new RegExp(`${searchVal}`, 'i')
-    //     if (docKey !== '__v' && docKey !== '_id') {
-    //         let field;
-    //         if (schema.instance !== 'String') {
-    //             const newField = docKey + '';
-    //             if (schema.instance === 'Array') {
-    //                 projectionToLower[newField] = {
-    //                     '$reduce': {
-    //                         input: '$' + docKey,
-    //                         initialValue: '',
-    //                         in: { '$concat': ['$$value', '$$this'] }
-    //                     }
-    //                 };
-    //             } else {
-    //                 newFieldsToString[newField] = { '$toString': '$' + docKey };
-    //                 projectionToLower[newField] = 1;
-    //             }
-    //             // fieldsProjection[docKey] = 0;
-    //             field = { [newField]: { '$regex': regexToSearch } }
-    //         } else {
-    //             projectionToLower[docKey] = 1;
-    //             field = { [docKey]: { '$regex': regexToSearch } }
-    //         }
-    //         orArray.push(field);
-    //     };
-    // });
-    // console.log(newFieldsToString);
-    // console.log(fieldsProjection);
-    // console.log(projectionToLower);
-    // console.log(orArray);
+    });
     User.aggregate([
         { '$addFields': searchHelper.addFields },
         { '$project': searchHelper.projectReduce },

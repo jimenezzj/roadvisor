@@ -180,13 +180,13 @@ const generataSideNavbarLinks = (role) => {
         },
         {
             name: 'Rutas',
-            icon: 'directions_car',
-            href: getCurrentURL + 'siniestros/siniestros.html'
+            icon: 'swap_horiz',
+            href: getCurrentURL + 'rutas/rutas.html'
         },
         {
             name: 'Vehiculos',
-            icon: 'swap_horiz',
-            href: getCurrentURL + 'vechiles/vehicles.html'
+            icon: 'directions_car',
+            href: getCurrentURL + 'vehicles/vehiculos.html'
         },
         {
             name: 'Reportes',
@@ -229,6 +229,13 @@ const generataSideNavbarLinks = (role) => {
             break;
     }
     return generalOptions;
+};
+
+const logOutUser = () => {
+    localStorage.removeItem('session');
+    localStorage.removeItem('topNav');
+    localStorage.removeItem('navbar');
+    window.location.replace(getCurrentURL + 'modules/seguridad/login/login.html')
 };
 
 

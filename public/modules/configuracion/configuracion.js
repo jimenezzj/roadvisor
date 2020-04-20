@@ -215,42 +215,31 @@ document.querySelector('main').appendChild(
 );
 
 document.querySelector("header").appendChild(
-    createSidebar([
-        {
-            name: 'Usuarios',
-            icon: 'account_circle',
-            href: '#',
-            active: true
-        }
-    ])
+    createSidebar(getNavbarOpts)
 );
 
 
 
 document.querySelector("main").insertBefore(
     createTopNavbar(
-        'Configuración de incidente y asistencias',
-        {
-            profilePic: 'http://localhost:8080/assets/images/FotoAdmin/Jorgetran.png',
-            name: 'Juan',
-            rol: 'Ruta',
-            href: '#'
-        },
+        'Configuración',
+        getTopNavOpts(),
         [
             {
                 icon: 'account_circle',
                 name: 'Mi Perfil',
-                href: '#'
+                href: getCurrentURL + 'modules/perfil/perfil.html'
             },
             {
                 icon: 'settings',
                 name: 'Configuración',
-                href: '#'
+                href: getCurrentURL + 'modules/configuracion/configuracion.html'
             },
             {
                 icon: 'exit_to_app',
                 name: 'Cerrar Sesión',
-                href: '#'
+                href: '#',
+                action: logOutUser
             }
         ]
     ), document.querySelector(".cuerpoDeLaPantalla")

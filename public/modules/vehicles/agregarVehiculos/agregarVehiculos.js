@@ -219,40 +219,29 @@ document.querySelector('#driver').addEventListener('click', () => {
 });
 
 mainWrapper.querySelector('header').appendChild(
-    createSidebar([
-        {
-            name: 'Vehículos',
-            icon: 'directions_car',
-            href: '#',
-            active: true
-        }
-    ])
+    createSidebar(getNavbarOpts)
 );
 
 mainWrapper.querySelector('main').insertBefore(
     createTopNavbar(
-        'Vehiculos',
-        {
-            profilePic: 'http://localhost:8082/assets/images/userProfile/2020-03-30T055248.441Z_infinitystones@marvel.com_58af605285bfde99b935a47d590ca774.jpg',
-            name: 'Pepe',
-            rol: 'Tradicional',
-            href: '#'
-        },
+        'Usuarios',
+        getTopNavOpts(),
         [
             {
                 icon: 'account_circle',
                 name: 'Mi Perfil',
-                href: '#'
+                href: getCurrentURL + 'modules/perfil/perfil.html'
             },
             {
                 icon: 'settings',
                 name: 'Configuración',
-                href: '#'
+                href: getCurrentURL + 'modules/configuracion/configuracion.html'
             },
             {
                 icon: 'exit_to_app',
                 name: 'Cerrar Sesión',
-                href: '#'
+                href: '#',
+                action: logOutUser
             }
         ]
     ),

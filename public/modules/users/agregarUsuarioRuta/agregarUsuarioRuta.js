@@ -95,7 +95,7 @@ const validateField = (input) => {
                     if (error !== validationResult.error.message) {
                         return error;
                     }
-                    
+
                 });
 
             } else {
@@ -181,7 +181,7 @@ const changeFileInfo = (src, fileName, input) => {
     showErrors(input.id);
     console.log(!userForm[input.id].errors.length && !!(userForm[input.id].value));
     console.log(userForm[input.id].errors.length);
-    
+
     if (userForm[input.id].valid && userForm[input.id].value) {
         imageElement.classList.add('picWrapper__picture--show');
     } else {
@@ -248,28 +248,24 @@ const clearForm = () => {
 
 wrapperContainer.querySelector('main').insertBefore(
     createTopNavbar(
-        'Agregar Usuario',
-        {
-            profilePic: '#',
-            name: localStorage.getItem('session').nombre,
-            rol: localStorage.getItem('session').type,
-            href: '#'
-        },
+        'Usuarios',
+        getTopNavOpts(),
         [
             {
                 icon: 'account_circle',
                 name: 'Mi Perfil',
-                href: '#'
+                href: getCurrentURL + 'modules/perfil/perfil.html'
             },
             {
                 icon: 'settings',
                 name: 'Configuración',
-                href: '#'
+                href: getCurrentURL + 'modules/configuracion/configuracion.html'
             },
             {
                 icon: 'exit_to_app',
                 name: 'Cerrar Sesión',
-                href: '#'
+                href: '#',
+                action: logOutUser
             }
         ]
     ),
@@ -277,14 +273,7 @@ wrapperContainer.querySelector('main').insertBefore(
 );
 
 wrapperContainer.querySelector('header').appendChild(
-    createSidebar([
-        {
-            name: 'Usuarios',
-            icon: 'account_circle',
-            href: '#',
-            active: true
-        }
-    ])
+    createSidebar(getNavbarOpts)
 );
 
 userRoutesFormValues.forEach(input => {
