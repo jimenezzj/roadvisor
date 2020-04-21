@@ -167,20 +167,27 @@ main {
 .userInfo__item {
   display: flex;
   align-items: center;
-  width: 55%;
+  width: 100%;
 }
 .userKeyIcon {
   padding: 0 1rem;
   font-size: 2rem;
   color: #202327;
+  text-align: start;
 }
 .userInfoKey {
+  width: 20%;
   color: #202327;
   font-size: 1.2rem;
   font-weight: 600;
+  text-transform: capitalize;
 }
 .userInfoValue {
+  flex-grow: 1;
   font-size: 1.2rem;
   margin: 0 auto;
+  padding: 0 10rem;
+  text-align: start;
+  text-transform: capitalize;
 }
 /************USER INFO *************/

@@ -1,3 +1,39 @@
+const generateUserInfo = (keys, list) => {
+    const userInfo = document.querySelector('.userInfo');
+    const userInfoItem = document.createElement('div');
+    const pEle = document.createElement('p');
+    const iconEle = document.createElement('i');
+    userInfoItem.classList.add('userInfo__item');
+    iconEle.classList.add('material-icons')
+
+    Object.keys(list).forEach(key => {
+        let newIcon;
+        let keyLabel = pEle.cloneNode(true);
+        let userVal = pEle.cloneNode(true);
+        userInfoItem.innerHTML = '';
+        keyLabel.classList.add('userInfoKey')
+        userVal.classList.add('userInfoValue')
+        if (keys.find(obj => obj.key === key)) {
+            newIcon = iconEle.cloneNode('true');
+            newIcon.innerHTML = keys.find(obj => obj.key === key).icon;
+            newIcon.classList.add('userKeyIcon');
+        } else {
+            const empty = document.createElement('div');
+            empty.style.padding = '0 2rem';
+            userInfoItem.appendChild(empty);
+        }
+        keyLabel.innerHTML = key;
+        userVal.innerHTML = list[key];
+        userInfoItem.appendChild(keyLabel);
+        userInfoItem.appendChild(userVal);
+        userInfo.appendChild(userInfoItem.cloneNode(true));
+    });
+}
+{/* <div class="userInfo__item">
+    <i class="userKeyIcon material-icons">add</i>
+    <p class="userInfoKey">Nombre</p>
+    <p class="userInfoValue">Juan Schelzmuller</p>
+</div> */}
 const setSummaryInfo = () => {
     const session = getSession;
     const userPicDir = JSON.parse(localStorage.getItem('topNav')).profilePicture;
@@ -71,4 +107,19 @@ document.querySelector("main").insertBefore(
     ), document.querySelector(".profileHeader")
 );
 
+generateUserInfo(
+    [
+        { key: '', icon: '' }
+    ],
+    {
+        "tipo": "admin",
+        "genero": "otro",
+        "numeroCedula": "132456789",
+        "nombre": "Thanos",
+        "pApellido": "Titan",
+        "sApellido": "Titan",
+        "fechaNacimiento": "960940800000",
+        "email": "infinitystones@marvel.com",
+    }
+)
 setSummaryInfo();
