@@ -96,9 +96,6 @@ router.get('/:userEmail', (req, res, next) => {
 
 router.get('/search/:userEmail/:sValue', (req, res, next) => {
     const { sValue, userEmail } = req.params;
-    if (sValue === 'null') {
-        return res.redirect('/user')
-    };
     const searchHelper = genericQuery.searchAgregtHelper(Vehicle, sValue, {
         _id: 0
     });
@@ -107,7 +104,7 @@ router.get('/search/:userEmail/:sValue', (req, res, next) => {
         .project({ ...searchHelper.projectReduce })
         .project({ ...searchHelper.projectShowFields })
         .match({ ...searchHelper.match })
-        .match({ usuario: userEmail})
+        .match({ usuario: userEmail })
         .then(docs => {
             if (docs.length === 0) {
                 const error = new Error('No se encontraron vehiculos con esa descripción');
@@ -127,6 +124,10 @@ router.get('/search/:userEmail/:sValue', (req, res, next) => {
             next(err)
         });
 
+});
+
+router.get('/search/:userEmail', (req, res, next) => {
+    return res.redirect(`../${req.params.userEmail}`);
 });
 
 module.exports = router;

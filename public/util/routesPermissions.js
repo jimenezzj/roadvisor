@@ -171,27 +171,27 @@ const generataSideNavbarLinks = (role) => {
         {
             name: 'Siniestros',
             icon: 'report_problem',
-            href: getCurrentURL + 'siniestros/siniestros.html'
+            href: getCurrentURL + 'modules/siniestros/siniestros.html'
         },
         {
             name: 'Usuarios',
             icon: 'account_circle',
-            href: getCurrentURL + 'users/users.html'
+            href: getCurrentURL + 'modules/users/users.html'
         },
         {
             name: 'Rutas',
             icon: 'swap_horiz',
-            href: getCurrentURL + 'rutas/rutas.html'
+            href: getCurrentURL + 'modules/rutas/rutas.html'
         },
         {
             name: 'Vehiculos',
             icon: 'directions_car',
-            href: getCurrentURL + 'vehicles/vehiculos.html'
+            href: getCurrentURL + 'modules/vehicles/vehiculos.html'
         },
         {
             name: 'Reportes',
             icon: 'description',
-            href: getCurrentURL + 'reports/reports.html'
+            href: getCurrentURL + 'modules/reports/reports.html'
         },
     ]
     switch (role.toLowerCase()) {

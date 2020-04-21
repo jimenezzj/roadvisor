@@ -19,6 +19,35 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+router.get('/profile/:userEmail', function (req, res, next) {
+    const { userEmail } = req.params;
+
+    User.findOne({ email: userEmail })
+        .select('-contrasena -_id -__v')
+        .then(function (result) {
+            if (result._doc) {
+                const userToSend = { ...result._doc };
+                userToSend.genero = userToSend.genero[0].toString();
+                userToSend.tipo = userToSend.tipo[0].toString();
+                return res.json({
+                    statusCode: 201,
+                    message: 'Información de perfil obtenida con exito',
+                    data: userToSend
+                });
+            } else {
+                return res.json({
+                    statusCode: 404,
+                    mensaje: 'Usuario no encontrado'
+                });
+            }
+        })
+        .catch(function (err) {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
+});
 
 router.post('/add', upload.single('profilePicture'), (req, res) => {
     // console.log(req.file);
@@ -63,6 +92,45 @@ router.post('/add', upload.single('profilePicture'), (req, res) => {
                 fields: err.fields,
             });
         });
+});
+
+router.put('/disable/:userEmail', (req, res, next) => {
+    const { userEmail } = req.params;
+    const valuesToUpdate = Object.keys(req.body)
+        .filter(key => key !== 'email' && key !== '_id' && key !== 'contrasena')
+        .map(key => req.body[key]);
+    User.updateOne({ email: userEmail }, { ...valuesToUpdate })
+        .then(data => {
+
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        });
+});
+
+router.delete('/delete/:userEmail', (req, res, next) => {
+    const { userEmail } = req.params;
+    User.deleteOne({ email: userEmail })
+        .then(data => {
+            if (data.deletedCount < 1) {
+                const errorNoMatch = new Error('No puede eliminar un usuario que no exite en el sistema');
+                errorNoMatch.statusCode = 404;
+                throw errorNoMatch;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: `Se elimino con exito el usuario: ${userEmail}`
+            })
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        })
 });
 
 router.get('/search/:searchVal', (req, res, next) => {
