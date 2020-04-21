@@ -67,6 +67,70 @@ const setSummaryInfo = () => {
     document.querySelector('.profilePicContainer img').src = getCurrentURL + userPicDir;
 }
 
+const fetchUserProfile = () => {
+    fetch(getCurrentURL + 'users/profile/' + getSession.correo, {
+        headers: {
+            'Authorization': getSession.token
+        }
+    })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result);
+            if (result.statusCode !== 201) {
+                const error = new Error(result.message);
+                throw error;
+            }
+            let dataToShow = {};
+            Object.keys(result.data)
+                .filter(key => key !== 'profilePicture' && key !== 'status')
+                .map(key => {
+                    if (key === 'fechaNacimiento') {
+                        let toDate = new Date(result.data[key]);
+                        dataToShow[key] = `${toDate.getDate()}/${toDate.getMonth()}/${toDate.getFullYear()}`;
+
+                    } else {
+                        dataToShow[key] = result.data[key];
+                    }
+                });
+            generateUserInfo(
+                [
+                    { key: '', icon: '' }
+                ],
+                dataToShow
+            )
+        })
+        .catch(err => {
+            console.log(err);
+        })
+};
+
+const addTabs = () => {
+    const tabsList = document.querySelector('.tabsList');
+    const userType = getSession.type;
+    const tabsListItem = document.createElement('li');
+    const tabsListItemA = document.createElement('a');
+    let sinisterTab;
+    let assistentTab;
+    tabsListItem.classList.add('tabList__item');
+    tabsListItemA.classList.add('btnTab');
+    //     <li class="tabList__item">
+    //     <a href="#sinistersInfo" class="btnTab">Siniestros</a>
+    // </li>
+    if (userType === 'tradicional' || userType === 'servicios') {
+        sinisterTab = tabsListItemA.cloneNode(true);
+        assistentTab = tabsListItemA.cloneNode(true);
+        sinisterTab.href = '#sinistersInfo';
+        assistentTab.href = '#assistentInfo';
+        tabsList.appendChild(sinisterTab);
+        tabsList.appendChild(assistentTab);
+    } 
+    // else if (userType === 'admin') {
+
+    // } else if (userType === 'ruta') {
+
+    // }
+}
+
 document.querySelectorAll('.tabsList a').forEach(ele => {
     ele.onclick = (e) => {
         e.preventDefault();
@@ -107,19 +171,21 @@ document.querySelector("main").insertBefore(
     ), document.querySelector(".profileHeader")
 );
 
-generateUserInfo(
-    [
-        { key: '', icon: '' }
-    ],
-    {
-        "tipo": "admin",
-        "genero": "otro",
-        "numeroCedula": "132456789",
-        "nombre": "Thanos",
-        "pApellido": "Titan",
-        "sApellido": "Titan",
-        "fechaNacimiento": "960940800000",
-        "email": "infinitystones@marvel.com",
-    }
-)
+// generateUserInfo(
+//     [
+//         { key: '', icon: '' }
+//     ],
+//     {
+//         "tipo": "admin",
+//         "genero": "otro",
+//         "numeroCedula": "132456789",
+//         "nombre": "Thanos",
+//         "pApellido": "Titan",
+//         "sApellido": "Titan",
+//         "fechaNacimiento": "960940800000",
+//         "email": "infinitystones@marvel.com",
+//     }
+// )
 setSummaryInfo();
+addTabs();
+fetchUserProfile()
