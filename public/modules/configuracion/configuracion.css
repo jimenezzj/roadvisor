@@ -355,6 +355,73 @@ main {
 .btnDisAccount:hover {
   background-color: #c20e0e1a;
 }
+
+.tipoCardList__itme {
+  display: flex;
+  margin: 0 1rem 0 0;
+  padding: 0.5rem 1.2rem;
+  align-items: center;
+  text-decoration: none;
+  border: 1.5px solid #00465f;
+  background-color: #3ea6cc4b;
+  border-radius: 70px;
+}
+.tipoCardList__itme > * {
+  color: #00465f;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.tipoCardList__itme i {
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.tipoCardList__itme i:hover {
+  background-color: #0e0e0e2c;
+  border-radius: 70px;
+}
+.tipoCardList__itme span {
+  padding: 0 0.5rem;
+}
+.tipoCardList__itme--visa {
+  border: 2px solid #1C1E76;
+  background-color: #ffffff;
+}
+.tipoCardList__itme--visa > * {
+  color: #1C1E76;
+}
+.tipoCardList__itme--mastercard {
+  border: 2px solid #da2626;
+  background-color: #ffffff;
+}
+.tipoCardList__itme--mastercard > * {
+  color: #da2626;
+}
+.tipoCardList__itme--americanexpress {
+  border: 2px solid #006fcf;
+  background-color: #ffffff;
+}
+.tipoCardList__itme--americanexpress > * {
+  color: #006fcf;
+}
+.tipoCardImg {
+  width: 4.2rem;
+  padding: 0 1rem;
+}
+.tipoCardList__itme img {
+  width: 96%;
+  /* border: 1px solid red; */
+}
+.btnAddCard {
+  margin-left: auto !important;
+}
+/* .tipoVehiImg {
+  width: 4.2rem;
+}
+
+.tipoVehiList__itme img {
+  width: 96%;
+} */
+
 /***********  JONATHAN  **********/
 
 /***********  keRvin  **********/
@@ -400,7 +467,7 @@ main {
   color: #ffffff;
   background-color: #0eaa88;
   border-radius: 65px;
-  padding: 0.75rem 0.90rem;
+  padding: 0.75rem 0.9rem;
   box-shadow: 0 0 2px 2px #0000001f;
   cursor: pointer;
 }

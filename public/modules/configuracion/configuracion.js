@@ -7,7 +7,7 @@ function agregarIncidente() {
 // ver perfil Ususario Especializado
 // modificar perfil Ususario Especializado
 function listar() {
-    fetch('/registroDeIncidentes', {
+    fetch(getCurrentURL + 'tipos/incidente', {
     }).then(res => {
         return res.json();
     }).then(res => {
@@ -55,8 +55,6 @@ function listar() {
 }
 
 
-listar()
-
 function prueba() {
     var eliminar = document.getElementById('delete');
     eliminar.addEventListener('click', openModal(), false);
@@ -64,7 +62,6 @@ function prueba() {
 
 
 function buscarIncidente() {
-
     var busqueda = document.getElementById('busqueda').value;
     fetch("/registroDeIncidentes", {
     }).then(res => {
@@ -116,7 +113,7 @@ function agregarAsistencia() {
 }
 
 function listarAsistencias() {
-    fetch('/registroDeAsistencias', {
+    fetch(getCurrentURL + 'tipos/asistencia', {
     }).then(res => {
         return res.json();
     }).then(res => {
@@ -153,8 +150,6 @@ function listarAsistencias() {
         console.log(err);
     });
 }
-listarAsistencias()
-
 
 function buscarAsistencia() {
     var busquedaDos = document.getElementById('busquedaDos').value;
@@ -184,7 +179,58 @@ function buscarAsistencia() {
     });
 }
 
+function getCards() {
+    fetch(getCurrentURL + 'tarjetas/' + getSession.correo)
+        .then(res => res.json())
+        .then(result => {
+            if (result.statusCode !== 200) {
+                const error = new Error(result.message);
+                throw error;
+            }
+            generateCardsList(result.data);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+{/* <li class="tipoCardList__itme tipoCardList__itme--visa">
+<div class="tipoCardImg">
+    <img src="../../assets/images/truck_1-512.png" alt="truck">
+</div>
+<span>Carro</span>
+<i class="material-icons">close</i>
 
+</li> */}
+function generateCardsList(list) {
+    const tipoCardList = document.querySelector('.tipoCardList');
+    const cardListItem = document.createElement('li');
+    const tipoCardImg = document.createElement('div');
+    const cardImg = document.createElement('img');
+    const cardLastNumbers = document.createElement('span');
+    const iconEle = document.createElement('i');
+    cardListItem.classList.add('tipoCardList__itme');
+    tipoCardImg.classList.add('tipoCardImg')
+    iconEle.classList.add('material-icons');
+    iconEle.innerHTML = 'close';
+    list.forEach(cardObj => {
+        const newCardListItem = cardListItem.cloneNode(true);
+        if (cardObj.marca) {
+            cardImg.src = '../../assets/images/cardTypes/' + cardObj.marca.toLowerCase() + '.png';
+            newCardListItem.classList.add('tipoCardList__itme--' + cardObj.marca.toLowerCase());
+        } else {
+            cardImg.src = '../../assets/images/cardTypes/default.png';
+        }
+        cardLastNumbers.innerHTML = '**** '
+            + cardObj.numeroTarjeta.slice((cardObj.numeroTarjeta.length - 4), cardObj.length);
+        tipoCardImg.appendChild(cardImg);
+        newCardListItem.appendChild(tipoCardImg.cloneNode(true));
+        newCardListItem.appendChild(cardLastNumbers.cloneNode(true));
+        newCardListItem.appendChild(iconEle.cloneNode(true));
+        tipoCardList.appendChild(newCardListItem);
+    });
+}
+
+/******************************************/
 document.querySelector('main').appendChild(
     createModal(
         'Deshabilitar incidente',
@@ -244,3 +290,7 @@ document.querySelector("main").insertBefore(
         ]
     ), document.querySelector(".cuerpoDeLaPantalla")
 );
+getCards();
+listar();
+listarAsistencias();
+

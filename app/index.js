@@ -9,6 +9,8 @@ const tokenVerification = require('./middleware/validateToken');
 const auth = require('./controllers/auth');
 const user = require('./controllers/usuario');
 const vehicles = require('./controllers/vehicles');
+const tipos = require('./controllers/tipos');
+const tarjetas = require('./controllers/tarjetas');
 
 const port = 8082;
 
@@ -19,6 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/auth', auth);
 app.use('/users', tokenVerification.validateToken, user);
 app.use('/vehicles', vehicles);
+app.use('/tipos', tipos);
+app.use('/tarjetas', tarjetas);
 
 app.use((err, req, res, next) => {
     const status = err.statusCode || 500;
