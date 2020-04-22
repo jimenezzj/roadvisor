@@ -94,16 +94,49 @@ router.get('/:userEmail', (req, res, next) => {
         });
 });
 
-router.get('/search/:userEmail/:sValue', (req, res, next) => {
-    const { sValue, userEmail } = req.params;
+router.get('/search/all/:sValue', (req, res, next) => {
+    const { sValue } = req.params;
     const searchHelper = genericQuery.searchAgregtHelper(Vehicle, sValue, {
         _id: 0
     });
+    if (sValue === 'null') return res.redirect('/vehicles');
     Vehicle.aggregate()
         .addFields({ ...searchHelper.addFields })
         .project({ ...searchHelper.projectReduce })
         .project({ ...searchHelper.projectShowFields })
         .match({ ...searchHelper.match })
+        .then(docs => {
+            if (docs.length === 0) {
+                const error = new Error('No se encontraron vehiculos con esa descripción');
+                error.statusCode = '404';
+                throw error;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se encontraron vehiculos!',
+                data: docs
+            });
+
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
+});
+
+
+router.get('/:userEmail/search/:sValue', (req, res, next) => {
+    const { sValue, userEmail } = req.params;
+    const searchHelper = genericQuery.searchAgregtHelper(Vehicle, sValue, {
+        _id: 0
+    });
+    const matchedValues = sValue === 'null' ? {} : { ...searchHelper.match };
+    Vehicle.aggregate()
+        .addFields({ ...searchHelper.addFields })
+        .project({ ...searchHelper.projectReduce })
+        .project({ ...searchHelper.projectShowFields })
+        .match(matchedValues)
         .match({ usuario: userEmail })
         .then(docs => {
             if (docs.length === 0) {
@@ -126,8 +159,26 @@ router.get('/search/:userEmail/:sValue', (req, res, next) => {
 
 });
 
-router.get('/search/:userEmail', (req, res, next) => {
-    return res.redirect(`../${req.params.userEmail}`);
-});
 
+router.get('/', (req, res, next) => {
+    Vehicle.find()
+        .then(result => {
+            if (result.length < 1) {
+                errNotFound = new Error('No hay vehiculos registrados');
+                errNotFound.statusCode = 404;
+                throw errNotFound;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Vehiculos obtenidos con exito',
+                data: result
+            })
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        })
+});
 module.exports = router;

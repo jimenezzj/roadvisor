@@ -60,6 +60,7 @@ const setAutoLogoutTimer = (...args) => {
 
         setTimeout(() => {
             console.log('Logout the user');
+            logOutUser();
             createAndShowModal('Ha expirado el tiempo valido de tu session', () => {
                 redirectToRoute(args[0]);
             });
@@ -120,6 +121,7 @@ const verifyRoute = (options) => {
                 if (!protectionResult.status) {
                     // if (showModal) {
                     createAndShowModal(protectionResult.message, () => {
+                        logOutUser();
                         redirectToRoute(redirecTo);
                     });
                     // }

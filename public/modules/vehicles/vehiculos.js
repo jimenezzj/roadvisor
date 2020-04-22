@@ -8,7 +8,10 @@ btnAdd.href = getCurrentURL + 'modules/vehicles/agregarVehiculos/agregarVehiculo
 
 const getUserVehicles = () => {
     const loggedUser = getSession.correo;
-    fetch(getCurrentURL + 'vehicles/' + loggedUser)
+    const URLValidation = getSession.type === 'admin'
+        ? getCurrentURL + 'vehicles/'
+        : getCurrentURL + 'vehicles/' + loggedUser
+    fetch(URLValidation)
         .then(res => res.json())
         .then(result => {
             console.log(result);
@@ -24,14 +27,17 @@ const getUserVehicles = () => {
 }
 
 btnSearch.addEventListener('click', () => {
-    const valueToSearch = search.value;
+    const valueToSearch = search.value === '' ? 'null' : search.value;
     const loggedUser = getSession.correo;
-    fetch(getCurrentURL + 'vehicles/search/' + loggedUser + '/' + valueToSearch)
+    const URLValidation = getSession.type === 'admin'
+        ? getCurrentURL + 'vehicles/search/all/' + valueToSearch
+        : getCurrentURL + 'vehicles/' + loggedUser + '/search/' + valueToSearch
+    fetch(URLValidation)
         .then(res => res.json())
         .then(result => {
             console.log(result.data);
             listWrapper.innerHTML = null;
-            if (!result.data) {
+            if (result.data.length < 1) {
                 getUserVehicles();
             } else {
                 result.data.forEach(v => {
@@ -60,6 +66,9 @@ const createCard = (data) => {
     const imageMask = document.createElement('div');
     const imgEle = document.createElement('img');
     imageMask.classList.add('imageMask');
+    console.log(data.fotos);
+    console.log(data.fotos[0]);
+    
     imgEle.src = getCurrentURL + data.fotos[0];
     imgEle.alt = data.fotos[0].split('\\').pop();
     imagesWrapper.appendChild(imageMask);
@@ -78,7 +87,7 @@ const createCard = (data) => {
     vehiYear.innerHTML = new Date(data.anio).getFullYear();
     editIcon.innerHTML = 'edit';
     removeIcon.innerHTML = 'delete';
-    vehiBrand.innerHTML = data.marca + ' ' + data.modelo;
+    vehiBrand.innerHTML = data.marca.split('_').join(' ') + ' ' + data.modelo;
     vehiActions.appendChild(vehiBrand)
     vehiActions.appendChild(editIcon);
     vehiActions.appendChild(removeIcon);

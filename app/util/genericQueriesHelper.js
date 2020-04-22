@@ -9,7 +9,7 @@ const searchAgregtHelper = (Schema, searchVal, fieldsToIgnore) => {
             let field;
             if (schema.instance !== 'String') {
                 const newField = docKey + '';
-                if (schema.instance === 'Array') {
+                if (schema.instance === 'Array' && docKey !== 'fotos') {
                     projectionToLower[newField] = {
                         '$reduce': {
                             input: '$' + docKey,
@@ -18,7 +18,7 @@ const searchAgregtHelper = (Schema, searchVal, fieldsToIgnore) => {
                         }
                     };
                 } else {
-                    newFieldsToString[newField] = { '$toString': '$' + docKey };
+                    if (docKey !== 'fotos') newFieldsToString[newField] = { '$toString': '$' + docKey };
                     projectionToLower[newField] = 1;
                 }
                 // fieldsProjection[docKey] = 0;
