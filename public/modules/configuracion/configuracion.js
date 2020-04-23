@@ -1,3 +1,4 @@
+document.querySelector('.btnAddCard').onclick = () => window.location.assign(getCurrentURL + 'modules/configuracion/agregarTarjetas/agregarTarjetas.html')
 function agregarIncidente() {
     window.location.href = "../configuracion/registroIncidentes/registroIncidentes.html"
 }

@@ -6,6 +6,8 @@ const util = require('../util/util');
 
 router.post('/add', (req, res, next) => {
     const { numeroTarjeta, dueno } = req.body;
+    console.log(req.body);
+
     Tarjeta.findOne({ numeroTarjeta: numeroTarjeta })
         .then(result => {
             if (result) {
@@ -38,7 +40,7 @@ router.put('/edit', (req, res, next) => {
 router.get('/:userId', (req, res, next) => {
     const { userId } = req.params;
     Tarjeta.find({ dueno: userId })
-    .select('-__v')
+        .select('-__v')
         .then(result => {
             if (result.length < 1) {
                 const notFoundErr = new Error('Este usuario no tiene tarjetas registrdas');

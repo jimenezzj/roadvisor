@@ -189,12 +189,11 @@ main {
   appearance: none;
 }
 
-.selectWrapper * {
-  cursor: pointer;
-}
-
 .fieldWrapper select::-ms-expand {
   display: none;
+}
+.selectWrapper * {
+  cursor: pointer;
 }
 
 .error {

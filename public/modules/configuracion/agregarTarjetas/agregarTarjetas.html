@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Agregar Tarjeta</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='agregarTarjetas.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../../util/sideBar/sideBar.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../../util/topNavBar/topNavbar.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../../util/modal/modal.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapperContainer">
+        <header>
+
+        </header>
+        <main>
+            <div class="breadCrumb">
+                <p>Configuracion <small> > </small> Agregar tarjetas</p>
+            </div>
+            <div class="titleActionWrapper">
+                <h2 class="subTitleSection">Información de la tarjeta</h2>
+            </div>
+            <div class="cardTypeWrapper">
+                <ul class="cardTypeList">
+                    <li class="cardTypeList__item">
+                        <div class="cardTypeList__item--cover"></div>
+                        <input type="radio" name="marca" id="visa" class="cardCheck" value="visa">
+                        <img src="../../../assets/images/cardTypes/visa.png" alt="Visa Card">
+                    </li>
+                    <li class="cardTypeList__item">
+                        <div class="cardTypeList__item--cover"></div>
+                        <input type="radio" name="marca" id="master" class="cardCheck" value="mastercard">
+                        <img src="../../../assets/images/cardTypes/mastercard.png" alt="Mastercard Card">
+                    </li>
+                    <li class="cardTypeList__item">
+                        <div class="cardTypeList__item--cover"></div>
+                        <input type="radio" name="marca" id="american" class="cardCheck" value="americanexpress">
+                        <img src="../../../assets/images/cardTypes/americanexpress.png" class="cardTypeList__item-ae"
+                            alt="American Express Card">
+                    </li>
+                    <li class="cardTypeList__item">
+                        <div class="cardTypeList__item--cover"></div>
+                        <input type="radio" name="marca" id="dicover" class="cardCheck" value="discover" >
+                        <img src="../../../assets/images/cardTypes/discover.png" class="cardTypeList__item-ae"
+                            alt="Discover Card">
+                    </li>
+                </ul>
+            </div>
+            <div class="formWrapper">
+                <div class="fieldsWrapper">
+                    <div class="fieldWrapper fieldWrapper--textFiedl">
+                        <label for="numeroTarjeta">Numero de Tarjeta</label>
+                        <input type="text" name="numeroTarjeta" id="numeroTarjeta" maxlength="16" number>
+                        <p class="error">Some error message</p>
+                    </div>
+                    <div class="fieldWrapper fieldWrapper--textFiedl">
+                        <label for="nombreTitular">Nombre en la Tarjeta</label>
+                        <input type="text" name="nombreTitular" id="nombreTarjeta">
+                        <p class="error">Some error message</p>
+                    </div>
+                    <div class="fieldsWrapperNest">
+                        <div class="fieldWrapper fieldWrapper--textFiedl">
+                            <label for="fechaVencimiento">Fecha de Expiración</label>
+                            <input type="date" name="fechaVencimiento" id="fechaVencimiento">
+                            <p class="error">Some error message</p>
+                        </div>
+                        <div class="fieldWrapper fieldWrapper--textFiedl">
+                            <label for="cvv">Código de Seguridad</label>
+                            <input type="text" name="cvv" id="cvv" maxlength="3">
+                            <p class="error">Some error message</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actionsWrapper">
+                <a class="btn btnBack" href="../configuracion.html">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                    <span>Regresar</span>
+                </a>
+                <button class="btn btnAdd" id="btnSubmitForm">
+                    <span>Agregar</span>
+                </button>
+                <div class="actionHelperEle">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                    <span>Regresar</span>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src='../../../util/util.js'></script>
+    <script src='../../../util/routesPermissions.js'></script>
+    <script src='../../../util/modal/modal.js'></script>
+    <script src='../../../util/sideBar/sideBar.js'></script>
+    <script src='../../../util/topNavBar/topNavbar.js'></script>
+    <script src='agregarTarjetas.js'></script>
+</body>
+
+</html>

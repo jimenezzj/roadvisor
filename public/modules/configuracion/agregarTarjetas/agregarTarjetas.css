@@ -1,0 +1,263 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+.wrapperContainer {
+  display: flex;
+  /* align-items: stretch; */
+}
+
+header {
+}
+
+main {
+  /* display: flex; */
+  /* flex-flow: column; */
+  flex-grow: 1;
+}
+
+.btnOutline {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  border: 3px solid #1fa084;
+  padding: 0.5rem 0;
+  background-color: #ffffff;
+  border-radius: 4rem;
+  color: #20ab8c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+.btn {
+  /* width: 100%; */
+  /* margin: 1.5rem 0; */
+  display: block;
+  border: none;
+  padding: 0.5rem 0;
+  background-color: #20ab8c;
+  border-radius: 4rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btnOutline:hover {
+  color: #ffffff;
+  background-color: #20ab8c;
+}
+.line {
+  width: 80%;
+  border-top: 4px dashed #6b6b6b;
+  margin: 1rem auto;
+}
+.titleActionWrapper {
+  padding: 0 4.5rem;
+}
+.subTitleSection {
+  letter-spacing: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 0.8rem;
+  border-bottom: 1px solid gray;
+  padding: 1.5rem 0 1rem 0;
+  margin: 0;
+}
+/**********************************/
+.formWrapper {
+  display: flex;
+  padding: 1rem 10%;
+  flex-flow: column;
+}
+.fieldsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  /* width: 40%; */
+  /* flex-grow: 2; */
+}
+
+/* .fieldsWrapper > div {
+} */
+.fieldWrapper {
+  display: flex;
+  position: relative;
+  flex-flow: column;
+  padding: 1rem;
+}
+
+.fieldWrapper,
+.fieldsWrapperNest {
+  width: 50%;
+}
+.fieldWrapper input[type="text"],
+.fieldWrapper input[type="email"],
+.fieldWrapper input[type="number"],
+.fieldWrapper input[type="tel"],
+.fieldWrapper input[type="date"] {
+  border: 2px solid #1fa084;
+  padding: 1rem 1.2rem;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  color: #444444fd;
+  outline: none;
+}
+
+.fieldWrapper input[type="text"]:focus,
+.fieldWrapper input[type="email"]:focus,
+.fieldWrapper input[type="tel"]:focus,
+.fieldWrapper input[type="date"] {
+  /* border: 2px solid #2b3186; */
+  outline: none;
+}
+
+.fieldWrapper label {
+  font-weight: 500;
+  position: absolute;
+  top: 5%;
+  left: 9%;
+  font-size: 0.9rem;
+  background-color: #ffffff;
+  padding: 0 0.4rem;
+  color: #1fa084;
+}
+
+.fieldWrapper select {
+  border: 2px solid #1fa084;
+  padding: 1rem 1.2rem;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  color: #444444fd;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.fieldWrapper select::-ms-expand {
+  display: none;
+}
+.selectWrapper * {
+  cursor: pointer;
+}
+
+.fieldWrapper--customSelect select option {
+  /* display: none; */
+}
+.fieldWrapper--customSelect select {
+  /* display: none; */
+}
+.fieldWrapper--customSelect input {
+  display: none;
+  cursor: context-menu;
+}
+.error {
+  color: #d40606;
+  margin: 0;
+  padding: 0.5rem 0.2rem;
+  font-size: 1rem;
+  visibility: hidden;
+}
+
+.inputField--error {
+  border: 2px solid #d40606;
+}
+
+.error--show {
+  visibility: visible;
+}
+
+.fieldsWrapperNest {
+  display: flex;
+  justify-content: space-between;
+}
+.fieldsWrapperNest > div {
+  width: 100%;
+}
+.fieldsWrapperNest > .fieldWrapper > label {
+  left: 11%;
+}
+
+.cardTypeWrapper {
+  width: 80%;
+  padding: 2.5rem 4.5rem;
+  margin: 0 auto;
+}
+.cardTypeList {
+  /* width: 100%; */
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cardTypeList__item {
+  position: relative;
+  display: flex;
+  width: 16%;
+  margin: 0 1.5rem;
+  border: 2px solid #9c9c9c;
+  padding: 0.7rem;
+  align-items: flex-start;
+  text-decoration: none;
+}
+.cardTypeList__item--cover {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  cursor: pointer;
+}
+.cardTypeList__item--active {
+  border: 2px solid #00465f;
+  box-shadow: 0 2px 3px 2px #00000042;
+}
+.cardTypeList__item img {
+  width: 39%;
+  margin: auto;
+}
+
+.cardTypeList__item > .cardTypeList__item-ae {
+  width: 50%;
+}
+
+.actionsWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 4.5rem;
+}
+.actionsWrapper span {
+  font-size: 1.2rem;
+}
+.btnBack {
+  padding: 0.7rem 1rem;
+}
+.btnBack > i {
+  vertical-align: middle;
+  font-size: 1.8rem;
+}
+.btnAdd {
+  padding: 0.7rem 1rem;
+  width: 30%;
+}
+.actionHelperEle {
+  visibility: hidden;
+}
+.cardCheck {
+  display: none;
+}
