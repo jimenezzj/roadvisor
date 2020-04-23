@@ -1,0 +1,321 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+}
+
+.wrapperContainer {
+    display: flex;
+    /* align-items: stretch; */
+}
+
+main {
+    /* display: flex; */
+    /* flex-flow: column; */
+    flex-grow: 1;
+}
+
+html,
+h1,
+p {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 auto;
+}
+
+
+/**INICIA CSS DE LA PÁGINA DE REGISTRAR VEHICULO**/
+
+.wrapperContainer {
+    display: flex;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.main {
+    position: relative;
+}
+
+
+/**NAVBAR REGISTRAR TIPO DE VEHÍCULO**/
+
+.navBar {
+    width: 10%;
+    height: 700px;
+    background-color: aquamarine;
+}
+
+.conten {
+    width: 90%;
+}
+
+
+/**HEADER REGISTRAR TIPO DE VEHÍCULO**/
+
+.headerRegistrarTVehiculo {
+    background-color: burlywood;
+}
+
+.headerRegistrarTVehiculo h1 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    font-size: 22px;
+}
+
+
+/**RUTA REGISTRAR TIPO DE VEHICULO**/
+
+.rutaRegistarTVehiculo p {
+    font-size: 13px;
+    font-weight: bolder;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+
+/**DATOS DE TIPO VEHICULO**/
+
+.contenedorDatosTipoVehiculo {
+    padding-top: 30px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.DatosTVehiculo {
+    border-bottom: solid #000000 1px;
+}
+
+.DatosTVehiculo p {
+    padding-bottom: 5px;
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+
+/**INPUTS DE TIPO DE VEHÍCULO E ICONO DEL TIPO DE VEHICULO**/
+
+.nombreTipoVehiculo,
+.iconoTipoVehiculo {
+    padding-top: 40px;
+    padding-left: 445px;
+    position: relative;
+}
+
+.nombreTipoVehiculo input {
+    padding: 10px 90px;
+    border-style: solid;
+    border-color: #049374;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+.iconoTipoVehiculo input {
+    padding: 100px 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #049374;
+}
+
+.nombreTipoVehiculo P {
+    font-size: 13px;
+    width: 50px;
+    color: #049374;
+    background-color: #ffffff;
+    position: absolute;
+    top: 32px;
+    left: 467px;
+}
+
+.iconoTipoVehiculo P {
+    font-size: 13px;
+    width: 150px;
+    color: #049374;
+    background-color: #ffffff;
+    position: absolute;
+    top: 32px;
+    left: 467px;
+}
+
+
+/**BOTON DE AGREGAR Y REGRESAR PÁGINA TIPO DE VEHICULO**/
+
+.botonesRegistrarTipoVehiculo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 50px 446px 20px 400px;
+}
+
+.botonesRegistrarTipoVehiculo input {
+    background-color: #049374;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 12px 40px;
+}
+
+.botonesRegistrarTipoVehiculo input:hover {
+    cursor: pointer;
+    background-color: #00CEA1;
+}
+
+.btnAgregarTipoVehiculo {
+    padding-left: 553px;
+    padding-top: 20px;
+}
+
+.btnAgregarTipoVehiculo input {
+    background-color: #049374;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 12px 40px;
+}
+
+.btnAgregarTipoVehiculo input:hover {
+    cursor: pointer;
+    background-color: #00CEA1;
+}
+
+.btnRegresarTipoVehiculo {
+    padding-left: 553px;
+    padding-top: 20px;
+    position: absolute;
+    top: 496px;
+    left: -411px;
+}
+
+.btnRegresarTipoVehiculo input {
+    background-color: #049374;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 12px 35px;
+}
+
+.btnRegresarTipoVehiculo input:hover {
+    cursor: pointer;
+    background-color: #00CEA1;
+}
+
+
+/*CSS DE LA PÁGINA DE LISTA DE VEHÍCULOS**/
+
+.contenedor_buscarTipoVehiculo {
+    display: flex;
+    align-items: center;
+    padding-left: 36%;
+    padding-top: 50px;
+}
+
+.contenedor_buscarTipoVehiculo div {
+    padding-right: 10px;
+}
+
+.buscarTipoVehiculo input {
+    padding: 5px 20px;
+    border: solid #000000 1px;
+    border-radius: 5px;
+}
+
+.btnBuscarTipoVehiculo input {
+    padding: 5px 20px;
+}
+
+.tiposVehiculos {
+    padding-top: 40px;
+    padding-left: 15%;
+    position: relative;
+}
+
+.tiposVehiculos p {
+    color: #049374;
+    background-color: #ffffff;
+    width: 137px;
+    position: absolute;
+    top: 51px;
+    left: 201px;
+}
+
+.contenedorLTipoVehiculo {
+    padding: 20px 124px;
+}
+
+.LTipoVehiculo {
+    width: 100%;
+}
+
+
+/**CONTENIDO DE LA LISTA DE TIPOS DE VEHÍCULOS**/
+
+.contenedorTipoVehiculoYBoton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: solid #049374 2px;
+    border-radius: 5px;
+    padding: 20px 40px;
+}
+
+.LTipoVehiculo div {
+    margin: 10px 10px;
+    padding: 8px 8px;
+    background-color: #049374;
+}
+
+.LTipoVehiculo p,
+.LTipoVehiculo i {
+    padding-left: 3px;
+    color: #ffffff;
+}
+
+.LTipoVehiculo img {
+    width: 30px;
+    color: #ffffff;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.flexVehiculos {
+    display: inline-block;
+    align-items: center;
+}
+
+
+/**BOTON DE AGREGAR VEHÍCULOS**/
+
+.btnAgregarVehiculo {
+    padding-top: 12px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    border-right: solid #00CEA1 1px;
+}
+
+.btnAgregarVehiculo input {
+    background-color: #049374;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 8px 20px;
+}
+
+.btnAgregarVehiculo input:hover {
+    cursor: pointer;
+    background-color: #00CEA1;
+}
+
+
+/**COMIENZA CSS DE LA PÁGINA DE MODIFICAR TIPO DE VEHÍCULO**/

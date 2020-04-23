@@ -426,7 +426,7 @@ main {
 
 /***********  keRvin  **********/
 .contenedorUsuariosOpciones {
-  padding: 0 10% 2rem 10%;
+  padding: 1rem 10% 2rem 10%;
 }
 .contenedorTipoVehiculo {
   position: relative;
@@ -498,6 +498,7 @@ main {
   border: 1.5px solid #00465f;
   background-color: #3ea6cc4b;
   border-radius: 70px;
+  text-transform: capitalize;
 }
 .tipoVehiList__itme > * {
   color: #00465f;

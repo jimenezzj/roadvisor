@@ -10,6 +10,7 @@ const auth = require('./controllers/auth');
 const user = require('./controllers/usuario');
 const vehicles = require('./controllers/vehicles');
 const tipos = require('./controllers/tipos');
+const configuracion = require('./controllers/configuracion');
 const tarjetas = require('./controllers/tarjetas');
 
 const port = 8082;
@@ -22,6 +23,7 @@ app.use('/auth', auth);
 app.use('/users', tokenVerification.validateToken, user);
 app.use('/vehicles', vehicles);
 app.use('/tipos', tipos);
+app.use('/configuracion', configuracion);
 app.use('/tarjetas', tarjetas);
 
 app.use((err, req, res, next) => {

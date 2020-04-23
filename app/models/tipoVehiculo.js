@@ -20,4 +20,4 @@ var tipoVehiculoSchemas = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('TipoVehiculo', tipoVehiculoSchemas);
+module.exports = mongoose.model('TipoVehiculo', tipoVehiculoSchemas, 'TipoVehiculos');

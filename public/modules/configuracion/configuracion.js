@@ -1,4 +1,8 @@
-document.querySelector('.btnAddCard').onclick = () => window.location.assign(getCurrentURL + 'modules/configuracion/agregarTarjetas/agregarTarjetas.html')
+document.querySelector('.btnAddCard').onclick =
+    () => window.location.assign(getCurrentURL + 'modules/configuracion/agregarTarjetas/agregarTarjetas.html')
+document.querySelector('.btnDeleteVehiType').onclick =
+    () => window.location.assign(getCurrentURL + 'modules/configuracion/agregarTipoVehiculo/agregarTipoVehiculo.html')
+
 function agregarIncidente() {
     window.location.href = "../configuracion/registroIncidentes/registroIncidentes.html"
 }
@@ -188,47 +192,82 @@ function getCards() {
                 const error = new Error(result.message);
                 throw error;
             }
-            generateCardsList(result.data);
+            generateCardsList(
+                result.data,
+                {
+                    name: 'card',
+                    styleItemContainer: 'tipoCardList__itme',
+                    styleImage: 'tipoCardImg',
+                    styleList: 'tipoCardList'
+                })
         })
         .catch(err => {
             console.error(err);
         });
 }
-{/* <li class="tipoCardList__itme tipoCardList__itme--visa">
-<div class="tipoCardImg">
-    <img src="../../assets/images/truck_1-512.png" alt="truck">
-</div>
-<span>Carro</span>
-<i class="material-icons">close</i>
 
-</li> */}
-function generateCardsList(list) {
-    const tipoCardList = document.querySelector('.tipoCardList');
+function getVehiclesType() {
+    fetch(getCurrentURL + 'configuracion/tipo/vehiculos')
+        .then(res => res.json())
+        .then(result => {
+            if (result.statusCode !== 200) {
+                const error = new Error(result.message);
+                throw error;
+            }
+            generateCardsList(result.data,
+                {
+                    name: 'vehiculo',
+                    styleItemContainer: 'tipoVehiList__itme',
+                    styleImage: 'tipoVehiImg',
+                    styleList: 'tipoVehiList'
+                })
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+
+
+function generateCardsList(list, opts) {
+    const tipoList = document.querySelector('#' + opts.styleList);
     const cardListItem = document.createElement('li');
     const tipoCardImg = document.createElement('div');
     const cardImg = document.createElement('img');
     const cardLastNumbers = document.createElement('span');
     const iconEle = document.createElement('i');
-    cardListItem.classList.add('tipoCardList__itme');
-    tipoCardImg.classList.add('tipoCardImg')
+    // cardListItem.classList.add('tipoCardList__itme');
+    cardListItem.classList.add(opts.styleItemContainer);
+    // tipoCardImg.classList.add('tipoCardImg')
+    tipoCardImg.classList.add(opts.styleImage)
     iconEle.classList.add('material-icons');
     iconEle.innerHTML = 'close';
     list.forEach(cardObj => {
         const newCardListItem = cardListItem.cloneNode(true);
-        if (cardObj.marca) {
-            cardImg.src = '../../assets/images/cardTypes/' + cardObj.marca.toLowerCase() + '.png';
-            newCardListItem.classList.add('tipoCardList__itme--' + cardObj.marca.toLowerCase());
-        } else {
-            cardImg.src = '../../assets/images/cardTypes/default.png';
+        if (opts.name === 'card') {
+            if (cardObj.marca) {
+                cardImg.src = '../../assets/images/cardTypes/' + cardObj.marca.toLowerCase() + '.png';
+                newCardListItem.classList.add('tipoCardList__itme--' + cardObj.marca.toLowerCase());
+            } else {
+                cardImg.src = '../../assets/images/cardTypes/default.png';
+            }
+            cardLastNumbers.innerHTML = '**** '
+                + cardObj.numeroTarjeta.slice((cardObj.numeroTarjeta.length - 4), cardObj.length);
         }
-        cardLastNumbers.innerHTML = '**** '
-            + cardObj.numeroTarjeta.slice((cardObj.numeroTarjeta.length - 4), cardObj.length);
+        if (opts.name === 'vehiculo') {
+            if (cardObj.iconoTipoVehiculo) {
+                cardImg.src = getCurrentURL + cardObj.iconoTipoVehiculo;
+            } else {
+                cardImg.src = '../../assets/images/cardTypes/default.png';
+            }
+            cardLastNumbers.innerHTML = cardObj.nombreTipoVehiculo;
+        }
         tipoCardImg.appendChild(cardImg);
         newCardListItem.appendChild(tipoCardImg.cloneNode(true));
         newCardListItem.appendChild(cardLastNumbers.cloneNode(true));
         newCardListItem.appendChild(iconEle.cloneNode(true));
-        tipoCardList.appendChild(newCardListItem);
+        tipoList.appendChild(newCardListItem);
     });
+    return tipoList;
 }
 
 /******************************************/
@@ -291,6 +330,14 @@ document.querySelector("main").insertBefore(
         ]
     ), document.querySelector(".cuerpoDeLaPantalla")
 );
+
+if (getSession.type === 'ruta') {
+    // document.querySelector('.cuerpoDeLaPantalla').remove()
+    // document.querySelector('.contenedorTipoVehiculo').remove()
+    // document.querySelector('.cardsWrapper').remove()
+}
+
+getVehiclesType();
 getCards();
 listar();
 listarAsistencias();

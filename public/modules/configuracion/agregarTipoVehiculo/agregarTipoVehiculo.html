@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Agregar Tipo Vehiculo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='agregarTipoVehiculo.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../../util/sideBar/sideBar.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../../util/topNavBar/topNavbar.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapperContainer">
+        <header></header>
+        <main class="main">
+            <div class="rutaRegistarTVehiculo">
+                <p>Configuración > Registrar tipo de vehículo</p>
+            </div>
+
+            <div class="contenedorDatosTipoVehiculo">
+                <div class="DatosTVehiculo">
+                    <p>DATOS DEL TIPO DE VEHÍCULO</p>
+                </div>
+            </div>
+
+
+            <div class="nombreTipoVehiculo">
+                <p>Nombre</p>
+                <input type="text" name="" id="nombreTipoVehiculo">
+            </div>
+
+            <div class="iconoTipoVehiculo">
+                <p>Icono del tipo de vehiculo</p>
+                <input type="file" name="" id="iconoTipoVehiculo">
+            </div>
+
+            <div class="btnAgregarTipoVehiculo">
+                <input type="button" id="agregarTipoVehiculo" value="Agregar"
+                    onclick="return agregarNuevoTipoVehiculo()">
+            </div>
+
+            <div class="btnRegresarTipoVehiculo">
+                <a href="../configuracion.html"><input type="button" id="regresarTipoVehiculo" value="Regresar"></a>
+            </div>
+        </main>
+    </div>
+    <script src='../../../util/util.js'></script>
+    <script src='../../../util/routesPermissions.js'></script>
+    <script src='../../../util/sideBar/sideBar.js'></script>
+    <script src='../../../util/topNavBar/topNavbar.js'></script>
+    <script src="agregarTipoVehiculo.js"></script>
+</body>
+
+</html>
