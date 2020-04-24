@@ -132,6 +132,7 @@ body {
 }
 
 .btnSignup {
+  text-align: center;
   width: 25%;
   border: 3px solid #ffffff;
   margin: 1.2rem auto;

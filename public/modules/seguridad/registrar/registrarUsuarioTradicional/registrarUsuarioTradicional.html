@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="registrarUsuarioTradicional.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="divHeader_Logo">
+            <img src="../../../../assets/images/logo/Roadvisor.png" alt="Logo">
+        </div>
+
+        <nav class="nav">
+            <div class="divNav1_btn">
+                <a href="#">Iniciar Sesión</a>
+            </div>
+        </nav>
+    </header>
+
+    <!--PRIMERA SECCIÓN DEL FORMULARIO--------------------------------------------------------------->
+
+    <section class="sectionForm">
+        <div class="divSectionForm_Contenedor">
+            <h1>Nuevo Usuario Tradicional</h1>
+
+            <div class="botonesTipoPersona">
+                <div class="btn_Per_Fisica">
+                    <div class="divbtn_Per_Fisica_Inside">
+                        <input type="button" id="PF" value="Persona Física" onclick="return personaFisica()">
+                    </div>
+                </div>
+
+                <div class="btn_Per_Juridica">
+                    <div class="divbtn_Per_Juridica_Inside">
+                        <input type="button" id="PJ" value="Persona Jurídica" onclick="return personaJuridica()">
+                    </div>
+                </div>
+
+            </div>
+
+            <form action="" class="formulario ocultar" enctype="multipart/form-data" id="formularioEspecializado">
+
+                <fieldset class="fieldsetInfoPersonal">
+                    <legend>Información Personal</legend>
+
+
+                    <div class="divForm_correo">
+                        <input type="text" name="" id="correo" placeholder="Correo Electrónico">
+                        <p id="correoRequerido" class="ocultar">El campo de correo es requerido</p>
+                        <p id="formatoCorreoRequerido" class="ocultar">Correo inválido</p>
+                    </div>
+
+                    <div class="divForm_Telefono">
+                        <input type="text" name="" id="telefono" placeholder="Numero de teléfono">
+                        <p id="telefonoRequerido" class="ocultar">Debe llenar el campo de teléfono o ingresr el formato correcto</p>
+                    </div>
+
+                    <div class="divForm_Nombre">
+                        <input type="text" name="" id="nombre" placeholder="Nombre">
+                        <p id="nombreRequerido" class="ocultar">El campo de nombre es requerido</p>
+                    </div>
+
+                    <div class="divForm_Apellidos" id="apellidos">
+                        <input type="text" name="" id="pApellido" placeholder="Primer apellido">
+                        <p id="pApellidoRequerido" class="ocultar">Ambos apellidos son requeridos</p>
+                        <input type="text" name="" id="sApellido" placeholder="Segundo apellido">
+
+                    </div>
+
+                    <div class="divForm_Foto">
+                        <input type="text" id="parrafoprofilePicture" placeholder="Foto de perfil" readonly disabled>
+                        <input type="file" id="profilePicture" class="foto">
+                    </div>
+
+                    <div class="divForm_CedulaEdad">
+                        <input type="text" name="" id="numeroCedula" placeholder="Cédula">
+                        <p id="cedulaRequerido" class="ocultar">El campo de cédula es requerido y en formato numérico</p>
+                    </div>
+
+                    <div class="divForm_GeneroFechaN" id="GeneroFecha">
+                        <select name="genero" id="genero">
+                            <option value="" selected disabled>Género</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                        <p id="generoRequerido" class="ocultar">Debe seleccionar un género</p>
+
+                        <input type="date" id="fechaNacimiento" placeholder="Fecha de nacimiento">
+                        <p class="textoFN">Fecha de nacimiento</p>
+                    </div>
+
+                </fieldset>
+
+                </fieldset>
+        </div>
+
+        <div class="terminoCondiciones ocultar" id="tYC">
+            <div class="checkTerminos ocultar" id="checkTerminos">
+                <input type="checkbox" name="" id="checkTerminos">
+            </div>
+            <div class="aceptarTyC ocultar" id="aceptarTyC">
+                <p>Aceptar Término y Condiciones</p>
+            </div>
+        </div>
+
+        <div class="leerTyC ocultar" id="leerTYC">
+            <a href="">Leer Términos y Condiciones</a>
+        </div>
+
+        <div class="btn_Enviar">
+            <div class="divBtnEnviar_Inside">
+                <input type="button" class="ocultar" id="enviar" value="Registrarme" onclick="return registrarme()">
+            </div>
+        </div>
+    </section>
+
+    <script src="registrarUsuarioTradicional.js"></script>
+</body>
+
+</html>
