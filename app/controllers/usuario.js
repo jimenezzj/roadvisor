@@ -94,6 +94,173 @@ router.post('/add', upload.single('profilePicture'), (req, res) => {
         });
 });
 
+//ESTE POST ME SIRVE PARA REGISTRAR AL NUEVO USUARIO EN LA BASE DE DATOS CON SUS DATOS PERSONALES
+router.post('/add/tradicional', upload.single('profilePicture'), function (req, res, next) {
+    var { correo } = req.body;
+    User.find({ email: correo }).exec()
+        .then(function (result) {
+            if (result.length > 0) {
+                const error = new Error('Este correo ya cuenta con una cuenta');
+                error.statusCode = 409;
+                throw error;
+            } else {
+                var caracteres = '012349$%#@+acjqrÑszA';
+                var resultado = '';
+                for (let i = caracteres.length; i > 0; --i) {
+                    resultado += caracteres[Math.floor(Math.random() * caracteres.length)];
+                }
+                var nuevoUsuarioTradicional = {
+                    _id: new mongoose.Types.ObjectId(),
+                    numeroCedula: req.body.numeroCedula,
+                    email: req.body.correo,
+                    contrasena: resultado,
+                    tipo: 'tradicional',
+                    nombre: req.body.nombre,
+                    telefono: req.body.telefono,
+                    status: true
+                };
+                if (req.file) nuevoUsuarioTradicional.profilePicture = util.cutFilePath(req.file.path);
+                if (req.body.nTipoEntidadJuridica && req.body.tipoEntidadJuridica) {
+                    nuevoUsuarioTradicional.tipoEntidadJuridica = req.body.tipoEntidadJuridica
+
+                } else {
+                    nuevoUsuarioTradicional.fechaNacimiento = req.body.fechaNacimiento;
+                    nuevoUsuarioTradicional.genero = req.body.genero;
+                    nuevoUsuarioTradicional.pApellido = req.body.pApellido;
+                    nuevoUsuarioTradicional.sApellido = req.body.sApellido;
+                }
+            }
+
+            return new User(nuevoUsuarioTradicional).save();
+        })
+        .then((result) => { //LO QUE ME PASA AL RESULT ES EL OBEJTO GUARDADO EN FORMATO JSON
+            if (result != null) {
+                //ESTAS VARIABLES DE AQUÍ ME GENERAN UN CODIGO ALEATORIO QUE SE ENVÍA AL CORREO
+                //FUNCIÓN PARA ENVIAR CORREO ELECTRÓNICOS/////////////////////////////////////////////////////////////
+                // var transporter = nodemailer.createTransport({
+                //     host: 'mail.pjimenezcr.com',
+                //     port: 587,
+                //     secure: false,
+                //     auth: {
+                //         user: 'noobdevs@pjimenezcr.com',
+                //         pass: 'contraseña'
+                //     },
+                //     tls: {
+                //         rejectUnauthorized: false
+                //     }
+                // });
+                // var mailOptions = {
+                //     from: 'noobDevs@gmail.com',
+                //     to: req.body.correo,
+                //     subject: 'Código de verificación',
+                //     text: "Ingresa este código de verificación para crear tu contraseña: " + result.contrasena
+                // };
+                // transporter.sendMail(mailOptions, function (error, info) {
+                //     if (error) {
+                //         throw error;
+                //     } else {
+                //         console.log('Email enviado: ' + info.response);
+                //     }
+                // });
+            }
+            return res.json({
+                statusCode: 201,
+                message: 'Usuario registrado exitosamente!',
+                data: result
+            });
+        })
+        .catch(function (err) {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        });
+
+});
+
+router.post('/add/servicio', upload.single('profilePicture'), function (req, res, next) {
+    User.find({ email: req.body.correo }).exec()
+        .then(function (result) {
+            if (result.length > 0) {
+                const err = new Error('Este correo ya tiene una cuenta registrada');
+                err.statusCode = 409;
+                throw err;
+            } else {
+                var caracteres = '012349$%#@+acjqrÑszA';
+                var resultado = '';
+                for (let i = caracteres.length; i > 0; --i) {
+                    resultado += caracteres[Math.floor(Math.random() * caracteres.length)];
+                }
+                var nuevoUsuarioEspecializado = {
+                    _id: new mongoose.Types.ObjectId(),
+                    email: req.body.correo,
+                    contrasena: resultado,
+                    tipo: 'servicio',
+                    numeroCedula: req.body.numeroCedula,
+                    nombre: req.body.nombre,
+                    telefono: req.body.telefono,
+                    costo: req.body.costo,
+                    tipoServicio: req.body.tipoServicio,
+                    status: false,
+                };
+                if (req.file) nuevoUsuarioEspecializado.profilePicture = util.cutFilePath(req.file.path);
+
+                if (req.body.tipoEntidadJuridica) {
+                    nuevoUsuarioEspecializado.tipoEntidadJuridica = req.body.tipoEntidadJuridica
+
+                } else {
+                    nuevoUsuarioEspecializado.fechaNacimiento = req.body.fechaNacimiento;
+                    nuevoUsuarioEspecializado.genero = req.body.genero;
+                    nuevoUsuarioEspecializado.pApellido = req.body.pApellido;
+                    nuevoUsuarioEspecializado.sApellido = req.body.sApellido;
+                }
+                return new User(nuevoUsuarioEspecializado).save();
+            }
+        }).then(function (result) { //LO QUE ME PASA AL RESULT ES EL OBEJTO GUARDADO EN FORMATO JSON
+            if (result != null) {
+                //ESTAS VARIABLES DE AQUÍ ME GENERAN UN CODIGO ALEATORIO QUE SE ENVÍA AL CORREO
+                //FUNCIÓN PARA ENVIAR CORREO ELECTRÓNICOS/////////////////////////////////////////////////////////////
+                // var transporter = nodemailer.createTransport({
+                //     host: 'mail.pjimenezcr.com',
+                //     port: 587,
+                //     secure: false,
+                //     auth: {
+                //         user: 'noobdevs@pjimenezcr.com',
+                //         pass: 'contraseña'
+                //     },
+                //     tls: {
+                //         rejectUnauthorized: false
+                //     }
+                // });
+                // var mailOptions = {
+                //     from: 'noobDevs@gmail.com',
+                //     to: req.body.correo,
+                //     subject: 'Código de verificación',
+                //     text: "Ingresa este código de verificación para crear tu contraseña: " + result.contrasena
+                // };
+                // transporter.sendMail(mailOptions, function (error, info) {
+                //     if (error) {
+                //         console.log(error);
+                //     } else {
+                //         console.log('Email enviado: ' + info.response);
+                //     }
+                // });
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se registro con exito el usario',
+                data: result
+            });
+        })
+        .catch(function (err) {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        });
+
+});
+
 router.put('/disable/:userEmail', (req, res, next) => {
     const { userEmail } = req.params;
     const valuesToUpdate = Object.keys(req.body)
