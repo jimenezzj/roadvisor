@@ -45,7 +45,7 @@ document.querySelector('#btnIniciarSesion').addEventListener('click', () => {
             localStorage.setItem('navbar', JSON.stringify(generataSideNavbarLinks(tipo)));
             localStorage.setItem('topNav', JSON.stringify({
                 profilePicture: profilePicture,
-                name: `${nombre} ${pApellido}`,
+                name: pApellido ? `${nombre} ${pApellido}` : `${nombre}`,
                 type: tipo.replace(/^[a-z]/, tipo.slice(0, 1).toUpperCase()),
                 href: '#'
             }))
@@ -86,7 +86,7 @@ const showErrorMessages = (field, message) => {
 const redirect = (role) => {
     let urlToRedirect = 'modules/';
     const userRole = role.toLowerCase();
-    if (userRole === 'tradicional' || userRole === 'servicios') {
+    if (userRole === 'tradicional' || userRole === 'servicio') {
         urlToRedirect = urlToRedirect + 'siniestros/siniestros.html';
     } else if (userRole === 'ruta') {
         urlToRedirect = urlToRedirect + 'rutas/rutas.html';

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Tarjeta = require('../models/tarjeta');
 const util = require('../util/util');
+const genericQuery = require('../util/genericQueriesHelper');
 
 router.post('/add', (req, res, next) => {
     const { numeroTarjeta, dueno } = req.body;
@@ -70,6 +71,38 @@ router.get('/:userId', (req, res, next) => {
             }
             next(err);
         })
+});
+
+router.get('/:userName/search/:sValue', (req, res, next) => {
+    const { sValue, userName } = req.params;
+    const searchHelper = genericQuery.searchAgregtHelper(Tarjeta, sValue, {
+        _id: 0
+    });
+    if (sValue === 'null') return res.redirect(`/tarjetas/${userName}`);
+    Tarjeta.aggregate()
+        .addFields({ ...searchHelper.addFields })
+        .project({ ...searchHelper.projectReduce })
+        .project({ ...searchHelper.projectShowFields })
+        .match({ ...searchHelper.match })
+        .match({ dueno: userName })
+        .then(docs => {
+            if (docs.length === 0) {
+                const error = new Error('No se encontraron coincidencias con esa descripción');
+                error.statusCode = '404';
+                throw error;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se encontro la lista con exito!',
+                data: docs
+            });
+
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
 });
 
 module.exports = router;

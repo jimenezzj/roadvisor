@@ -18,11 +18,9 @@
     <div class="wrapperContainer">
         <header></header>
         <main>
-            <div class="cuerpoDeLaPantalla">
-                <h1 class="cuerpoDeLaPantalla__textoDatosDelSiniestro">INFORMACIÓN DE LOS TIPOS DE SINIESTROS</h1>
-                <p class="cuerpoDeLaPantalla__TextoLinea">
-                    ________________________________________________________________________________
-                </p>
+            <div class="configSinisters cuerpoDeLaPantalla">
+                <h2 class="subTitleSection cuerpoDeLaPantalla__textoDatosDelSiniestro">INFORMACIÓN DE LOS TIPOS DE
+                    SINIESTROS</h2>
 
                 <h1 class="cuerpoDeLaPantalla__textoDuracion">Tiempo de siniestro </h1>
                 <p class="cuerpoDeLaPantalla__seleccionDeTiempoMover">
@@ -32,93 +30,119 @@
                     </select>
                 </p>
 
-                <h1 class="cuerpoDeLaPantalla__textoLista">Tipos de incidentes agregados</h1>
-                <div class="capaDeListasDeIncidentes">
-                    <div class="capaDeIncidentesTodosDos">
-                        <p class="capaDeIncidentesTodos__mover"><button type="button" onclick="agregarIncidente()"
-                                class="capaDeListasDeIncidentes__boton">Agregar</button></p>
-                        <p class="capaDeListasDeIncidentes__moverDos"><i
-                                class="material-icons     lupa">search</i><input type="search"
-                                placeholder="Buscar incidente" id="busqueda" name="buscador" id="" class="buttonDos">
-                        </p>
-                        <p class="botonBuscarM"><button class="botonBuscar" onclick="buscarIncidente()">Buscar</button>
-
-                        </p>
+                <div class="capaDeListasDeIncidentes contenedorTipoVehiculo">
+                    <p class="titleTipoVehiculo">Tipos de incidentes agregados</p>
+                    <!-- <div class="capaDeIncidentesTodosDos"> -->
+                    <div class="actionesContenedor">
+                        <div class="barraBusquedaContenedor">
+                            <input type="search" name="search" class='searchTypeVehi' id="buscador">
+                            <i class="material-icons btnSearchi" id="btnSearchVehiType"
+                                onclick="buscarIncidente()">search</i>
+                        </div>
+                        <button class="btn btnDeleteVehiType" onclick="agregarIncidente()">
+                            <i class="material-icons">add</i>
+                            Agregar
+                        </button>
                     </div>
-                    <p class="mensaje" id="mensajeId"> </p>
+                    <!-- <p class="capaDeIncidentesTodos__mover"><button type="button" onclick="agregarIncidente()"
+                                class="capaDeListasDeIncidentes__boton">Agregar</button>
+                        </p> -->
+                    <!-- <p class="capaDeListasDeIncidentes__moverDos">
+                                                <i class="material-icons     lupa">search</i>
+                                                <input type="search placeholder=" Buscar incidente" id="busqueda" name="buscador" id=""
+                                                    class="buttonDos">
+                                            </p>
+                                            <p class="botonBuscarM">
+                                                <button class="botonBuscar" onclick="buscarIncidente()">Buscar</button>
+                                            </p> -->
+                    <!-- </div> -->
+                    <!-- <p class="mensaje" id="mensajeId"> </p> -->
                     <div id="agregadoActu" class="capaDeIncidentesTodos">
-
-                    </div>
-
-                </div>
-
-                <div>
-                    <h1 class="cuerpoDeLaPantalla__textoDatosDelSiniestroDos">INFORMACIÓN DE LOS TIPOS DE ASISTENCIAS
-                    </h1>
-                    <p class="cuerpoDeLaPantalla__TextoLineaDos">
-                        ________________________________________________________________________________
-                    </p>
-                    <h1 class="cuerpoDeLaPantalla__textoLista">Tipos de asistencias agregados</h1>
-                    <div class="capaDeListasDeIncidentes">
-                        <div class="capaDeIncidentesTodosDos">
-                            <p class="capaDeIncidentesTodos__mover"><button type="button" onclick="agregarAsistencia()"
-                                    class="capaDeListasDeIncidentes__boton">Agregar</button></p>
-                            <p class="capaDeListasDeIncidentes__moverDos"><i
-                                    class="material-icons    lupa">search</i><input type="search"
-                                    placeholder="Buscar asistencias" id="busquedaDos" name="buscador" id=""
-                                    class="buttonDos"></p>
-                            <p class="botonBuscarM"><button class="botonBuscar"
-                                    onclick="buscarAsistencia()">Buscar</button></p>
-
-                        </div>
-                        <p class="mensaje" id="mensajeIdDos"> </p>
-                        <div id="agregadoActuDos" class="capaDeIncidentesTodos">
-
-
-
-
-                        </div>
+                        <ul class="tipoVehiList" id="capaDeAsistenciaTodosList"></ul>
                     </div>
                 </div>
 
             </div>
 
+            <div class="configAssistant cuerpoDeLaPantalla">
+                <h2 class="subTitleSection ">INFORMACIÓN DE LOS TIPOS DE ASISTENCIAS</h2>
+
+                <div class="contenedorTipoVehiculo">
+                    <p class="titleTipoVehiculo">Tipos de asistencias</p>
+                    <div class="actionesContenedor">
+                        <div class="barraBusquedaContenedor">
+                            <input type="search" name="search" class='searchTypeVehi' id="busquedaDos">
+                            <i class="material-icons btnSearchi" id="btnSearchTipoAsis"
+                                onclick="buscarAsistencia()">search</i>
+                        </div>
+                        <button class="btn btnDeleteVehiType" onclick="agregarAsistencia()">
+                            <i class="material-icons">add</i>
+                            Agregar
+                        </button>
+                    </div>
+                    <!-- <div class="capaDeIncidentesTodosDos">
+                        <p class="capaDeIncidentesTodos__mover"><button type="button" onclick="agregarAsistencia()"
+                                class="capaDeListasDeIncidentes__boton">Agregar</button></p>
+                        <p class="capaDeListasDeIncidentes__moverDos"><i class="material-icons    lupa">search</i>
+                            <input
+                                type="search" placeholder="Buscar asistencias" id="busquedaDos" name="buscador" id=""
+                                class="buttonDos"></p>
+                        <p class="botonBuscarM"><button class="botonBuscar" onclick="buscarAsistencia()">Buscar</button>
+                        </p>
+
+                    </div> -->
+                    <!-- <div class="tipoVehiContenedor">
+                        <ul class="tipoVehiList tipoCardList" id="tipoCardList">
+
+                        </ul>
+                    </div> -->
+                    <div id="agregadoActuDos" class="capaDeIncidentesTodos">
+                        <ul class="tipoVehiList capaDeIncidentesTodosList" id="capaDeIncidentesTodosList">
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+
             <div class="contenedorUsuariosOpciones">
                 <h2 class="subTitleSection">
                     ajustes de usuarios
                 </h2>
-                <div class="contenedorTipoVehiculo">
+                <div class="contenedorTipoVehiculo tipoVehiculosSection">
+                    <p class="titleTipoVehiculo">
+                        Tipos de Vehiculos
+                    </p>
                     <div class="actionesContenedor">
                         <div class="barraBusquedaContenedor">
-                            <input type="search" name="search" id="searchTypeVehi">
-                            <i class="material-icons btnSearchi">search</i>
+                            <input type="search" name="search" class='searchTypeVehi' id="searchTypeVehi">
+                            <i class="material-icons btnSearchi" id="btnSearchVehiType">search</i>
                         </div>
-                        <button class="btn btnEditVehiType" disabled="disabled">
+                        <!-- <button class="btn btnEditVehiType" disabled="disabled">
                             <i class="material-icons">edit</i>
                             Editar
-                        </button>
-                        <button class="btn btnDeleteVehiType">
+                        </button> -->
+                        <button class="btn btnDeleteVehiType" id="btnDeleteVehiType">
                             <i class="material-icons">add</i>
                             Agregar
+                        </button>
                     </div>
                     <div class="tipoVehiContenedor">
                         <ul class="tipoVehiList" id="tipoVehiList">
 
                         </ul>
                     </div>
-                    <p class="titleTipoVehiculo">
-                        Tipos de Vehiculos
-                    </p>
                 </div>
 
-                <div class="contenedorTipoVehiculo contenedorTipoVehiculo">
+                <div class="contenedorTipoVehiculo contenedorTarjetas">
                     <p class="titleTipoVehiculo">
                         Tarjetas Bancarias
                     </p>
                     <div class="actionesContenedor">
                         <div class="barraBusquedaContenedor">
-                            <input type="search" name="search" id="searchTypeVehi">
-                            <i class="material-icons btnSearchi">search</i>
+                            <input type="search" name="search" class="searchTypeVehi" id="searchTypeCard">
+                            <i class="material-icons btnSearchi" id="btnSearchCard">search</i>
                         </div>
                         <button class="btn btnDeleteVehiType btnAddCard">
                             <i class="material-icons">add</i>

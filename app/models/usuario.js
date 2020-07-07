@@ -35,7 +35,7 @@ const usuarioSchema = new mongoose.Schema({
     profilePicture: String,
     status: {
         required: true,
-        type: String
+        type: Boolean
     },
     telefono: {
         type: String,

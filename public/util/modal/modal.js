@@ -3,7 +3,7 @@ const buttons = {
     SECONDARY: 'btnSecondary'
 }
 
-const createModal = (header, modalBody, actions, options) => {
+const createModal = (header, modalBody, actions, options, id) => {
     let modalWrapper = document.createElement('div');
     modalWrapperClasses = modalWrapper.classList.add('modalWrapper') // check this
     modalWrapperClasses = modalWrapper.classList.add('modalWrapper--close') // check this
@@ -35,6 +35,8 @@ const createModal = (header, modalBody, actions, options) => {
     modalWrapper.appendChild(modalContent);
     modalWrapper.style.maxWidth = '88%';
     modalWrapper.style.maxHeight = '90%';
+    if (id) modalWrapper.id = id;
+
 
     if (options) setExtraOptions(options, modalHeader, modalBody, modalActionsContainer, modalContent);
 
@@ -86,14 +88,26 @@ const setExtraOptions = (options, mHeader, mBody, mActions, mContent) => {
     }
 }
 
-const closeModal = () => {
-    document.querySelector('.modalWrapper').classList.remove('modalWrapper--open');
-    document.querySelector('.modalWrapper').classList.add('modalWrapper--close');
+const closeModal = (id) => {
+    if (id) {
+        document.querySelector('#' + id).classList.remove('modalWrapper--open');
+        document.querySelector('#' + id).classList.add('modalWrapper--close');
+    } else {
+        document.querySelector('.modalWrapper').classList.remove('modalWrapper--open');
+        document.querySelector('.modalWrapper').classList.add('modalWrapper--close');
+
+    }
 }
 
-const openModal = () => {
-    document.querySelector('.modalWrapper').classList.remove('modalWrapper--close');
-    document.querySelector('.modalWrapper').classList.add('modalWrapper--open');
+const openModal = (id) => {
+    if (id) {
+        document.querySelector('#' + id).classList.remove('modalWrapper--close');
+        document.querySelector('#' + id).classList.add('modalWrapper--open');
+
+    } else {
+        document.querySelector('.modalWrapper').classList.remove('modalWrapper--close');
+        document.querySelector('.modalWrapper').classList.add('modalWrapper--open');
+    }
 }
 
 /* metodo que crea un modal que recibe

@@ -15,6 +15,8 @@ const getCurrentURL = window.location.protocol + '//'
 
 const getNavbarOpts = JSON.parse(localStorage.getItem('navbar')) || null;
 
+
+
 const getTopNavOpts = () => {
     const topNavOpts = JSON.parse(localStorage.getItem('topNav'));
     return {

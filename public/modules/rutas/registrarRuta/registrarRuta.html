@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Registrar Ruta</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='registrarRuta.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../../util/sideBar/sideBar.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../../util/topNavBar/topNavbar.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Importo Mapbox GL JS  -->
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Importo Mapbox GL Draw -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css'
+        type='text/css' />
+
+    <!-- CSS DEL PUBLIC -->
+    <link rel="stylesheet" href="registrarRuta.css">
+
+</head>
+
+<body>
+    <div class="wrapperContainer">
+        <header></header>
+        <main>
+            <div class="textoRutaAceesso">
+                <p>Rutas > Agregar Ruta</p>
+            </div>
+
+            <div class="contenedorDatosDeRuta">
+                <div class="datosDeRuta">
+                    <h2>DATOS DE RUTAS</h2>
+                </div>
+            </div>
+
+            <div class="contenedorInputsRegistrarRuta">
+                <div class="nombreRuta">
+                    <p>Nombre de la ruta</p>
+                    <input type="text" name="" id="nombreRuta">
+                </div>
+
+                <div class="provinciaRuta">
+                    <p>Provincia</p>
+                    <select name="" id="provinciaRuta">
+                        <option value="" disabled selected></option>
+                        <option value="Alajuela">Alajuela</option>
+                        <option value="San José">San José</option>
+                        <option value="Cartago">Cartago</option>
+                        <option value="Limón">Limón</option>
+                        <option value="Guanacaste">Guanacaste</option>
+                        <option value="Puntarenas">Puntarenas</option>
+                        <option value="Heredia">Heredia</option>
+                    </select>
+                </div>
+
+
+                <div class="puntoInicio">
+                    <p>Punto de inicio</p>
+                    <input type="text" name="" id="puntoInicio">
+                </div>
+
+                <div class="puntoFinal">
+                    <p>Punto Final</p>
+                    <input type="text" name="" id="puntoFinal">
+                </div>
+
+            </div>
+
+            <!--DIV CONTENEDOR DEL MAPA -->
+            <div id='map' class="map"></div>
+            <!--DIV CONTENEDOR DEL MAPA -->
+
+            <div class="botonesRegistrarRuta">
+                <div class="btnRegregarRuta">
+                    <a href="../rutas.html">
+                        <input type="button" name="" id="regregarRuta" value="Regresar">
+                    </a>
+
+                </div>
+
+                <div class="btnAgregarRuta">
+                    <input type="button" name="" id="agregarRuta" value="Agregar Ruta"
+                        onclick="return agregarRuta(), registrarCoordenadas()">
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src='../../../util/util.js'></script>
+    <script src='../../../util/routesPermissions.js'></script>
+    <script src='../../../util/sideBar/sideBar.js'></script>
+    <script src='../../../util/topNavBar/topNavbar.js'></script>
+    <script src="registrarRuta.js"></script>
+</body>
+
+</html>

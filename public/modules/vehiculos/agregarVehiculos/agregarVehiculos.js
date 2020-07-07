@@ -20,7 +20,7 @@ let uploadFileInfo = {
     active: ''
 }
 
-btnBack.href = getCurrentURL + 'modules/vehicles/vehiculos.html';
+btnBack.href = getCurrentURL + 'modules/vehiculos/vehiculos.html';
 
 const updateCurrentFiles = (filesUpload) => {
     let newPicItem;
@@ -111,7 +111,7 @@ const sendVehicleInfo = () => {
     const inputElemts = document.querySelectorAll('.formWrapper input');
     const selectElemts = document.querySelectorAll('.formWrapper select');
     inputElemts.forEach(({ id, value }) => {
-        if (id !== 'driver' && id !== 'brand' && id !== 'vehiImagesField') {
+        if (id !== 'brand' && id !== 'vehiImagesField') {
             form.append(id, value);
         }
     });
@@ -153,10 +153,9 @@ function agregarConductor() {
         }
     });
     if (fieldChecked) {
-        document.querySelector('#driver').value = fieldChecked;
-        console.dir(fieldChecked);
-        console.dir(document.querySelector('#driver'));
-        closeModal();
+        document.querySelector('#conductor').value = fieldChecked;
+        console.dir(document.querySelector('#conductor'));
+        closeModal('driverModal');
     }
 
 }
@@ -183,10 +182,10 @@ vehiImagesField.addEventListener('change', (e) => {
     updateCurrentFiles(filesLenght);
 });
 
-document.querySelector('#driver').addEventListener('click', () => {
+document.querySelector('#conductor').addEventListener('click', () => {
     document.querySelector('main').appendChild(
         createModal(
-            'Agregar',
+            'Agregar Conductor',
             asignarConductor(),
             [
 
@@ -213,9 +212,10 @@ document.querySelector('#driver').addEventListener('click', () => {
                 },
                 height: '85%', // altura custom del modal, SOLO USAR PORCENTAJES (MAX=88%)
                 width: '70%' // ancho custom del modal, SOLO USAR PORCENTAJES (MAX=91%)
-            })
+            }
+            , 'driverModal')
     );
-    openModal()
+    openModal('driverModal');
 });
 
 mainWrapper.querySelector('header').appendChild(
@@ -291,7 +291,7 @@ const createModalMessage = (mes) => {
                 {
                     name: 'Ok', // nombre del boton
                     event: 'click', // evento al que va a reaccionar
-                    action: closeModal, // metodo qeu va a ejecutar, echo por ustedes
+                    action: () => window.location.replace('/modules/vehiculos/vehiculos.html'), // metodo qeu va a ejecutar, echo por ustedes
                     style: buttons.PRIMARY // OPCIONAL
                 }
             ],
@@ -301,10 +301,11 @@ const createModalMessage = (mes) => {
                     body: '',  // body del modal acepta: 'start', 'center' & 'end'
                     action: '' // contenedor de botones acepta: 'start', 'center' & 'end'
                 },
-            }
+            },
+            'infoMessage'
         )
     );
-    openModal();
+    openModal('infoMessage');
 };
 
 function asignarConductor() {
@@ -316,6 +317,14 @@ function asignarConductor() {
     }).then(res => {
         return res.json();
     }).then(result => {
+        result.data = result.data.filter(u => {
+            if (u.tipo !== getSession.type
+                && u.status.toLowerCase() === 'habilitado'
+                && u.pApellido) {
+                   
+                return u;
+            }
+        });
         const data = result.data;
         capaPrincipal.classList.add('capaPrincipal')
         capaPrincipal.id = 'principal';
@@ -361,7 +370,7 @@ function asignarConductor() {
 
 
 function cancelar() {
-    closeModal()
+    closeModal('driverModal');
 }
 
 generateSelectOptions();

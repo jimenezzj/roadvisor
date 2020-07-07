@@ -321,7 +321,7 @@ const createModalMessage = (title, mes) => {
                 {
                     name: 'Ok', // nombre del boton
                     event: 'click', // evento al que va a reaccionar
-                    action: () => window.location.reload(), // metodo qeu va a ejecutar, echo por ustedes
+                    action: () => window.location.replace(getCurrentURL + 'modules/users/users.html'), // metodo qeu va a ejecutar, echo por ustedes
                     style: buttons.PRIMARY // OPCIONAL
                 }
             ],

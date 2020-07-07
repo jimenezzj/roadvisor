@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mi perfil</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='siniestros.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../util/sideBar/sideBar.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../util/topNavBar/topNavbar.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body onload="return listarSiniestrosReportados()">
+    <div class="mainWrapper">
+        <header></header>
+        <main>
+            <div class="div_Main_Contenedor_SiniestrosReportadosTitle">
+                <div class="div_Main_ContenedorTitleYBoton">
+                    <div class="div_Main_SiniestrosReportadosTitle">
+                        <h2>Siniestros</h2>
+                    </div>
+
+                    <div class="div_Main_BtnReportarSiniestro" id="btnReportSinister">
+                        <a href="./reportarSiniestro/reportarSiniestro.html">
+                            <input type="button" name="" id="BtnReportarSiniestro" value="Reportar">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="div_Main_BuscarSiniestros">
+                <div class="div_Main_InpuBuscarSiniestrosPorLista">
+                    <input type="text" name="" id="buscarSiniestro" placeholder="Buscar siniestro">
+                </div>
+                <div class="div_Main_BtnBuscarSiniestrosPorLista">
+                    <input type="button" name="" id="btnBuscarSiniestrosPorLista" value="Buscar">
+                </div>
+            </div>
+
+            <div class="div_Main_siniestrosReportadosContenedor" id="div_Main_siniestrosReportadosContenedor">
+
+                <!--
+                <div class="div_Main_SiniestroReportado">
+                    <div class="div_Main_ImgSiniestroReportado">
+                        <img src="../../assets/images/userProfile/profilePicturepreofe2.PNG" alt="">
+                    </div>
+                    <p>Nombre usuario: Kervin Jiménez Salazar</p>
+                    <p>Tipo: Choque</p>
+                    <p>Ruta: Ruta 125</p>
+                    <p>Dirección exacta: 200mts Norte de la Escuela de Guadalupe</p>
+                </div>
+                -->
+            </div>
+        </main>
+    </div>
+    <script src='../../util/util.js'></script>
+    <script src='../../util/routesPermissions.js'></script>
+    <script src='../../util/sideBar/sideBar.js'></script>
+    <script src='../../util/topNavBar/topNavbar.js'></script>
+    <script src="siniestros.js"></script>
+</body>
+
+</html>

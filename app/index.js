@@ -12,6 +12,8 @@ const vehicles = require('./controllers/vehicles');
 const tipos = require('./controllers/tipos');
 const configuracion = require('./controllers/configuracion');
 const tarjetas = require('./controllers/tarjetas');
+const siniestros = require('./controllers/siniestros');
+const rutas = require('./controllers/rutas');
 
 const port = 8082;
 
@@ -27,6 +29,8 @@ app.use('/vehicles', vehicles);
 app.use('/tipos', tipos);
 app.use('/configuracion', configuracion);
 app.use('/tarjetas', tarjetas);
+app.use('/rutas', rutas);
+app.use('/siniestros', siniestros);
 
 app.use((err, req, res, next) => {
     const status = err.statusCode || 500;

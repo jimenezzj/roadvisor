@@ -1,0 +1,208 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+}
+
+.wrapperContainer {
+    display: flex;
+    /* align-items: stretch; */
+}
+
+main {
+    /* display: flex; */
+    /* flex-flow: column; */
+    flex-grow: 1;
+}
+
+html,
+h1,
+p {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 auto;
+}
+
+
+/**INICIA CSS DE LA PÁGINA DE REGISTRAR VEHICULO**/
+
+.wrapperContainer {
+    display: flex;
+}
+
+main {
+    flex-grow: 1;
+}
+
+
+/**COMIENZA CSS DE REGISTRAR RUTAS**/
+
+
+/*///////////////////////////////////*/
+
+.textoRutaAceesso {
+    padding: 0px 0px 0px 20px;
+}
+
+.textoRutaAceesso p {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/*///////////////////////////////////*/
+
+.contenedorDatosDeRuta {
+    padding: 20px 100px;
+}
+
+.datosDeRuta {
+    border-bottom: solid #9b9b9b 1px;
+}
+
+.datosDeRuta h2 {
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: lighter;
+    color: #9b9b9b;
+}
+
+
+/*////////////////////////////////nombreYProvinciaRuta///*/
+
+.contenedorInputsRegistrarRuta {
+    display: flex;
+    align-items: center;
+    padding: 0px 230px 20px 100px;
+}
+
+.nombreRuta {
+    position: relative;
+    padding-right: 20px;
+}
+
+.nombreRuta input {
+    border: solid #049374 2px;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+
+.nombreRuta p {
+    position: absolute;
+    top: -10px;
+    left: 17px;
+    background-color: #ffffff;
+    width: 132px;
+    color: #049374;
+}
+
+.provinciaRuta {
+    position: relative;
+}
+
+.provinciaRuta select {
+    border: solid #049374 2px;
+    border-radius: 5px;
+    padding: 10px 100px 10px 0px;
+}
+
+.provinciaRuta p {
+    position: absolute;
+    top: -10px;
+    left: 17px;
+    background-color: #ffffff;
+    width: 69px;
+    color: #049374;
+}
+
+
+/*///////////////////////////////////*/
+
+.puntoInicio {
+    position: relative;
+    padding-right: 28px;
+    padding-left: 28px;
+}
+
+.puntoInicio input {
+    border: solid #049374 2px;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+
+.puntoInicio p {
+    position: absolute;
+    top: -10px;
+    left: 45px;
+    background-color: #ffffff;
+    width: 107px;
+    color: #049374;
+}
+
+.puntoFinal {
+    position: relative;
+}
+
+.puntoFinal input {
+    border: solid #049374 2px;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+
+.puntoFinal p {
+    position: absolute;
+    top: -10px;
+    left: 17px;
+    background-color: #ffffff;
+    width: 83px;
+    color: #049374;
+}
+
+
+/*///////////////////////////////////*/
+
+.botonesRegistrarRuta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 100px;
+}
+
+.btnRegregarRuta input {
+    background-color: #049374;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 13px 30px;
+    font-size: 14px;
+}
+
+.btnRegregarRuta input:hover {
+    cursor: pointer;
+    background-color: #00CEA1;
+}
+
+.btnAgregarRuta input {
+    background-color: #049374;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 13px 30px;
+    font-size: 14px;
+}
+
+.btnAgregarRuta input:hover {
+    cursor: pointer;
+    background-color: #00CEA1;
+}
+
+
+/*///////////////////////////////////*/
+
+.map {
+    width: 92%;
+    height: 50%;
+    padding-left: 100px;
+}

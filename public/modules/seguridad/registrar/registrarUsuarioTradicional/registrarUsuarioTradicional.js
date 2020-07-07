@@ -113,7 +113,7 @@ function registrarme() {
         })
         .then(res => {
             alert(res.statusCode + ': Registro Confirmado. Hemos enviado un código de verificación a tu correo para que inicialices tu contraseña.');
-            window.location.replace('verificarCV.html')
+            window.location.replace(getCurrentURL+'modules/seguridad/login/login.html');
         })
         .catch(function (error) {
             console.log(error);

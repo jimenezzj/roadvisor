@@ -1,6 +1,8 @@
+const btnSearchVehi = document.querySelector('#btnSearchVehiType');
+const btnSearchCard = document.querySelector('#btnSearchCard');
 document.querySelector('.btnAddCard').onclick =
     () => window.location.assign(getCurrentURL + 'modules/configuracion/agregarTarjetas/agregarTarjetas.html')
-document.querySelector('.btnDeleteVehiType').onclick =
+document.querySelector('#btnDeleteVehiType').onclick =
     () => window.location.assign(getCurrentURL + 'modules/configuracion/agregarTipoVehiculo/agregarTipoVehiculo.html')
 
 function agregarIncidente() {
@@ -16,7 +18,7 @@ function listar() {
     }).then(res => {
         return res.json();
     }).then(res => {
-        res.sort(function (a, b) {
+        res.data.sort(function (a, b) {
             var primero = a.nombre.toLowerCase();
             var segundo = b.nombre.toLowerCase();
             if (primero > segundo) {
@@ -27,32 +29,13 @@ function listar() {
             }
             return 0;
         });
-        if (document.getElementById('agregadoActu').children.length < 1) {
-            for (var i = 0; i < res.length; i++) {
-                var capaGrande = document.createElement('div');
-                var capaGrandeClase = capaGrande.classList.add('capaDeIncidentesUno');
-                var eliminar = document.createElement("i");
-                eliminar.classList.add("material-icons");
-                eliminar.innerHTML = 'block';
-                eliminar.classList.add('delete');
-                eliminar.id = 'delete';
-
-                var newEliminar = eliminar.cloneNode(true);
-                newEliminar.id = res[i]["_id"];
-                newEliminar.addEventListener('click', openModal);
-                var nombreHijo = document.createElement('p');
-                nombreHijo.innerHTML = res[i].nombre;
-                var nombreHijoEstilo = nombreHijo.classList.add('capaDeIncidentesUno__texto');
-                var iconoHijo = document.createElement('img');
-                iconoHijo.src = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/"
-                    + res[i].icono;//Esto es lo que envia la base de datos (icono: "assets\images\IconosIncidentes\Choquechoque.png")
-                var iconoEstilo = iconoHijo.classList.add('capaDeIncidentesUno__imagen');
-                capaGrande.appendChild(iconoHijo);
-                capaGrande.appendChild(nombreHijo);
-                capaGrande.appendChild(newEliminar);
-                document.getElementById('agregadoActu').appendChild(capaGrande);
-            }
-        }
+        generateCardsList(res.data,
+            {
+                // name: 'vehiculo',
+                styleItemContainer: 'tipoVehiList__itme',
+                styleImage: 'tipoVehiImg',
+                styleList: 'capaDeAsistenciaTodosList'
+            })
 
     }).catch(err => {
         console.log(err);
@@ -67,28 +50,28 @@ function prueba() {
 
 
 function buscarIncidente() {
-    var busqueda = document.getElementById('busqueda').value;
-    fetch("/registroDeIncidentes", {
+    var busqueda = document.getElementById('buscador').value;
+    fetch("/tipos/incidente/search/" + busqueda, {
     }).then(res => {
         return res.json();
     }).then(data => {
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].nombre === busqueda) {
-                document.getElementById(data[i]["_id"]).classList.remove('escondido');
-                document.getElementById(data[i]["_id"]).classList.add('capaDeIncidentesUno');
-                document.getElementById('mensajeId').classList.add('escondido');
-                document.getElementById('mensajeId').classList.remove('mensaje');
+        if (data.statusCode === 404) {
+            generateCardsList([],
+                {
+                    // name: 'vehiculo',
+                    styleItemContainer: 'tipoVehiList__itme',
+                    styleImage: 'tipoVehiImg',
+                    styleList: 'capaDeAsistenciaTodosList'
+                })
 
-            } else {
-                document.getElementById(data[i]["_id"]).classList.add('escondido');
-                document.getElementById(data[i]["_id"]).classList.remove('capaDeIncidentesUno');
-            }
-            if (i == data.length - 1) {
-                document.getElementById('mensajeId').innerHTML = 'Sin resultados';
-            }
-        }
-        if (busqueda === "") {
-            document.getElementById('mensajeId').innerHTML = 'No hay datos en la barra de busqueda';
+        } else {
+            generateCardsList(data.data,
+                {
+                    // name: 'vehiculo',
+                    styleItemContainer: 'tipoVehiList__itme',
+                    styleImage: 'tipoVehiImg',
+                    styleList: 'capaDeAsistenciaTodosList'
+                })
         }
     }).catch(err => {
         console.log(err);
@@ -122,7 +105,7 @@ function listarAsistencias() {
     }).then(res => {
         return res.json();
     }).then(res => {
-        res.sort(function (a, b) {
+        res.data.sort(function (a, b) {
             var primero = a.nombre.toLowerCase();
             var segundo = b.nombre.toLowerCase();
             if (primero > segundo) {
@@ -133,24 +116,13 @@ function listarAsistencias() {
             }
             return 0;
         });
-        if (document.getElementById('agregadoActuDos').children.length < 1) {
-            for (var i = 0; i < res.length; i++) {
-                var capaGrande = document.createElement('div');
-                capaGrande.id = res[i]["_id"];
-                var capaGrandeClase = capaGrande.classList.add('capaDeIncidentesUno');
-                var nombreHijo = document.createElement('p');
-                nombreHijo.innerHTML = res[i].nombre;
-                var nombreHijoEstilo = nombreHijo.classList.add('capaDeIncidentesUno__texto');
-                var iconoHijo = document.createElement('img');
-                iconoHijo.src = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/"
-                    + res[i].icono;
-                var iconoEstilo = iconoHijo.classList.add('capaDeIncidentesUno__imagen');
-                capaGrande.appendChild(iconoHijo);
-                capaGrande.appendChild(nombreHijo);
-                document.getElementById('agregadoActuDos').appendChild(capaGrande);
-
-            }
-        }
+        generateCardsList(res.data,
+            {
+                // name: 'vehiculo',
+                styleItemContainer: 'tipoVehiList__itme',
+                styleImage: 'tipoVehiImg',
+                styleList: 'capaDeIncidentesTodosList'
+            })
     }).catch(err => {
         console.log(err);
     });
@@ -158,26 +130,28 @@ function listarAsistencias() {
 
 function buscarAsistencia() {
     var busquedaDos = document.getElementById('busquedaDos').value;
-    fetch('/registroDeAsistencias', {
+    fetch('/tipos/asistencia/search/' + busquedaDos, {
     }).then(res => {
         return res.json();
     }).then(data => {
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].nombre === busquedaDos) {
-                document.getElementById(data[i]["_id"]).classList.remove('escondido');
-                document.getElementById(data[i]["_id"]).classList.add('capaDeIncidentesUno');
-                document.getElementById('mensajeIdDos').classList.add('escondido');
-                document.getElementById('mensajeIdDos').classList.remove('mensaje');
-            } else {
-                document.getElementById(data[i]["_id"]).classList.add('escondido');
-                document.getElementById(data[i]["_id"]).classList.remove('capaDeIncidentesUno');
-            }
-            if (i == data.length - 1) {
-                document.getElementById('mensajeIdDos').innerHTML = 'Sin resultados';
-            }
-        }
-        if (busquedaDos === "") {
-            document.getElementById('mensajeIdDos').innerHTML = 'No hay datos en la barra de busqueda';
+
+        if (data.statusCode === 404) {
+            generateCardsList([],
+                {
+                    // name: 'vehiculo',
+                    styleItemContainer: 'tipoVehiList__itme',
+                    styleImage: 'tipoVehiImg',
+                    styleList: 'capaDeIncidentesTodosList'
+                })
+
+        } else {
+            generateCardsList(data.data,
+                {
+                    // name: 'vehiculo',
+                    styleItemContainer: 'tipoVehiList__itme',
+                    styleImage: 'tipoVehiImg',
+                    styleList: 'capaDeIncidentesTodosList'
+                })
         }
     }).catch(err => {
         console.log(err);
@@ -241,6 +215,7 @@ function generateCardsList(list, opts) {
     tipoCardImg.classList.add(opts.styleImage)
     iconEle.classList.add('material-icons');
     iconEle.innerHTML = 'close';
+    tipoList.innerHTML = '';
     list.forEach(cardObj => {
         const newCardListItem = cardListItem.cloneNode(true);
         if (opts.name === 'card') {
@@ -261,6 +236,14 @@ function generateCardsList(list, opts) {
             }
             cardLastNumbers.innerHTML = cardObj.nombreTipoVehiculo;
         }
+        if (!opts.name) {
+            if (cardObj.icono) {
+                cardImg.src = getCurrentURL + cardObj.icono;
+            } else {
+                cardImg.src = '../../assets/images/cardTypes/default.png';
+            }
+            cardLastNumbers.innerHTML = cardObj.nombre;
+        }
         tipoCardImg.appendChild(cardImg);
         newCardListItem.appendChild(tipoCardImg.cloneNode(true));
         newCardListItem.appendChild(cardLastNumbers.cloneNode(true));
@@ -268,6 +251,83 @@ function generateCardsList(list, opts) {
         tipoList.appendChild(newCardListItem);
     });
     return tipoList;
+}
+
+btnSearchVehi.addEventListener('click', () => {
+    const valueToSearch = document.querySelector('#buscador').value === ''
+        ? 'null' : document.querySelector('#buscador').value;
+    const typeVehiList = document.querySelector('#tipoVehiList');
+    // const loggedUser = getSession.correo;
+    // const URLValidation = getSession.type === 'admin'
+    //     ? getCurrentURL + 'vehicles/search/all/' + valueToSearch
+    //     : getCurrentURL + 'vehicles/' + loggedUser + '/search/' + valueToSearch
+    console.log(valueToSearch);
+
+    fetch(getCurrentURL + 'configuracion/tipo/vehiculo/search/' + valueToSearch)
+        .then(res => res.json())
+        .then(result => {
+            console.log(result.data);
+            typeVehiList.innerHTML = null;
+            if (result.data.length < 1) {
+                getVehiclesType();
+            } else {
+                generateCardsList(result.data,
+                    {
+                        name: 'vehiculo',
+                        styleItemContainer: 'tipoVehiList__itme',
+                        styleImage: 'tipoVehiImg',
+                        styleList: 'tipoVehiList'
+                    })
+            }
+        })
+        .catch(err => {
+            console.log(err);
+
+        });
+});
+
+btnSearchCard.addEventListener('click', () => {
+    const valueToSearch = document.querySelector('#searchTypeCard').value === ''
+        ? 'null' : document.querySelector('#searchTypeCard').value;
+    const tipoCardList = document.querySelector('#tipoCardList');
+    // const loggedUser = getSession.correo;
+    // const URLValidation = getSession.type === 'admin'
+    //     ? getCurrentURL + 'vehicles/search/all/' + valueToSearch
+    //     : getCurrentURL + 'vehicles/' + loggedUser + '/search/' + valueToSearch
+    console.log(valueToSearch);
+
+    fetch(`${getCurrentURL}tarjetas/${getSession.correo}/search/${valueToSearch}`)
+        .then(res => res.json())
+        .then(result => {
+            console.log(result.data);
+            tipoCardList.innerHTML = null;
+            if (result.data.length < 1 && valueToSearch === 'null') {
+                getCards();
+            } else {
+                generateCardsList(result.data,
+                    {
+                        name: 'card',
+                        styleItemContainer: 'tipoCardList__itme',
+                        styleImage: 'tipoCardImg',
+                        styleList: 'tipoCardList'
+                    })
+            }
+        })
+        .catch(err => {
+            console.log(err);
+
+        });
+});
+
+const checkComponents = () => {
+    if (getSession.type !== 'admin') {
+        document.querySelector('.configSinisters').remove();
+        document.querySelector('.configAssistant').remove();
+        document.querySelector('.tipoVehiculosSection').remove();
+    }
+    if (getSession.type !== 'tradicional') {
+        document.querySelector('.contenedorTarjetas').remove();
+    }
 }
 
 /******************************************/
@@ -304,8 +364,6 @@ document.querySelector("header").appendChild(
     createSidebar(getNavbarOpts)
 );
 
-
-
 document.querySelector("main").insertBefore(
     createTopNavbar(
         'Configuración',
@@ -331,12 +389,8 @@ document.querySelector("main").insertBefore(
     ), document.querySelector(".cuerpoDeLaPantalla")
 );
 
-if (getSession.type === 'ruta') {
-    // document.querySelector('.cuerpoDeLaPantalla').remove()
-    // document.querySelector('.contenedorTipoVehiculo').remove()
-    // document.querySelector('.cardsWrapper').remove()
-}
 
+checkComponents();
 getVehiclesType();
 getCards();
 listar();

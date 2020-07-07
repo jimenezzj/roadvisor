@@ -6,6 +6,7 @@ var multer = require('multer');
 var TipoVehiculo = require('../models/tipoVehiculo');
 
 var util = require('../util/util');
+var genericQuery = require('../util/genericQueriesHelper');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -80,6 +81,38 @@ router.post('/tipo/vehiculo/add', upload.single('iconoTipoVehiculo'), function (
             next(err);
         });
 });
+
+router.get('/tipo/vehiculo/search/:sValue', (req, res, next) => {
+    const { sValue } = req.params;
+    const searchHelper = genericQuery.searchAgregtHelper(TipoVehiculo, sValue, {
+        _id: 0
+    });
+    if (sValue === 'null') return res.redirect('/configuracion/tipo/vehiculos');
+    TipoVehiculo.aggregate()
+        .addFields({ ...searchHelper.addFields })
+        .project({ ...searchHelper.projectReduce })
+        .project({ ...searchHelper.projectShowFields })
+        .match({ ...searchHelper.match })
+        .then(docs => {
+            if (docs.length === 0) {
+                const error = new Error('No se encontraron coincidencias con esa descripción');
+                error.statusCode = '404';
+                throw error;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se encontro la lista con exito!',
+                data: docs
+            });
+
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
+});
+
 
 //ESTE GET ME OBTIENE TODOS LOS TIPOS DE VEHÍCULOS DE LA BASE DE DATOS
 module.exports = router;

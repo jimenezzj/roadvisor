@@ -1,0 +1,244 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+}
+
+.wrapperContainer {
+    display: flex;
+    /* align-items: stretch; */
+}
+
+main {
+    /* display: flex; */
+    /* flex-flow: column; */
+    flex-grow: 1;
+}
+
+html,
+h1,
+p {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 auto;
+}
+
+
+/**INICIA CSS DE LA PÁGINA DE REGISTRAR VEHICULO**/
+
+.wrapperContainer {
+    display: flex;
+}
+
+main {
+    flex-grow: 1;
+}
+
+
+/**COMIENZA CSS DE LA PÁGINA DE MODIFICAR RUTA**/
+
+.divMain_Contenedor_ModificarRuta {
+    padding-top: 30px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.divMain_ModificarRutaTitle {
+    border-bottom: solid #000000 1px;
+}
+
+.divMain_ModificarRutaTitle p {
+    padding-bottom: 5px;
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+
+/****************************************************/
+
+.div_Contenedor_buscarRutaAModificar {
+    display: flex;
+    align-items: center;
+    padding-left: 36%;
+    padding-top: 50px;
+}
+
+.div_Contenedor_buscarRutaAModificar div {
+    padding-right: 10px;
+}
+
+.buscarRutaAModificar input {
+    padding: 5px 20px;
+    border: solid #000000 1px;
+    border-radius: 5px;
+}
+
+.btnBuscarRutaAModificar input {
+    padding: 5px 20px;
+    border-radius: 20px;
+    border-style: none;
+    background-color: #049374;
+    color: #ffffff;
+}
+
+.btnBuscarRutaAModificar input:hover {
+    cursor: pointer;
+    background-color: #00CEA1;
+}
+
+
+/****************************************************/
+
+.divMain_ContenedorDatosRutaBaseActuales1 {
+    padding: 20px 300px;
+}
+
+.divMain_ContenedorDatosRutaBaseActuales {
+    display: flex;
+    align-items: center;
+    background-color: #049374;
+    padding: 0px 0px;
+}
+
+.divMain_ContenedorDatosRutaBaseActuales p {
+    padding: 5px 0px;
+}
+
+.divMain_ContenedorDatosRutaBaseActuales img {
+    width: 40px;
+}
+
+.divMain_ContenedorDatosRutaBaseActuales p {
+    color: #ffffff;
+}
+
+.divMain_ContenedorDatosRutaBaseActuales div {
+    padding-left: 30px;
+}
+
+.flex {
+    display: flex;
+}
+
+
+/*****************************************************/
+
+.div_Main_DatosRutaTitle {
+    padding-top: 0px;
+    padding-left: 15%;
+    position: relative;
+}
+
+.div_Main_DatosRutaTitle p {
+    color: #049374;
+    background-color: #ffffff;
+    width: 100px;
+    position: absolute;
+    top: -5px;
+    left: 180px;
+}
+
+
+/*****************************************************/
+
+.div_ContenedorRutaAModificar {
+    padding: 5px 124px;
+}
+
+.div_Main_NuevosRuta {
+    width: 100%;
+}
+
+.div_ContenedorRutaAModificarYBoton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: solid #049374 2px;
+    border-radius: 5px;
+    padding: 5px 40px;
+}
+
+.btnAgregarRutaModificado {
+    padding: 10px;
+    padding-right: 50px;
+    padding-left: 40px;
+    border-right: solid #049374 1px;
+}
+
+.btnAgregarRutaModificado input {
+    background-color: #049374;
+    color: #ffffff;
+    border-style: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.btnAgregarRutaModificado input:hover {
+    cursor: pointer;
+    background-color: #00CEA1;
+}
+
+.div_Main_NuevosRuta {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.div_Main_NuevoNombreRuta,
+.div_Main_NuevoPuntoInicio,
+.div_Main_NuevoPuntoFinal {
+    position: relative;
+}
+
+.div_Main_NuevoNombreRuta input {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: solid #049374 1px;
+}
+
+.div_Main_NuevoNombreRuta p {
+    color: #049374;
+    font-size: 13px;
+    position: absolute;
+    top: -8px;
+    left: 9px;
+    background-color: #ffffff;
+}
+
+.div_Main_NuevoPuntoInicio input {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: solid #049374 1px;
+}
+
+.div_Main_NuevoPuntoInicio p {
+    color: #049374;
+    font-size: 13px;
+    position: absolute;
+    top: -8px;
+    left: 9px;
+    background-color: #ffffff;
+}
+
+.div_Main_NuevoPuntoFinal input {
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: solid #049374 1px;
+}
+
+.div_Main_NuevoPuntoFinal p {
+    color: #049374;
+    font-size: 13px;
+    position: absolute;
+    top: -8px;
+    left: 9px;
+    background-color: #ffffff;
+}
+
+.map {
+    width: 90%;
+    height: 40%;
+    padding-left: 124px;
+}

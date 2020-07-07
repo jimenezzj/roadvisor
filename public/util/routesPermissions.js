@@ -60,10 +60,10 @@ const setAutoLogoutTimer = (...args) => {
 
         setTimeout(() => {
             console.log('Logout the user');
-            logOutUser();
             createAndShowModal('Ha expirado el tiempo valido de tu session', () => {
                 redirectToRoute(args[0]);
             });
+            logOutUser();
         }, (remainingTime - (0.93 * 1000 * 60 * 60)));
     } else {
         console.error('No se esta autenticado o token invalido');
@@ -144,7 +144,7 @@ const usersPermisions = [
     {
         path: 'users',
         canAccess: [isAuthenticated, isRoleAuthorized],
-        roles: ['admin', 'ruta'],
+        roles: ['admin'],
     },
     { path: 'siniestros' },
     { path: 'configuracion' },
@@ -166,17 +166,18 @@ const usersPermisions = [
 //     }
 // ]
 const generataSideNavbarLinks = (role) => {
-    const activeSection = (name) =>
-        generalOptions.find(link => link.name.toLocaleLowerCase() === name)
-            .active = true;
+    // const activeSection = (name) =>
+    //     generalOptions.find(link => link.name.toLocaleLowerCase() === name)
+    //         .active = true;generalOptions.find(link => link.name.toLocaleLowerCase() === name)
+    //         .active = true;
     let generalOptions = [
         {
             name: 'Siniestros',
             icon: 'report_problem',
             href: getCurrentURL + 'modules/siniestros/siniestros.html'
-        },
+        },  
         {
-            name: 'Usuarios',
+            name: 'Users',
             icon: 'account_circle',
             href: getCurrentURL + 'modules/users/users.html'
         },
@@ -188,7 +189,7 @@ const generataSideNavbarLinks = (role) => {
         {
             name: 'Vehiculos',
             icon: 'directions_car',
-            href: getCurrentURL + 'modules/vehicles/vehiculos.html'
+            href: getCurrentURL + 'modules/vehiculos/vehiculos.html'
         },
         {
             name: 'Reportes',
@@ -198,31 +199,31 @@ const generataSideNavbarLinks = (role) => {
     ]
     switch (role.toLowerCase()) {
         case 'admin':
-            activeSection('usuarios');
+            // activeSection('usuarios');
             break;
-        case 'servicios':
-            activeSection('siniestros');
-            generalOptions = generalOptions.filt, storer(link => {
+        case 'servicio':
+            // activeSection('siniestros');
+            generalOptions = generalOptions.filter(link => {
                 const linkName = link.name.toLocaleLowerCase();
-                if (linkName !== 'rutas' && linkName !== 'usuarios') return link;
+                if (linkName !== 'rutas' && linkName !== 'users') return link;
             });
             break;
         case 'tradicional':
-            activeSection('siniestros');
+            // activeSection('siniestros');
             generalOptions = generalOptions.filter(link => {
                 const linkName = link.name.toLocaleLowerCase();
                 if (linkName !== 'reportes'
                     && linkName !== 'rutas'
-                    && linkName !== 'usuarios') return link;
+                    && linkName !== 'users') return link;
             });
             break;
         case 'ruta':
-            activeSection('rutas');
+            // activeSection('rutas');
             generalOptions = generalOptions.filter(link => {
                 const linkName = link.name.toLowerCase();
                 if (linkName !== 'siniestros'
                     && linkName !== 'vehiculos'
-                    && linkName !== 'usuarios') return linkName;
+                    && linkName !== 'users') return linkName;
             })
             break;
 

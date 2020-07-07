@@ -26,9 +26,11 @@ router.get('/profile/:userEmail', function (req, res, next) {
         .select('-contrasena -_id -__v')
         .then(function (result) {
             if (result._doc) {
+                console.log(result._doc);
                 const userToSend = { ...result._doc };
-                userToSend.genero = userToSend.genero[0].toString();
-                userToSend.tipo = userToSend.tipo[0].toString();
+                userToSend.genero = userToSend.genero.toString();
+                userToSend.tipo = userToSend.tipo.toString();
+
                 return res.json({
                     statusCode: 201,
                     message: 'Información de perfil obtenida con exito',
@@ -72,6 +74,7 @@ router.post('/add', upload.single('profilePicture'), (req, res) => {
             }
             return new User({
                 _id: mongoose.Types.ObjectId(),
+                status: true,
                 ...user
             }).save()
         }).then(result => {
@@ -361,6 +364,11 @@ router.get('/', (req, res, next) => {
                 res.statusCode = 404;
                 throw emptyErr;
             }
+            data.forEach(u => {
+
+                u.status = u.status ? 'Habilitado' : 'Deshabilitado';
+            });
+
             return res.status(201).json({
                 statusCode: 201,
                 message: 'Usuarios obtenidos con exito!',

@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+.mainWrapper {
+  display: flex;
+  /* align-items: stretch; */
+}
+
+main {
+  /* display: flex; */
+  /* flex-flow: column; */
+  flex-grow: 1;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+
+p {
+  font-size: 13px;
+}
+
+/**COMIENZA CSS DEL HOME DEL USUARIO TRADICIONAL**/
+
+.div_Main_Contenedor_SiniestrosReportadosTitle {
+  padding: 30px 100px;
+}
+
+.div_Main_SiniestrosReportadosTitle h2 {
+  font-size: 15px;
+  letter-spacing: 3px;
+  font-weight: lighter;
+}
+
+.div_Main_ContenedorTitleYBoton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid #049374 1px;
+}
+
+.div_Main_BtnReportarSiniestro input {
+  border: none;
+  border-radius: 20px;
+  background-color: #049374;
+  color: #ffffff;
+  padding: 6px 20px;
+  font-size: 14px;
+}
+
+.div_Main_BtnReportarSiniestro input:hover {
+  cursor: pointer;
+  background-color: #00cea1;
+}
+
+/***************************************************/
+
+.div_Main_BuscarSiniestros {
+  display: flex;
+  align-items: center;
+  padding: 10px 100px;
+}
+
+.div_Main_InpuBuscarSiniestrosPorLista {
+  padding-right: 10px;
+}
+
+.div_Main_InpuBuscarSiniestrosPorLista input {
+  padding: 3px 5px;
+}
+
+.div_Main_BtnBuscarSiniestrosPorLista input {
+  border-style: none;
+  border-radius: 15px;
+  padding: 6px 8px;
+  background-color: #049374;
+  color: #ffffff;
+}
+
+.div_Main_BtnBuscarSiniestrosPorLista input:hover {
+  cursor: pointer;
+  background-color: #00cea1;
+}
+
+/***************************************************/
+
+.div_Main_siniestrosReportadosContenedor {
+  padding: 20px 100px;
+  margin-left: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.div_Main_siniestrosReportadosContenedor img {
+  width: 250px;
+}
+
+.div_Main_ImgSiniestroReportado {
+  width: 100%;
+  border-bottom: solid #049374 1px;
+}
+
+.div_Main_SiniestroReportado {
+  border: solid #049374 1px;
+  padding: 5px 30px;
+}
+
+.div_Main_SiniestroReportado {
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.div_Main_SiniestroReportado p {
+  color: #049374;
+}

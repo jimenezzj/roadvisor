@@ -41,14 +41,14 @@ const setSummaryInfo = () => {
     const profileHeaderItemEnd = document.querySelector('.profileHeader__itemEnd');
     const titleInfo = document.createElement('h3');
     const textInfo = document.createElement('p');
-    if (session.type === 'servicios') {
+    if (session.type === 'servicio') {
         titleInfo.innerHTML = '32';
         textInfo.innerHTML = 'Total de asistencias';
         profileHeaderItemStart.appendChild(titleInfo.cloneNode(true));
         profileHeaderItemStart.appendChild(textInfo.cloneNode(true));
         titleInfo.innerHTML = '25';
         textInfo.innerHTML = 'Asistencias brindadas';
-        profileHeaderItemEnd.appendChild(titleInfoInfo.cloneNode(true));
+        profileHeaderItemEnd.appendChild(titleInfo.cloneNode(true));
         profileHeaderItemEnd.appendChild(textInfo.cloneNode(true));
     }
     if (session.type === 'tradicional') {
@@ -58,7 +58,7 @@ const setSummaryInfo = () => {
         profileHeaderItemStart.appendChild(textInfo.cloneNode(true));
         titleInfo.innerHTML = '52';
         textInfo.innerHTML = 'Asistencias solicitadas';
-        profileHeaderItemEnd.appendChild(titleInfoInfo.cloneNode(true));
+        profileHeaderItemEnd.appendChild(titleInfo.cloneNode(true));
         profileHeaderItemEnd.appendChild(textInfo.cloneNode(true));
 
     }

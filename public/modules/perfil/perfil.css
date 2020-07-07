@@ -42,6 +42,20 @@ main {
   justify-content: space-around;
   background: linear-gradient(to bottom, #01e08f, #013870);
 }
+.profileHeader__itemStart,
+.profileHeader__itemEnd {
+  text-align: center;
+  color: #ffffff;
+}
+.profileHeader__itemStart h3,
+.profileHeader__itemEnd h3 {
+  font-size: 1.5rem;
+}
+.profileHeader__itemStart p,
+.profileHeader__itemEnd p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
 
 .profilePicWrapper {
   text-align: center;

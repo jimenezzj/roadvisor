@@ -17,7 +17,9 @@ const createSidebar = (sections) => {
         + '/assets/images/logo/Roadvisor_white.png';
 
 
-    generateSections(sections).forEach(linkEle => {
+    generateSections(
+        setActiveSection(sections)
+    ).forEach(linkEle => {
         sectionsWrapper.appendChild(linkEle);
     });
 
@@ -68,7 +70,9 @@ const generateSections = (secs) => {
         if (active) {
             newIconWrapper.classList.add('link--active');
             iconTag.classList.add('iconTag--active');
-            titleSection.classList.add('linkText--active')
+            titleSection.classList.add('linkText--active');
+        } else {
+            newIconWrapper.classList.remove('link--active');
         }
         newBtn.appendChild(iconTag);
         newBtn.appendChild(titleSection);
@@ -129,6 +133,22 @@ const squeezeSidebar = () => {
 
     sideBarStatus = 'short';
 };
+const setActiveSection = (sections) => {
+    const splittedURL = window.location.href.split('/');
+    // get Main section from URL
+    const getSection = splittedURL[(splittedURL.findIndex(rVal => rVal === 'modules') + 1)].toLocaleLowerCase();
+    const sideBarWithActive = sections.map(sectionObj => {
+        sectionObj.active = false;
+        if (sectionObj.name.toLowerCase() === getSection) {
+            sectionObj.active = true;
+        }
+        return sectionObj;
+    });
+    console.log(sideBarWithActive);
+    // localStorage.setItem('navbar', JSON.stringify(sideBarWithActive));
+    return sideBarWithActive;
+}
+// setActiveSection();
 
 // createSidebar([
 //     {

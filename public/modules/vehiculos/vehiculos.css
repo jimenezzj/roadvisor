@@ -96,7 +96,6 @@ input[type="search"]::-webkit-search-results-decoration {
   outline: none;
 }
 
-
 .btnAdd {
   padding: 0.5rem 1.1rem;
   margin-left: auto;
@@ -212,12 +211,12 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .imagesWrapper img {
   position: absolute;
-  top: -50%;
+  top: 50%;
   right: 50%;
-  /* width: 115%; */
+  width: 115%;
   /* height: 130%; */
   z-index: -1;
-  transform: translate(50%, 0%);
+  transform: translate(50%, -50%);
 }
 .vehiWrapper {
   padding: 1.5rem 1.75rem;

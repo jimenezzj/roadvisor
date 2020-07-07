@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post('/add', upload.array('vehiclePictures'), (req, res) => {
-    const { numeroPlaca, marca, model, anio, color, type, correo } = req.body;
+    const { numeroPlaca, marca, model, anio, color, type, correo, conductor } = req.body;
     const vehiclePictures = [];
 
     req.files.forEach(file => vehiclePictures.push(
@@ -35,7 +35,8 @@ router.post('/add', upload.array('vehiclePictures'), (req, res) => {
         color: color,
         type: type,
         fotos: vehiclePictures,
-        usuario: correo
+        usuario: correo,
+        conductor: conductor
     });
     Vehicle.findOne({ numeroPlaca: numeroPlaca })
         .then(sResult => {
@@ -67,7 +68,7 @@ router.post('/add', upload.array('vehiclePictures'), (req, res) => {
 
 router.get('/:userEmail', (req, res, next) => {
     const userEmail = req.params.userEmail;
-    console.log(userEmail);
+    console             .log(userEmail);
 
     Vehicle.find({ usuario: userEmail })
         .then(list => {
@@ -76,8 +77,8 @@ router.get('/:userEmail', (req, res, next) => {
                 errNotFound.statusCode = 404;
                 throw errNotFound;
             }
-            return res.status(201).json({
-                statusCode: 201,
+            return res.status(200).json({
+                statusCode: 200,
                 message: 'Se obtuvo la lista de vehiculos con exito!',
                 data: list
             })

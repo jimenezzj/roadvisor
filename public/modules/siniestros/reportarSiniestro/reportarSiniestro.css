@@ -1,0 +1,230 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+  }
+  
+  .mainWrapper {
+    display: flex;
+    /* align-items: stretch; */
+  }
+  
+  header {
+  }
+  
+  main {
+    /* display: flex; */
+    /* flex-flow: column; */
+    flex-grow: 1;
+  }
+  
+  .btnOutline {
+    /* width: 100%; */
+    /* margin: 1.5rem 0; */
+    border: 3px solid #1fa084;
+    padding: 0.5rem 0;
+    background-color: #ffffff;
+    border-radius: 4rem;
+    color: #20ab8c;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .btn {
+    /* width: 100%; */
+    /* margin: 1.5rem 0; */
+    display: block;
+    border: none;
+    padding: 0.5rem 0;
+    background-color: #20ab8c;
+    border-radius: 4rem;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  html,
+h1,
+p {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 auto;
+}
+
+
+/**INICIA CSS DE LA PÁGINA DE REGISTRAR VEHICULO**/
+
+.wrapperContainer {
+    display: flex;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.main {
+    position: relative;
+}
+
+
+/**COMIENZA CSS DE REPORTAR SINIESTRO**/
+
+.div_Main_ContenedorInformacionSiniestroAReportar {
+    padding: 50px 430px;
+}
+
+.div_Main_ContenedorInformacionSiniestroAReportar div {
+    padding-top: 15px;
+}
+
+
+/*******************************************/
+
+.div_Main_ContenedorDescripcionSiniestro {
+    position: relative;
+}
+
+.div_Main_ContenedorDescripcionSiniestro textarea {
+    border: solid #049374 1px;
+    border-radius: 5px;
+}
+
+.div_Main_ContenedorDescripcionSiniestro textarea::placeholder {
+    padding-top: 5px;
+    padding-left: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.div_Main_ContenedorDescripcionSiniestro p {
+    background-color: #ffffff;
+    color: #049374;
+    font-size: 15px;
+    position: absolute;
+    top: 4px;
+    left: 12px;
+}
+
+
+/***********************************************************/
+
+.div_Main_DireccionExactaSiniestro {
+    position: relative;
+    padding-bottom: 18px;
+}
+
+.div_Main_DireccionExactaSiniestro textarea {
+    border: solid #049374 1px;
+    border-radius: 5px;
+}
+
+.div_Main_DireccionExactaSiniestro textarea::placeholder {
+    padding-top: 8px;
+    padding-left: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.div_Main_DireccionExactaSiniestro p {
+    background-color: #ffffff;
+    color: #049374;
+    font-size: 15px;
+    position: absolute;
+    top: 4px;
+    left: 12px;
+}
+
+
+/***********************************************************/
+
+.div_Main_FotoSiniestro {
+    border: solid #049374 1px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.div_Main_FotoSiniestro input {
+    padding-bottom: 15px;
+    padding-left: 10px;
+}
+
+.div_Main_FotoSiniestro p {
+    background-color: #ffffff;
+    color: #049374;
+    font-size: 15px;
+    position: absolute;
+    top: -12px;
+    left: 12px;
+}
+
+
+/***********************************************************/
+
+.div_Main_TipoSiniestro {
+    display: flex;
+    position: relative;
+}
+
+.tipoSiniestro {
+    padding-right: 20px;
+}
+
+.tipoSiniestro select {
+    border: solid #049374 1px;
+    border-radius: 5px;
+    padding: 5px 150px 5px 0px;
+}
+
+.tipoSiniestro p {
+    background-color: #ffffff;
+    color: #049374;
+    font-size: 15px;
+    position: absolute;
+    top: 19px;
+    left: 12px;
+}
+
+
+/***********************************************************/
+
+.div_Main_ProvinciaRutaSiniestro {
+    display: flex;
+    position: relative;
+}
+
+.div_Main_RutaSiniestro select {
+    border: solid #049374 1px;
+    border-radius: 5px;
+    padding: 5px 150px 5px 0px;
+}
+
+.div_Main_RutaSiniestro p {
+    background-color: #ffffff;
+    color: #049374;
+    font-size: 15px;
+    position: absolute;
+    top: 19px;
+    left: 240px;
+}
+
+
+/***********************************************************/
+
+.div_Main_BtnReportarSiniestro input {
+    border-style: none;
+    border-radius: 20px;
+    background-color: #049374;
+    color: #ffffff;
+    padding: 10px 200px;
+    font-size: 15px;
+}
+
+.div_Main_BtnReportarSiniestro input:hover {
+    cursor: pointer;
+    background-color: #00CEA1;
+}

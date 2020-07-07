@@ -13,6 +13,6 @@ const tarjetSchema = mongoose.Schema({
         require: true,
         ref: "Usuario"
     }
-}); 
+});
 
 module.exports = mongoose.model('Tarjeta', tarjetSchema, 'Tarjetas');

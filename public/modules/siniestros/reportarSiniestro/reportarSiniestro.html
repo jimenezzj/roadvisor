@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Siniestros</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../../util/sideBar/sideBar.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../../util/topNavBar/topNavbar.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='reportarSiniestro.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body onload="return listarRutasDisponibles(), listarTiposDeSiniestro()">
+    <div class="mainWrapper">
+        <header></header>
+        <main>
+            <div class="actionsWrapper"> </div>
+            <div class="div_Main_ContenedorInformacionSiniestroAReportar">
+                <div class="div_Main_ContenedorDescripcionSiniestro">
+                    <p>Descripción</p>
+                    <textarea name="" id="descripcionSiniestro" cols="62" rows="8"
+                        placeholder="Breve descripción del siniestro"></textarea>
+                </div>
+
+                <div class="div_Main_DireccionExactaSiniestro">
+                    <p>Dirección exacta</p>
+                    <textarea name="" id="direccionExactaSiniestro" cols="62" rows="2"
+                        placeholder="Dirección exacta del siniestro"></textarea>
+                </div>
+
+                <div class="div_Main_FotoSiniestro">
+                    <p>Foto del siniestro</p>
+                    <input type="file" name="" id="fotoSiniestro">
+                </div>
+
+                <div class="div_Main_TipoSiniestro">
+                    <div class="tipoSiniestro">
+                        <p>Tipo</p>
+                        <select name="" id="tipoSiniestroReportado">
+                            <!--
+                            <option value=""selected disabled></option>
+                            <option value="Incendio">Incendio</option>
+                            <option value="Choque">Choque</option>
+                            -->
+                        </select>
+                    </div>
+
+                    <div class="div_Main_RutaSiniestro">
+                        <p>Ruta</p>
+                        <select name="" id="rutaSiniestro">
+                            <!--
+                            <option value="" disabled selected></option>
+                            <option value="Ruta 1">Ruta 1</option>
+                            <option value="Ruta 132">Ruta 132</option>
+                            -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="div_Main_BtnReportarSiniestro">
+                    <input type="button" name="" id="btnReportarSiniestro" value="Reportar"
+                        onclick="return registrarSiniestroReportado()">
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src='../../../util/util.js'></script>
+    <script src='../../../util/routesPermissions.js'></script>
+    <script src='../../../util/sideBar/sideBar.js'></script>
+    <script src='../../../util/topNavBar/topNavbar.js'></script>
+    <script src='reportarSiniestro.js'></script>
+</body>
+
+</html>

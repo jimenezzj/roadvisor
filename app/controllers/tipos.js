@@ -66,7 +66,6 @@ router.post('/incidentes/add',
             .findOne({ nombre: req.body.nombre.toLowerCase() })
             .then(data => {
                 console.log(data);
-
                 if (data) {
                     const err = new Error('El nombre ya esta siendo utilizado');
                     err.statusCode = 500;
@@ -98,8 +97,16 @@ router.post('/incidentes/add',
 router.get('/asistencia', function (req, res) {
     TipoAsistencia.find()
         .then(data => {
-            console.log(data);
-            return res.json(data);
+            if (data.length < 1) {
+                const err = new Error('No se encontraro tipos de sistencia con ese nombre');
+                err.statusCode = 404;
+                throw err;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se obtuvo la lista de tipos de asistencia con exito',
+                data: data
+            });
         })
         .catch(err => {
             if (!err.statusCode) {
@@ -108,12 +115,47 @@ router.get('/asistencia', function (req, res) {
             next(err);
         });
 });
+
+router.get('/asistencia/search/:asisName', function (req, res, next) {
+    TipoAsistencia.find({ nombre: req.params.asisName })
+        .then(data => {
+            if (data.length < 1) {
+                const err = new Error('No se encontraro tipos de asistencia con ese nombre');
+                err.statusCode = 404;
+                throw err;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se encontro el tipo de asistencia',
+                data: data
+            });
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        });
+});
+
+router.get('/asistencia/search/', (req, res) => {
+    res.redirect('/tipos/asistencia');
+});
+
 
 router.get('/incidente', function (req, res) {
     TipoIncidente.find()
         .then(data => {
-            console.log(data);
-            return res.json(data);
+            if (data.length < 1) {
+                const err = new Error('No se encontraro tipos de incidentes con ese nombre');
+                err.statusCode = 404;
+                throw err;
+            }
+            return res.status(200).json({
+                statusCode: 200,
+                message: 'Se obtuvo la lista de tipos de incidente con exito',
+                data: data
+            });
         })
         .catch(err => {
             if (!err.statusCode) {
@@ -123,5 +165,31 @@ router.get('/incidente', function (req, res) {
         });
 });
 
+
+router.get('/incidente/search/:inciName', function (req, res, next) {
+    TipoIncidente.find({ nombre: req.params.inciName })
+        .then(data => {
+            if (data.length < 1) {
+                const err = new Error('No se encontraro tipos de incidente con ese nombre');
+                err.statusCode = 404;
+                throw err;
+            }
+            return res.status(201).json({
+                statusCode: 201,
+                message: 'Se encontro tipos de incidente que coinciden con la descripción',
+                data: data
+            });
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err);
+        });
+});
+
+router.get('/incidente/search/', (req, res) => {
+    res.redirect('/tipos/incidente');
+});
 
 module.exports = router;

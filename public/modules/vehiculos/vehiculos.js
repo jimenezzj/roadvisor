@@ -4,7 +4,7 @@ const btnSearch = document.querySelector('#btnSearch');
 const search = document.querySelector('#search');
 let listWrapper = document.querySelector('.listWrapper');
 
-btnAdd.href = getCurrentURL + 'modules/vehicles/agregarVehiculos/agregarVehiculos.html';
+btnAdd.href = getCurrentURL + 'modules/vehiculos/agregarVehiculos/agregarVehiculos.html';
 
 const getUserVehicles = () => {
     const loggedUser = getSession.correo;
@@ -15,11 +15,13 @@ const getUserVehicles = () => {
         .then(res => res.json())
         .then(result => {
             console.log(result);
-            result.data.forEach(v => {
-                listWrapper.appendChild(
-                    createCard(v)
-                );
-            });
+            if (result.statusCode === 200 || result.statusCode === 201) {
+                result.data.forEach(v => {
+                    listWrapper.appendChild(
+                        createCard(v)
+                    );
+                });
+            }
         })
         .catch(err => {
             console.error(err);
@@ -50,8 +52,15 @@ btnSearch.addEventListener('click', () => {
         .catch(err => {
             console.log(err);
 
-        })
+        });
 });
+
+const checkComponenets = () => {
+    if (getSession.type !== 'tradicional' && getSession.type !== 'servicio') {
+        document.querySelector('.btnAdd').remove();
+        document.querySelector('.btnFilter').style.marginLeft = 'auto';
+    }
+}
 
 const createCard = (data) => {
     const cardWrapper = document.createElement('div');
@@ -68,7 +77,7 @@ const createCard = (data) => {
     imageMask.classList.add('imageMask');
     console.log(data.fotos);
     console.log(data.fotos[0]);
-    
+
     imgEle.src = getCurrentURL + data.fotos[0];
     imgEle.alt = data.fotos[0].split('\\').pop();
     imagesWrapper.appendChild(imageMask);
@@ -141,21 +150,22 @@ mainWrapper.querySelector('main').insertBefore(
             {
                 icon: 'account_circle',
                 name: 'Mi Perfil',
-                href: '#'
+                href: getCurrentURL + 'modules/perfil/perfil.html'
             },
             {
                 icon: 'settings',
                 name: 'Configuración',
-                href: '#'
+                href: getCurrentURL + 'modules/configuracion/configuracion.html'
             },
             {
                 icon: 'exit_to_app',
                 name: 'Cerrar Sesión',
-                href: '#'
+                href: '#',
+                action: logOutUser
             }
         ]
     ),
     document.querySelector('.actionsWrapper')
 );
-
+checkComponenets();
 getUserVehicles();

@@ -36,6 +36,8 @@ router.post('/login', (req, res) => {
                 }
             );
             const expiresTime = new Date().getTime() + (2 * 60 * 60 * 1000);
+            console.log(user.tipo);
+
             res.status(200).json({
                 statusCode: 200,
                 message: 'Inicio de sesion exitoso',
@@ -44,7 +46,7 @@ router.post('/login', (req, res) => {
                     pApellido: user.pApellido,
                     profilePicture: user.profilePicture,
                     correo: user.email,
-                    tipo: user.tipo[0],
+                    tipo: user.tipo,
                     token: token,
                     expiresTime: expiresTime
                 }

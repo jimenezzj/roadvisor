@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 
 const vehiclesSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    numeroPlaca: String,
+    numeroPlaca: {
+        required: true,
+        type: String
+    },
     marca: String,
     modelo: String,
     anio: Date,
@@ -13,6 +16,11 @@ const vehiclesSchema = new mongoose.Schema({
         required: true,
         type: String,
         ref: 'Usuario'
+    },
+    conductor: {
+        ref: 'Usuario',
+        type: String,
+        default: 'No Asginado'
     }
 });
 

@@ -88,28 +88,7 @@ body {
   justify-content: flex-start;
 }
 .cuerpoDeLaPantalla {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 1rem 10% 0 10%;
-}
-
-.cuerpoDeLaPantalla__textoDatosDelSiniestro {
-  font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-  color: black;
-  padding-top: 20px;
-  padding-left: 50px;
-  letter-spacing: 5px;
-}
-.cuerpoDeLaPantalla__textoDatosDelSiniestroDos {
-  font-family: "Montserrat", sans-serif;
-  font-size: 20px;
-  color: black;
-  padding-top: 20px;
-  padding-left: 50px;
-  letter-spacing: 5px;
-  padding-top: 30px;
+  padding: 1.6rem 10% 1.6rem 10%;
 }
 
 .contenedorDeLaPantalla {
@@ -139,7 +118,6 @@ body {
   font-size: 20px;
 }
 .cuerpoDeLaPantalla__textoLista {
-  font-family: "Montserrat", sans-serif;
   font-size: 20px;
 }
 .capaDeListasDeIncidentes__boton {
@@ -149,17 +127,7 @@ body {
   color: #ffffff;
   border: solid;
 }
-.capaDeListasDeIncidentes {
-  border-radius: 10px;
-  border: solid;
-  border-color: black;
-  width: 800px;
-  height: 300px;
-  overflow: auto;
-}
-.capaDeIncidentesTodos__mover {
-  padding-left: 20px;
-}
+
 .capaDeIncidentesUno {
   padding-left: 30px;
   border-radius: 30px;
@@ -187,13 +155,6 @@ body {
   padding-left: 300px;
 }
 
-.capaDeIncidentesTodos {
-  display: flex;
-  padding-right: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  overflow: auto;
-}
 .capaDeListasDeIncidentes__boton:hover {
   background-color: #1fa084;
   color: #ffffff;
@@ -219,21 +180,6 @@ body {
   color: #ffffff;
   box-shadow: #00000038 0px 0px 4px 3px;
 }
-.buttonDos {
-  border-radius: 20px;
-  border: solid;
-  border-color: black;
-  padding: 10px 60px;
-}
-.capaDeIncidentesTodosDos {
-  align-items: center;
-  padding-bottom: 30px;
-  display: flex;
-  padding-right: 20px;
-  flex-wrap: wrap;
-  border-bottom: solid;
-  border-color: black;
-}
 
 .capaDeListasDeIncidentes__moverDos {
   padding-left: 50px;
@@ -242,11 +188,7 @@ body {
   display: none;
 }
 /*flex grab*/
-.mensaje {
-  font-size: 20px;
-  font-family: "Montserrat", sans-serif;
-  padding-left: 100px;
-}
+
 .botonBuscar {
   background-color: #00cea1;
   color: #ffffff;
@@ -259,12 +201,7 @@ body {
   color: #ffffff;
   box-shadow: #00000038 0px 0px 4px 3px;
 }
-.botonBuscarM {
-  padding-left: 20px;
-}
-.botonBuscarMV2 {
-  padding-left: 120px;
-}
+
 .wrapperContainer {
   display: flex;
 }
@@ -292,7 +229,7 @@ main {
 
 /***********  JONATHAN  **********/
 .accoutSetsWrapper {
-  padding: 2.5rem 10%;
+  padding: 1.6rem 10% 2rem 10%;
 }
 
 .subTitleSection {
@@ -383,11 +320,11 @@ main {
   padding: 0 0.5rem;
 }
 .tipoCardList__itme--visa {
-  border: 2px solid #1C1E76;
+  border: 2px solid #1c1e76;
   background-color: #ffffff;
 }
 .tipoCardList__itme--visa > * {
-  color: #1C1E76;
+  color: #1c1e76;
 }
 .tipoCardList__itme--mastercard {
   border: 2px solid #da2626;
@@ -402,6 +339,13 @@ main {
 }
 .tipoCardList__itme--americanexpress > * {
   color: #006fcf;
+}
+.tipoCardList__itme--discover {
+  border: 2px solid #cf6400;
+  background-color: #ffffff;
+}
+.tipoCardList__itme--discover > * {
+  color: #cf6400;
 }
 .tipoCardImg {
   width: 4.2rem;
@@ -426,7 +370,7 @@ main {
 
 /***********  keRvin  **********/
 .contenedorUsuariosOpciones {
-  padding: 1rem 10% 2rem 10%;
+  padding: 1.6rem 10% 1.6rem 10%;
 }
 .contenedorTipoVehiculo {
   position: relative;
@@ -453,7 +397,7 @@ main {
   box-shadow: 0 0 2px 2px #0000001f;
   border-radius: 55px;
 }
-#searchTypeVehi {
+.searchTypeVehi {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 60px 60px 60px 60px;
@@ -478,7 +422,8 @@ main {
   display: flex;
   padding: 1rem 0 1.5rem 0;
 }
-.tipoVehiContenedor {
+.tipoVehiContenedor,
+.capaDeIncidentesTodos {
   padding: 1.2rem 0;
 }
 
@@ -530,7 +475,7 @@ main {
   margin-left: auto;
 }
 .btnDeleteVehiType {
-  margin-left: 0.5rem;
+  margin-left: auto;
 }
 .btnEditVehiType,
 .btnDeleteVehiType {

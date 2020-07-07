@@ -104,7 +104,7 @@ main {
 }
 .customList--item {
   padding: 0.6rem 1rem;
-  cursor: pointer;
+  cursor: pointer;  
 }
 .customList--item:hover {
   background-color: #1ab9962d;
